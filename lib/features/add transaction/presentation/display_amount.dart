@@ -33,8 +33,10 @@ class DisplayAmount extends ConsumerWidget {
             hintText: "0.00",
             hintStyle: WidgetStateTextStyle.resolveWith((states) {
               if (states.contains(WidgetState.focused)) {
-                return const TextStyle(
-                  color: Colors.black,
+                return TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
                 );
               }
               return const TextStyle(
