@@ -1,0 +1,23 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every 5 days
+    - cron: "0 0 */5 * *"
+  # Allows you to run this script manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  ping-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Supabase Keep-Alive Table
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          curl --request GET \
+          --url "${SUPABASE_URL}/rest/v1/keep_alive?select=*" \
+          --header "apikey: ${SUPABASE_KEY}" \
+          --header "Authorization: Bearer ${SUPABASE_KEY}"
