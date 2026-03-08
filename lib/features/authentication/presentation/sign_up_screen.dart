@@ -73,15 +73,14 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           ),
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
+              SliverFillRemaining(
+                hasScrollBody: false,
                 child: Column(
                   spacing: 12,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                      onPressed: () => context.pop(),
-                      icon: Icon(Icons.arrow_back_ios_new),
-                    ),
+                    SizedBox(height: 16),
                     Text(
                       'Start Tracking Today',
                       style: TextStyles.title,
@@ -187,7 +186,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         ),
                       ],
                     ),
-                    gapH4,
+                    SizedBox(height: 16),
                   ],
                 ),
               ),

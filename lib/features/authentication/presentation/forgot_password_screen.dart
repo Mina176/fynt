@@ -62,49 +62,56 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
             vertical: Sizes.kVerticalPadding,
             horizontal: Sizes.kHorizontalPadding,
           ),
-          child: Column(
-            spacing: 16,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconButton(
-                onPressed: () => context.pop(),
-                icon: Icon(Icons.arrow_back_ios_new),
-              ),
-              OnboardingCard(
-                icon: Icons.lock_reset_sharp,
-                borderRadius: 50,
-                width: 100,
-                height: 100,
-                title: 'Forgot Password?',
-                subTitle:
-                    'Don\'t worry, it happens. Please enter the email address associated with your account.',
-              ),
-              Form(
-                key: _formKey,
-                child: TextFieldWithLabel(
-                  label: 'Email Address',
-                  hintText: 'you@example.com',
-                  errorText: emailError,
-                  controller: _emailContoller,
-                  validator: Validators.validateEmail,
-                ),
-              ),
-              Spacer(),
-              ElevatedButton(
-                onPressed: isLoading ? null : sendResetEmail,
-                child: isLoading
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Send Reset Link'),
-                          Icon(Icons.arrow_forward_rounded),
-                        ],
+          child: CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Column(
+                  spacing: 16,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      onPressed: () => context.pop(),
+                      icon: Icon(Icons.arrow_back_ios_new),
+                    ),
+                    OnboardingCard(
+                      icon: Icons.lock_reset_sharp,
+                      borderRadius: 50,
+                      width: 100,
+                      height: 100,
+                      title: 'Forgot Password?',
+                      subTitle:
+                          'Don\'t worry, it happens. Please enter the email address associated with your account.',
+                    ),
+                    Form(
+                      key: _formKey,
+                      child: TextFieldWithLabel(
+                        label: 'Email Address',
+                        hintText: 'you@example.com',
+                        errorText: emailError,
+                        controller: _emailContoller,
+                        validator: Validators.validateEmail,
                       ),
+                    ),
+                    Spacer(),
+                    ElevatedButton(
+                      onPressed: isLoading ? null : sendResetEmail,
+                      child: isLoading
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Send Reset Link'),
+                                Icon(Icons.arrow_forward_rounded),
+                              ],
+                            ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

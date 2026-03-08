@@ -68,12 +68,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
+              SliverFillRemaining(
                 child: Column(
                   spacing: 10,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    gapH32,
                     Text(
                       'Welcome Back',
                       style: TextStyles.title,
