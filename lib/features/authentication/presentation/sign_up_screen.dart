@@ -36,8 +36,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       await ref
           .read(authControllerProvider.notifier)
           .createUserWithEmailAndPassword(
-            _emailController.text.trim(),
-            _passwordController.text.trim(),
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
+            fullName: _nameController.text.trim(),
           );
     }
   }
@@ -99,6 +100,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                             controller: _nameController,
                             label: 'Full Name',
                             hintText: 'John Doe',
+                            onSaved: (value) => _nameController.text = value!,
                             validator: (value) =>
                                 value!.isEmpty ? 'Name is required' : null,
                           ),

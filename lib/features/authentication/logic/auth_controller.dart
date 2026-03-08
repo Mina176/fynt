@@ -28,16 +28,18 @@ class AuthController extends _$AuthController {
     }
   }
 
-  Future<void> createUserWithEmailAndPassword(
-    String email,
-    String password,
-  ) async {
+  Future<void> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String fullName,
+  }) async {
     state = const AuthLoadingState(LoadingStateEnum.loading, null);
     try {
       final authService = ref.read(authServiceProvider);
       await authService.createUserWithEmailAndPassword(
         email: email,
         password: password,
+        fullName: fullName,
       );
       state = const AuthLoadingState(LoadingStateEnum.success, null);
     } on Exception catch (e) {

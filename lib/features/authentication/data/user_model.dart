@@ -2,13 +2,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UserModel {
   final String userId;
-  final String name;
+  final String fullName;
   final String email;
   final String? avatarUrl;
 
   UserModel({
     required this.userId,
-    required this.name,
+    required this.fullName,
     required this.email,
     this.avatarUrl,
   });
@@ -19,7 +19,7 @@ class UserModel {
     final avatarUrl = metadata['avatar_url'] ?? metadata['picture'];
     return UserModel(
       userId: user.id,
-      name: displayName.isNotEmpty ? displayName : 'User',
+      fullName: displayName.isNotEmpty ? displayName : 'User',
       email: user.email ?? '',
       avatarUrl: avatarUrl,
     );

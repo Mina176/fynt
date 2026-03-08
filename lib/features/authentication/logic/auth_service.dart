@@ -41,11 +41,16 @@ class AuthService {
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String password,
+    required String fullName,
   }) async {
     try {
       await _supabaseAuth.signUp(
         email: email,
         password: password,
+        data: {
+          'full_name':
+              fullName, // You can also use 'full_name' depending on your preference
+        },
       );
     } on supabase.AuthException catch (e) {
       throw Exception(e.message);
