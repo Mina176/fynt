@@ -2,6 +2,7 @@ import 'package:fintrack/constants/app_sizes.dart';
 import 'package:fintrack/constants/text_styles.dart';
 import 'package:fintrack/features/authentication/logic/auth_controller.dart';
 import 'package:fintrack/features/authentication/logic/auth_service.dart';
+import 'package:fintrack/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,10 +15,7 @@ class CustomAppBar extends ConsumerWidget {
     final String? photoUrl = currentUser?.avatarUrl;
     final bool hasValidPhoto =
         photoUrl != null && photoUrl.startsWith('https://');
-    final String guestId = currentUser?.userId != null
-        ? currentUser!.userId.substring(0, 5)
-        : '76186';
-    final String displayName = currentUser?.name ?? 'Guest $guestId';
+
     return Row(
       children: [
         GestureDetector(
@@ -38,7 +36,7 @@ class CustomAppBar extends ConsumerWidget {
               style: TextStyles.subtitle.copyWith(fontSize: 14),
             ),
             Text(
-              displayName,
+              getUsernameWithId(ref),
               style: TextStyles.title.copyWith(fontSize: 18),
             ),
           ],

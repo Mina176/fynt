@@ -1,5 +1,7 @@
 import 'package:fintrack/features/add%20transaction/data/transaction_model.dart';
+import 'package:fintrack/features/authentication/logic/auth_service.dart';
 import 'package:fintrack/widgets/category_icon.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 AccountIcon getAccountIcon(AccountTypes accountType) {
   switch (accountType) {
@@ -64,4 +66,14 @@ String getInfoText(int selectedRecurrenceIndex) {
   } else {
     return 'The budget will reset automatically on 1st Jan of every year.';
   }
+}
+
+String getUsernameWithId(WidgetRef ref) {
+  final currentUser = ref.watch(authServiceProvider).currentUser;
+  final String guestId = currentUser?.userId != null
+      ? currentUser!.userId.substring(0, 5)
+      : '76186';
+  final String fullName = currentUser?.fullName ?? 'Guest';
+  if (fullName.isNotEmpty) return fullName;
+  return '$fullName#$guestId';
 }

@@ -5,8 +5,10 @@ import 'package:fintrack/features/appearance/logic/theme_controller.dart';
 import 'package:fintrack/features/authentication/logic/auth_controller.dart';
 import 'package:fintrack/features/authentication/logic/auth_service.dart';
 import 'package:fintrack/features/currency/logic/currency_provider.dart';
+import 'package:fintrack/features/home%20screen/presentation/custom_app_bar.dart';
 import 'package:fintrack/routing/app_route_enum.dart';
 import 'package:fintrack/theming/app_colors.dart';
+import 'package:fintrack/utils/helpers.dart';
 import 'package:fintrack/widgets/settings_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -152,7 +154,7 @@ class DetailsSection extends ConsumerWidget {
     return Column(
       children: [
         Text(
-          currentUser?.name ?? 'User${currentUser?.userId.substring(0, 5)}',
+          getUsernameWithId(ref),
           textAlign: TextAlign.center,
           style: TextStyles.title.copyWith(fontSize: 28),
         ),
