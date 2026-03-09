@@ -126,6 +126,9 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                       separatorBuilder: (context, index) => gapH12,
                       itemBuilder: (context, index) {
                         final budget = budgets[index];
+                        final safeBudgetLimit = budget.limit == 0
+                            ? 1
+                            : budget.limit;
                         return LeftToSpendCard(
                           spendLimit: budget.limit,
                           spentAmount: budget.spent,
@@ -158,7 +161,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                               ),
                               Spacer(),
                               Text(
-                                '${(budget.spent * 100 / budget.limit).round()}%',
+                                '${(budget.spent * 100 / safeBudgetLimit).round()}%',
                                 style: TextStyles.title.copyWith(fontSize: 14),
                               ),
                             ],
