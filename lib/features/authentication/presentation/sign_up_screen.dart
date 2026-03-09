@@ -147,9 +147,11 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       centeredText: 'Or continue with',
                     ),
                     ElevatedButton(
-                      onPressed: () => ref
-                          .read(authControllerProvider.notifier)
-                          .signInWithGoogle(),
+                      onPressed: isLoading
+                          ? null
+                          : () => ref
+                                .read(authControllerProvider.notifier)
+                                .signInWithGoogle(),
                       child: isLoading
                           ? const SizedBox(
                               height: 24,
