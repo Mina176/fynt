@@ -11,6 +11,7 @@ BudgetSupabaseService budgetSupabaseService(Ref ref) {
 }
 
 class BudgetSupabaseService {
+  String get userId => Supabase.instance.client.auth.currentUser!.id;
   Future<void> createBudget(BudgetModel budget) async {
     await Supabase.instance.client.from('budgets').insert(budget.toMap());
   }
@@ -20,6 +21,7 @@ class BudgetSupabaseService {
     final response = await client
         .from('budgets')
         .select()
+        .eq('user_id', userId)
         .eq('recurrence_duration', period.name);
 
     final budgets = (response as List)
@@ -35,6 +37,7 @@ class BudgetSupabaseService {
         .select()
         .gte('date', start.toIso8601String())
         .lte('date', end.toIso8601String())
+        .eq('user_id', userId)
         .eq('is_expense', true);
     final transactions = (transactionsResponse as List)
         .map((e) => TransactionModel.fromMap(e))

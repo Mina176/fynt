@@ -11,6 +11,7 @@ AccountSupabaseService accountSupabaseService(Ref ref) {
 
 class AccountSupabaseService {
   final SupabaseClient client = Supabase.instance.client;
+  String get userId => client.auth.currentUser!.id;
   Future<AccountModel> createAccount(AccountModel account) async {
     final response = await client
         .from('accounts')
@@ -22,7 +23,10 @@ class AccountSupabaseService {
   }
 
   Future<List<AccountModel>> getAccounts() async {
-    final response = await client.from('accounts').select();
+    final response = await client
+        .from('accounts')
+        .select()
+        .eq('user_id', userId);
     final data = response as List<dynamic>;
 
     return data.map((item) => AccountModel.fromMap(item)).toList();
@@ -44,6 +48,7 @@ class AccountSupabaseService {
               : account.currentBalance + amount,
         })
         .eq('id', account.id!)
+        .eq('user_id', userId)
         .select()
         .single();
 
@@ -51,7 +56,10 @@ class AccountSupabaseService {
   }
 
   Future<double> getNetWorth() async {
-    final response = await client.from('accounts').select('balance');
+    final response = await client
+        .from('accounts')
+        .select('balance')
+        .eq('user_id', userId);
 
     final data = response as List<dynamic>;
 

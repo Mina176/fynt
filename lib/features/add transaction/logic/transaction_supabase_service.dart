@@ -10,6 +10,7 @@ TransactionSupabaseService transactionSupabaseService(Ref ref) {
 }
 
 class TransactionSupabaseService {
+  String get userId => Supabase.instance.client.auth.currentUser!.id;
   Future<void> createTransaction(TransactionModel transaction) async {
     await Supabase.instance.client
         .from('transactions')
@@ -20,6 +21,7 @@ class TransactionSupabaseService {
     final response = await Supabase.instance.client
         .from('transactions')
         .select()
+        .eq('user_id', userId)
         .order('id', ascending: false);
 
     final data = response as List<dynamic>;
@@ -35,6 +37,7 @@ class TransactionSupabaseService {
     final response = await Supabase.instance.client
         .from('transactions')
         .select('amount, date, is_expense')
+        .eq('user_id', userId)
         .gte('date', startOfWeek.toIso8601String())
         .lt('date', endOfWeek.toIso8601String())
         .eq('is_expense', true);
@@ -59,6 +62,7 @@ class TransactionSupabaseService {
     final response = await Supabase.instance.client
         .from('transactions')
         .select('date')
+        .eq('user_id', userId)
         .order('date', ascending: true)
         .limit(1);
 
