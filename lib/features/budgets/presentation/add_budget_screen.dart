@@ -10,7 +10,6 @@ import 'package:fintrack/features/authentication/logic/auth_service.dart';
 import 'package:fintrack/features/authentication/presentation/auth_field.dart';
 import 'package:fintrack/features/budgets/data/budget_model.dart';
 import 'package:fintrack/features/budgets/logic/budget_controller.dart';
-import 'package:fintrack/features/budgets/presentation/animated_position_button.dart';
 import 'package:fintrack/features/budgets/presentation/recurrence_duration_selector.dart';
 import 'package:fintrack/theming/app_colors.dart';
 import 'package:fintrack/utils/category_style.dart';

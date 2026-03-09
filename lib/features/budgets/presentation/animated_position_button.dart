@@ -1,4 +1,3 @@
-import 'package:fintrack/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedPositionButton extends StatelessWidget {

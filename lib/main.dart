@@ -2,7 +2,6 @@ import 'package:fintrack/features/appearance/data/theme_service.dart';
 import 'package:fintrack/features/appearance/logic/theme_controller.dart';
 import 'package:fintrack/features/onboarding/data/onboarding_repository.dart';
 import 'package:fintrack/routing/app_router.dart';
-import 'package:fintrack/theming/app_colors.dart';
 import 'package:fintrack/theming/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

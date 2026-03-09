@@ -1,7 +1,6 @@
 import 'package:fintrack/constants/duration_constants.dart';
 import 'package:fintrack/constants/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RecurrenceDurationSelector extends StatelessWidget {
   const RecurrenceDurationSelector({
