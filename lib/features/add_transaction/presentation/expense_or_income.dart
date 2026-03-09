@@ -24,7 +24,7 @@ class ExpenseOrIncome extends StatelessWidget {
         final pillWidth = (width - 12) / 2;
         return CustomCard(
           height: 50,
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           child: Stack(
             children: [
               AnimatedPositioned(
@@ -37,7 +37,7 @@ class ExpenseOrIncome extends StatelessWidget {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: selectedIndex == 0
-                        ? Color(0xFF3F1212)
+                        ? const Color(0xFF3F1212)
                         : AppColors.kBarGraphNotHighest,
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -55,10 +55,10 @@ class ExpenseOrIncome extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: AnimatedDefaultTextStyle(
-                          duration: Duration(milliseconds: 100),
+                          duration: const Duration(milliseconds: 100),
                           style: TextStyles.hintText.copyWith(
                             color: isSelected(index) && selectedIndex == 0
-                                ? Color(0xFFFF453A)
+                                ? const Color(0xFFFF453A)
                                 : isSelected(index) && selectedIndex == 1
                                 ? AppColors.kPrimaryColor
                                 : AppColors.kSubtitleColor,
@@ -67,7 +67,7 @@ class ExpenseOrIncome extends StatelessWidget {
                             expenseOrIncome[index],
                             style: TextStyle(
                               color: isSelected(index) && selectedIndex == 0
-                                  ? Color(0xFFFF453A)
+                                  ? const Color(0xFFFF453A)
                                   : isSelected(index) && selectedIndex == 1
                                   ? AppColors.kPrimaryColor
                                   : null,

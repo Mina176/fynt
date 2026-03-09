@@ -33,7 +33,7 @@ IconStyle getCategoryStyle(CategoryTypes type, ThemeMode themeMode) {
             : const Color(0xFF5856D6),
         backgroundColor: themeMode == ThemeMode.dark
             ? const Color(0xFF221131)
-            : Color(0xFFEBEAFF),
+            : const Color(0xFFEBEAFF),
       );
     case CategoryTypes.housing:
       return IconStyle(
@@ -55,27 +55,27 @@ IconStyle getCategoryStyle(CategoryTypes type, ThemeMode themeMode) {
       return IconStyle(
         icon: Icons.movie_rounded,
         color: themeMode == ThemeMode.dark
-            ? Color(0xFFF472B6)
+            ? const Color(0xFFF472B6)
             : const Color(0xFFFF2D55),
         backgroundColor: themeMode == ThemeMode.dark
-            ? Color(0xFF2F0E1F)
+            ? const Color(0xFF2F0E1F)
             : const Color(0xFFFFE5F1),
       );
     case CategoryTypes.shopping:
       return IconStyle(
         icon: Icons.shopping_bag_rounded,
         color: themeMode == ThemeMode.dark
-            ? Color(0xFF60A5FA)
+            ? const Color(0xFF60A5FA)
             : const Color(0xFF007AFF),
         backgroundColor: themeMode == ThemeMode.dark
-            ? Color(0xFF0C1930)
+            ? const Color(0xFF0C1930)
             : const Color(0xFFE5F1FF),
       );
     case CategoryTypes.bills:
       return IconStyle(
         icon: Icons.receipt_long_rounded,
         color: themeMode == ThemeMode.dark
-            ? Color(0xFF22D3EE)
+            ? const Color(0xFF22D3EE)
             : const Color(0xFF55BEF0),
         backgroundColor: themeMode == ThemeMode.dark
             ? const Color(0xFF01242A)
@@ -85,7 +85,7 @@ IconStyle getCategoryStyle(CategoryTypes type, ThemeMode themeMode) {
       return IconStyle(
         icon: Icons.work_rounded,
         color: themeMode == ThemeMode.dark
-            ? Color(0xFF818CF8)
+            ? const Color(0xFF818CF8)
             : const Color(0xFF5B21B6),
         backgroundColor: themeMode == ThemeMode.dark
             ? const Color(0xFF141430)
@@ -95,7 +95,7 @@ IconStyle getCategoryStyle(CategoryTypes type, ThemeMode themeMode) {
       return IconStyle(
         icon: Icons.trending_up_rounded,
         color: themeMode == ThemeMode.dark
-            ? Color(0xFFFB7185)
+            ? const Color(0xFFFB7185)
             : const Color(0xFFFF453A),
         backgroundColor: themeMode == ThemeMode.dark
             ? const Color(0xFF310D13)
@@ -182,14 +182,14 @@ IconStyle getIconStyle(OtherIconTypes type) {
     case OtherIconTypes.date:
       return IconStyle(
         icon: Icons.calendar_today_rounded,
-        color: Color(0xFF60A5FA),
-        backgroundColor: Color(0xFF223049),
+        color: const Color(0xFF60A5FA),
+        backgroundColor: const Color(0xFF223049),
       );
     case OtherIconTypes.note:
       return IconStyle(
         icon: FontAwesomeIcons.noteSticky,
-        color: Color(0xFF9CA3AF),
-        backgroundColor: Color(0xFF2A2F38),
+        color: const Color(0xFF9CA3AF),
+        backgroundColor: const Color(0xFF2A2F38),
       );
   }
 }

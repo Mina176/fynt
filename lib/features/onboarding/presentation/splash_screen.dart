@@ -20,11 +20,11 @@ class SplashScreen extends ConsumerWidget {
         child: TweenAnimationBuilder<double>(
           tween: Tween(begin: 0.1, end: 1.0),
           curve: Curves.linear,
-          duration: Duration(seconds: 2),
+          duration: const Duration(seconds: 2),
           builder: (context, opacity, child) {
             return Opacity(
               opacity: opacity,
-              child: Column(
+              child: const Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   OnboardingCard(

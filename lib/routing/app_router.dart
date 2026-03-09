@@ -65,55 +65,55 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: AppRoutes.splash.path,
-        builder: (context, state) => SplashScreen(),
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: AppRoutes.onboarding.path,
-        builder: (context, state) => OnboardingScreen(),
+        builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
         path: AppRoutes.signUp.path,
-        builder: (context, state) => SignUpScreen(),
+        builder: (context, state) => const SignUpScreen(),
       ),
       GoRoute(
         path: AppRoutes.signIn.path,
-        builder: (context, state) => LoginScreen(),
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: AppRoutes.forgotPassword.path,
-        builder: (context, state) => ForgotPasswordScreen(),
+        builder: (context, state) => const ForgotPasswordScreen(),
       ),
       GoRoute(
         path: AppRoutes.profile.path,
-        builder: (context, state) => ProfileScreen(),
+        builder: (context, state) => const ProfileScreen(),
       ),
       GoRoute(
         path: AppRoutes.home.path,
-        builder: (context, state) => RootHomeScreen(),
+        builder: (context, state) => const RootHomeScreen(),
       ),
       GoRoute(
         path: AppRoutes.addTransaction.path,
-        builder: (context, state) => AddTransactionScreen(),
+        builder: (context, state) => const AddTransactionScreen(),
       ),
       GoRoute(
         path: AppRoutes.chooseCategory.path,
-        builder: (context, state) => ChooseCategoryScreen(),
+        builder: (context, state) => const ChooseCategoryScreen(),
       ),
       GoRoute(
         path: AppRoutes.addAccount.path,
-        builder: (context, state) => AddAccountScreen(),
+        builder: (context, state) => const AddAccountScreen(),
       ),
       GoRoute(
         path: AppRoutes.selectAccount.path,
-        builder: (context, state) => SelectAccountScreen(),
+        builder: (context, state) => const SelectAccountScreen(),
       ),
       GoRoute(
         path: AppRoutes.addBudget.path,
-        builder: (context, state) => AddBudgetScreen(),
+        builder: (context, state) => const AddBudgetScreen(),
       ),
       GoRoute(
         path: AppRoutes.setAppearance.path,
-        builder: (context, state) => SetAppearanceScreen(),
+        builder: (context, state) => const SetAppearanceScreen(),
       ),
     ],
   );

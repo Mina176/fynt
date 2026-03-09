@@ -37,7 +37,7 @@ class HomeScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 16,
                   children: [
-                    CustomAppBar(),
+                    const CustomAppBar(),
                     CustomCard(
                       child: Column(
                         spacing: 4,
@@ -58,13 +58,13 @@ class HomeScreen extends ConsumerWidget {
                           ),
                           netWorthStatsAsync.when(
                             data: (netWorthStats) => isFirstMonth.value!
-                                ? SizedBox.shrink()
+                                ? const SizedBox.shrink()
                                 : LastMonthContainer(
                                     savingPercentage:
                                         netWorthStats.percentChange,
                                   ),
-                            error: (error, stackTrace) => SizedBox.shrink(),
-                            loading: () => Text(
+                            error: (error, stackTrace) => const SizedBox.shrink(),
+                            loading: () => const Text(
                               '',
                               style: TextStyles.buttonLabel,
                             ),
@@ -103,9 +103,9 @@ class HomeScreen extends ConsumerWidget {
                                       ),
                                     ],
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   isFirstWeek.value ?? true
-                                      ? SizedBox.shrink()
+                                      ? const SizedBox.shrink()
                                       : LastMonthContainer(
                                           isShrinked: true,
                                           savingPercentage:
@@ -113,7 +113,7 @@ class HomeScreen extends ConsumerWidget {
                                         ),
                                 ],
                               ),
-                              Divider(height: 12),
+                              const Divider(height: 12),
                               gapH32,
                               WeeklySpendingSummary(
                                 weeklySummary:
@@ -124,18 +124,18 @@ class HomeScreen extends ConsumerWidget {
                         },
                         loading: () => SizedBox(
                           height: MediaQuery.of(context).size.height * 0.3,
-                          child: Center(
+                          child: const Center(
                             child: CircularProgressIndicator(),
                           ),
                         ),
-                        error: (error, stackTrace) => Center(
+                        error: (error, stackTrace) => const Center(
                           child: Text(
                             'Something went wrong. Please try again.',
                           ),
                         ),
                       ),
                     ),
-                    Text('Recent Transactions', style: TextStyles.header),
+                    const Text('Recent Transactions', style: TextStyles.header),
                   ],
                 ),
               ),

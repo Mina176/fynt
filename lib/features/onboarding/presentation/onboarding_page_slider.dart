@@ -25,7 +25,7 @@ class OnboardingPageSlider extends StatelessWidget {
           child: PageView(
             onPageChanged: onSlide,
             controller: pageController,
-            children: [
+            children: const [
               OnboardingCard(
                 width: 180,
                 height: 180,

@@ -17,7 +17,7 @@ class DisplayAmount extends ConsumerWidget {
         Text(
           "Amount ($currencyCode)",
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.grey),
+          style: const TextStyle(color: Colors.grey),
         ),
         TextField(
           controller: controller,

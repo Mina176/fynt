@@ -16,14 +16,14 @@ class SliderIndex extends StatelessWidget {
       children: List.generate(
         3,
         (index) => AnimatedContainer(
-          duration: Duration(milliseconds: 250),
-          margin: EdgeInsets.all(4),
+          duration: const Duration(milliseconds: 250),
+          margin: const EdgeInsets.all(4),
           width: currentPage == index ? 36 : 8,
           height: 8,
           decoration: BoxDecoration(
             color: currentPage == index
                 ? AppColors.kPrimaryColor
-                : Color(0xFF21452D),
+                : const Color(0xFF21452D),
             borderRadius: BorderRadius.circular(16),
           ),
         ),

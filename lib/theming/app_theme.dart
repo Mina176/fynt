@@ -23,12 +23,12 @@ class AppTheme {
         displayColor: Colors.white,
       ),
       dividerTheme: DividerThemeData(
-        color: Color(0xFF94A3B8).withOpacity(0.3),
+        color: const Color(0xFF94A3B8).withOpacity(0.3),
       ),
-      progressIndicatorTheme: ProgressIndicatorThemeData(
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.kPrimaryColor,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         scrolledUnderElevation: 0,
@@ -36,7 +36,7 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, Sizes.p48),
+          minimumSize: const Size(double.infinity, Sizes.p48),
           backgroundColor: AppColors.kPrimaryColor,
           foregroundColor: AppColors.kButtonLabelColor,
           textStyle: TextStyles.buttonLabel,
@@ -49,7 +49,7 @@ class AppTheme {
         border: buildBorder(AppColors.kButtonBorderColor),
         enabledBorder: buildBorder(AppColors.kButtonBorderColor),
         focusedBorder: buildBorder(AppColors.kButtonBorderColor),
-        suffixIconColor: Color(0xFF92C9A4),
+        suffixIconColor: const Color(0xFF92C9A4),
         filled: true,
         fillColor: AppColors.kTextFieldFillColor,
         hintStyle: TextStyles.hintText,
@@ -68,7 +68,7 @@ class AppTheme {
         secondary: AppColors.kPrimaryColor,
         onSurface: Colors.black,
       ),
-      cardColor: Color.fromARGB(255, 243, 243, 243),
+      cardColor: const Color.fromARGB(255, 243, 243, 243),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
@@ -76,8 +76,8 @@ class AppTheme {
         scrolledUnderElevation: 0,
         elevation: 0,
       ),
-      dividerTheme: DividerThemeData(color: const Color(0xFFE5E7EB)),
-      progressIndicatorTheme: ProgressIndicatorThemeData(
+      dividerTheme: const DividerThemeData(color: Color(0xFFE5E7EB)),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.kPrimaryColor,
         refreshBackgroundColor: Colors.white,
       ),
@@ -91,12 +91,12 @@ class AppTheme {
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        border: buildBorder(Color(0xFFEDEFF2)),
-        enabledBorder: buildBorder(Color(0xFFEDEFF2)),
-        focusedBorder: buildBorder(Color(0xFFEDEFF2)),
-        suffixIconColor: Color(0xFF92C9A4),
+        border: buildBorder(const Color(0xFFEDEFF2)),
+        enabledBorder: buildBorder(const Color(0xFFEDEFF2)),
+        focusedBorder: buildBorder(const Color(0xFFEDEFF2)),
+        suffixIconColor: const Color(0xFF92C9A4),
         filled: true,
-        fillColor: Color(0xFFF9FAFB),
+        fillColor: const Color(0xFFF9FAFB),
         hintStyle: TextStyles.hintText,
       ),
       textTheme: baseTextTheme.apply(

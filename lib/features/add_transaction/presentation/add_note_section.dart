@@ -22,8 +22,8 @@ class AddNoteSection extends StatelessWidget {
       widgets: [
         ListTile(
           onTap: () {},
-          leading: OtherIcons(OtherIconTypes.note),
-          trailing: SizedBox(),
+          leading: const OtherIcons(OtherIconTypes.note),
+          trailing: const SizedBox(),
           title: const Text(
             "Note",
             style: TextStyles.addTransactionSettingstitle,

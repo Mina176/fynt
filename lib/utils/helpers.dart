@@ -6,13 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 AccountIcon getAccountIcon(AccountTypes accountType) {
   switch (accountType) {
     case AccountTypes.debitCard:
-      return AccountIcon(accountTypes: AccountTypes.debitCard);
+      return const AccountIcon(accountTypes: AccountTypes.debitCard);
     case AccountTypes.creditCard:
-      return AccountIcon(accountTypes: AccountTypes.creditCard);
+      return const AccountIcon(accountTypes: AccountTypes.creditCard);
     case AccountTypes.investment:
-      return AccountIcon(accountTypes: AccountTypes.investment);
+      return const AccountIcon(accountTypes: AccountTypes.investment);
     case AccountTypes.cashWallet:
-      return AccountIcon(accountTypes: AccountTypes.cashWallet);
+      return const AccountIcon(accountTypes: AccountTypes.cashWallet);
   }
 }
 

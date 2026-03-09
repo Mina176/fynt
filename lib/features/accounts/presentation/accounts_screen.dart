@@ -30,10 +30,10 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('Accounts'),
+        title: const Text('Accounts'),
         actions: [
           DecoratedBox(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.kPrimaryColor,
               shape: BoxShape.circle,
             ),
@@ -41,7 +41,7 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
               padding: const EdgeInsets.all(6),
               child: GestureDetector(
                 onTap: () => context.push(AppRoutes.addAccount.path),
-                child: Icon(
+                child: const Icon(
                   Icons.add,
                   color: Colors.black,
                 ),
@@ -79,8 +79,8 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
                 ),
                 gapW4,
                 isFirstMonth.value == null || isFirstMonth.value!
-                    ? SizedBox.shrink()
-                    : LastMonthContainer(
+                    ? const SizedBox.shrink()
+                    : const LastMonthContainer(
                         savingPercentage: 2,
                         isShrinked: true,
                       ),
@@ -118,10 +118,10 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
                     ),
                   );
                 },
-                loading: () => Center(
+                loading: () => const Center(
                   child: CircularProgressIndicator(),
                 ),
-                error: (error, stackTrace) => Center(
+                error: (error, stackTrace) => const Center(
                   child: Text('Something went wrong. Please try again.'),
                 ),
               ),
@@ -154,7 +154,7 @@ class AccountCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Row(
           children: [
-            Icon(
+            const Icon(
               Icons.account_balance,
               color: AppColors.kPrimaryColor,
             ),
@@ -172,7 +172,7 @@ class AccountCard extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -180,7 +180,7 @@ class AccountCard extends StatelessWidget {
                   '$currencySymbol${balance.toStringAsFixed(2)}',
                   style: TextStyles.title.copyWith(fontSize: 16),
                 ),
-                Text(''),
+                const Text(''),
               ],
             ),
           ],

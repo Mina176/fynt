@@ -29,8 +29,8 @@ class _RootHomeScreenState extends State<RootHomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.push(AppRoutes.addTransaction.path),
         foregroundColor: AppColors.kTitleColor,
-        shape: CircleBorder(),
-        child: Icon(Icons.add),
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add),
       ),
       body: SafeArea(child: pages[_currentIndex]),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

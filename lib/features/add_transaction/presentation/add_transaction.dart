@@ -32,7 +32,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
   DateTime selectedDate = DateTime.now();
   final TextEditingController amountController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
-  CategoryIcon selectedCategory = CategoryIcon(
+  CategoryIcon selectedCategory = const CategoryIcon(
     categoryType: CategoryTypes.food,
   );
   final uid = Supabase.instance.client.auth.currentUser!.id;
@@ -110,7 +110,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                           }
                         },
                         leading: selectedCategory,
-                        title: Text(
+                        title: const Text(
                           "Category",
                           style: TextStyles.addTransactionSettingstitle,
                         ),
@@ -152,7 +152,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                             lastDate: DateTime(2100),
                             initialDate: DateTime.now(),
                             builder: (context, child) => Padding(
-                              padding: EdgeInsetsGeometry.symmetric(
+                              padding: const EdgeInsetsGeometry.symmetric(
                                 vertical: 32,
                                 horizontal: 16,
                               ),
@@ -165,7 +165,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                             });
                           }
                         },
-                        leading: OtherIcons(OtherIconTypes.date),
+                        leading: const OtherIcons(OtherIconTypes.date),
                         title: const Text(
                           "Date",
                           style: TextStyles.addTransactionSettingstitle,

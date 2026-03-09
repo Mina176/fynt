@@ -81,12 +81,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 16),
-                    Text(
+                    const SizedBox(height: 16),
+                    const Text(
                       'Start Tracking Today',
                       style: TextStyles.title,
                     ),
-                    Text(
+                    const Text(
                       'Take control of your finances.',
                       style: TextStyles.subtitle,
                     ),
@@ -133,17 +133,17 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                           ElevatedButton(
                             onPressed: isLoading ? null : _signUp,
                             child: isLoading
-                                ? SizedBox(
+                                ? const SizedBox(
                                     height: 24,
                                     width: 24,
                                     child: CircularProgressIndicator(),
                                   )
-                                : Text('Sign Up'),
+                                : const Text('Sign Up'),
                           ),
                         ],
                       ),
                     ),
-                    CustomDivider(
+                    const CustomDivider(
                       centeredText: 'Or continue with',
                     ),
                     ElevatedButton(
@@ -169,7 +169,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                                   ),
                                 ),
                                 gapW4,
-                                Text('Continue with Google'),
+                                const Text('Continue with Google'),
                               ],
                             ),
                     ),
@@ -177,10 +177,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Don\'t have an account?'),
+                        const Text('Don\'t have an account?'),
                         GestureDetector(
                           onTap: () => context.go(AppRoutes.signIn.path),
-                          child: Text(
+                          child: const Text(
                             ' Log in',
                             style: TextStyle(
                               color: AppColors.kPrimaryColor,
@@ -190,7 +190,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),

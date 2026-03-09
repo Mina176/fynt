@@ -28,11 +28,11 @@ class AnimatedPositionButton extends StatelessWidget {
             onPressed: onTap,
             child: isLoading
                 ? const CircularProgressIndicator()
-                : Row(
+                : const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.check_circle_rounded),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text("Save Budget"),
                     ],
                   ),

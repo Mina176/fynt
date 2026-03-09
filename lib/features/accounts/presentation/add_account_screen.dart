@@ -72,7 +72,7 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('Add Account'),
+        title: const Text('Add Account'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -143,7 +143,7 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
                           label: 'ACCOUNT BALANCE',
                           hintText: '0.0',
                           controller: balanceController,
-                          keyboardType: TextInputType.numberWithOptions(
+                          keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
                           validator: (value) {
@@ -169,7 +169,7 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
                             'Include in Net Worth',
                             style: TextStyles.title.copyWith(fontSize: 14),
                           ),
-                          Text('Balance will affect total assets'),
+                          const Text('Balance will affect total assets'),
                         ],
                       ),
                       Switch(
@@ -180,7 +180,7 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(
                       bottom: Sizes.kVerticalPadding,
@@ -188,12 +188,12 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
                     child: ElevatedButton(
                       onPressed: isLoading ? null : () => addAccount(isLoading),
                       child: isLoading
-                          ? SizedBox(
+                          ? const SizedBox(
                               height: 24,
                               width: 24,
                               child: CircularProgressIndicator(),
                             )
-                          : Text(
+                          : const Text(
                               'Add Account',
                             ),
                     ),

@@ -27,12 +27,12 @@ class ChooseCategoryScreen extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.kHorizontalPadding,
                   vertical: Sizes.kVerticalPadding,
                 ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
                   mainAxisExtent: 70,
                   mainAxisSpacing: Sizes.kVerticalPadding,
@@ -54,12 +54,12 @@ class ChooseCategoryScreen extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.kHorizontalPadding,
                   vertical: Sizes.kVerticalPadding,
                 ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
                   mainAxisExtent: 70,
                   mainAxisSpacing: Sizes.kVerticalPadding,

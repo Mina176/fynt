@@ -35,10 +35,10 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('My budgets'),
+        title: const Text('My budgets'),
         actions: [
           DecoratedBox(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.kPrimaryColor,
               shape: BoxShape.circle,
             ),
@@ -46,7 +46,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
               padding: const EdgeInsets.all(6),
               child: GestureDetector(
                 onTap: () => context.push(AppRoutes.addBudget.path),
-                child: Icon(
+                child: const Icon(
                   Icons.add,
                   color: Colors.black,
                 ),
@@ -84,7 +84,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'LEFT TO SPEND',
                               style: TextStyles.headerLink,
                             ),
@@ -103,7 +103,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                     spentAmount: spentAmount,
                     spendLimit: spendLimit,
                   ),
-                  Text('Categories', style: TextStyles.header),
+                  const Text('Categories', style: TextStyles.header),
                   gapH4,
                 ],
               ),
@@ -158,7 +158,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                                   ),
                                 ],
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
                                 '${(budget.spent * 100 / safeBudgetLimit).round()}%',
                                 style: TextStyles.title.copyWith(fontSize: 14),
@@ -173,7 +173,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                   child: CircularProgressIndicator(),
                 ),
               ),
-              error: (error, stackTrace) => SliverFillRemaining(
+              error: (error, stackTrace) => const SliverFillRemaining(
                 child: Center(
                   child: Text('Error loading budgets'),
                 ),

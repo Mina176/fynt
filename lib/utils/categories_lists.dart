@@ -5,36 +5,36 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 final List<CategoryIcon> spendingCategoriesList = [
-  CategoryIcon(categoryType: CategoryTypes.food),
-  CategoryIcon(categoryType: CategoryTypes.transport),
-  CategoryIcon(categoryType: CategoryTypes.health),
-  CategoryIcon(categoryType: CategoryTypes.housing),
-  CategoryIcon(categoryType: CategoryTypes.entertainment),
-  CategoryIcon(categoryType: CategoryTypes.shopping),
-  CategoryIcon(categoryType: CategoryTypes.bills),
+  const CategoryIcon(categoryType: CategoryTypes.food),
+  const CategoryIcon(categoryType: CategoryTypes.transport),
+  const CategoryIcon(categoryType: CategoryTypes.health),
+  const CategoryIcon(categoryType: CategoryTypes.housing),
+  const CategoryIcon(categoryType: CategoryTypes.entertainment),
+  const CategoryIcon(categoryType: CategoryTypes.shopping),
+  const CategoryIcon(categoryType: CategoryTypes.bills),
 ];
 
 final List<CategoryIcon> incomeCategoriesList = [
-  CategoryIcon(categoryType: CategoryTypes.freelance),
-  CategoryIcon(categoryType: CategoryTypes.investment),
-  CategoryIcon(categoryType: CategoryTypes.salary),
-  CategoryIcon(categoryType: CategoryTypes.gifts),
+  const CategoryIcon(categoryType: CategoryTypes.freelance),
+  const CategoryIcon(categoryType: CategoryTypes.investment),
+  const CategoryIcon(categoryType: CategoryTypes.salary),
+  const CategoryIcon(categoryType: CategoryTypes.gifts),
 ];
 
 final List<CategoryIconWithLabel> spendingCategoriesWithLabelsList = [
-  CategoryIconWithLabel(categoryType: CategoryTypes.food),
-  CategoryIconWithLabel(categoryType: CategoryTypes.transport),
-  CategoryIconWithLabel(categoryType: CategoryTypes.health),
-  CategoryIconWithLabel(categoryType: CategoryTypes.housing),
-  CategoryIconWithLabel(categoryType: CategoryTypes.entertainment),
-  CategoryIconWithLabel(categoryType: CategoryTypes.shopping),
-  CategoryIconWithLabel(categoryType: CategoryTypes.bills),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.food),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.transport),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.health),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.housing),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.entertainment),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.shopping),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.bills),
 ];
 final List<CategoryIconWithLabel> incomeCategoriesWithLabelsList = [
-  CategoryIconWithLabel(categoryType: CategoryTypes.freelance),
-  CategoryIconWithLabel(categoryType: CategoryTypes.investment),
-  CategoryIconWithLabel(categoryType: CategoryTypes.salary),
-  CategoryIconWithLabel(categoryType: CategoryTypes.gifts),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.freelance),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.investment),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.salary),
+  const CategoryIconWithLabel(categoryType: CategoryTypes.gifts),
 ];
 
 final List<Map<String, dynamic>> accountTypes = [
@@ -45,8 +45,8 @@ final List<Map<String, dynamic>> accountTypes = [
 ];
 
 final List<AccountIcon> accountTypesList = [
-  AccountIcon(accountTypes: AccountTypes.cashWallet),
-  AccountIcon(accountTypes: AccountTypes.debitCard),
-  AccountIcon(accountTypes: AccountTypes.creditCard),
-  AccountIcon(accountTypes: AccountTypes.investment),
+  const AccountIcon(accountTypes: AccountTypes.cashWallet),
+  const AccountIcon(accountTypes: AccountTypes.debitCard),
+  const AccountIcon(accountTypes: AccountTypes.creditCard),
+  const AccountIcon(accountTypes: AccountTypes.investment),
 ];

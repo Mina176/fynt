@@ -74,12 +74,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
+                    const Text(
                       'Welcome Back',
                       style: TextStyles.title,
                       textAlign: TextAlign.center,
                     ),
-                    Text(
+                    const Text(
                       'Track your wealth securely.\n Please log in to your account.',
                       style: TextStyles.subtitle,
                       textAlign: TextAlign.center,
@@ -120,7 +120,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () => context.push(AppRoutes.forgotPassword.path),
-                      child: Text(
+                      child: const Text(
                         'Forgot Password?',
                         textAlign: TextAlign.end,
                         style: TextStyle(
@@ -132,9 +132,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     gapH8,
                     ElevatedButton(
                       onPressed: isLoading ? null : _signIn,
-                      child: Text('Login'),
+                      child: const Text('Login'),
                     ),
-                    CustomDivider(
+                    const CustomDivider(
                       centeredText: 'OR',
                     ),
                     ElevatedButton(
@@ -144,7 +144,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 .read(authControllerProvider.notifier)
                                 .signInWithGoogle(),
                       child: isLoading
-                          ? SizedBox(
+                          ? const SizedBox(
                               height: 24,
                               width: 24,
                               child: CircularProgressIndicator(),
@@ -160,7 +160,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   ),
                                 ),
                                 gapH4,
-                                Text('Continue with Google'),
+                                const Text('Continue with Google'),
                               ],
                             ),
                     ),
@@ -168,10 +168,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Don\'t have an account?'),
+                        const Text('Don\'t have an account?'),
                         GestureDetector(
                           onTap: () => context.push(AppRoutes.signUp.path),
-                          child: Text(
+                          child: const Text(
                             ' Sign Up',
                             style: TextStyle(
                               color: AppColors.kPrimaryColor,
@@ -203,7 +203,7 @@ class CustomDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
+        const Expanded(
           child: Divider(),
         ),
         gapW8,
@@ -212,7 +212,7 @@ class CustomDivider extends StatelessWidget {
           style: TextStyle(color: Colors.grey[500]),
         ),
         gapW8,
-        Expanded(
+        const Expanded(
           child: Divider(),
         ),
       ],

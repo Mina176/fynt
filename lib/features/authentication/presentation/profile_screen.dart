@@ -33,7 +33,7 @@ class ProfileScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           spacing: 12,
           children: [
-            DetailsSection(),
+            const DetailsSection(),
             gapH12,
             SettingsSection(
               header: Text(
@@ -47,7 +47,7 @@ class ProfileScreen extends ConsumerWidget {
                   onTap: () => showCurrencyPicker(
                     showFlag: false,
                     theme: CurrencyPickerThemeData(
-                      inputDecoration: InputDecoration(
+                      inputDecoration: const InputDecoration(
                         prefixIcon: Icon(
                           Icons.search,
                           color: AppColors.kSubtitleColor,
@@ -70,11 +70,11 @@ class ProfileScreen extends ConsumerWidget {
                           value.symbol;
                     },
                   ),
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.attach_money,
                     color: AppColors.kPrimaryColor,
                   ),
-                  title: Text(
+                  title: const Text(
                     'Currency',
                     style: TextStyles.labelText,
                   ),
@@ -85,18 +85,18 @@ class ProfileScreen extends ConsumerWidget {
                         currentCurrencyCode,
                         style: TextStyles.subtitle.copyWith(fontSize: 12),
                       ),
-                      SizedBox(width: 8),
-                      Icon(Icons.arrow_forward_ios, size: 14),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.arrow_forward_ios, size: 14),
                     ],
                   ),
                 ),
                 ListTile(
                   onTap: () => context.push(AppRoutes.setAppearance.path),
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.color_lens,
                     color: AppColors.kPrimaryColor,
                   ),
-                  title: Text(
+                  title: const Text(
                     'Theme',
                     style: TextStyles.labelText,
                   ),
@@ -109,14 +109,14 @@ class ProfileScreen extends ConsumerWidget {
                             : 'Dark',
                         style: TextStyles.subtitle.copyWith(fontSize: 12),
                       ),
-                      SizedBox(width: 8),
-                      Icon(Icons.arrow_forward_ios, size: 14),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.arrow_forward_ios, size: 14),
                     ],
                   ),
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () =>
                   ref.read(authControllerProvider.notifier).signOut(),
@@ -124,7 +124,7 @@ class ProfileScreen extends ConsumerWidget {
                 foregroundColor: Colors.white,
                 backgroundColor: AppColors.kErrorColor,
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(

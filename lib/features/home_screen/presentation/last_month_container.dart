@@ -29,12 +29,12 @@ class LastMonthContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             isSaving
-                ? Icon(
+                ? const Icon(
                     FontAwesomeIcons.arrowTrendUp,
                     color: AppColors.kPrimaryColor,
                     size: 12,
                   )
-                : Icon(
+                : const Icon(
                     FontAwesomeIcons.arrowTrendDown,
                     color: AppColors.knotSavingForeground,
                     size: 12,

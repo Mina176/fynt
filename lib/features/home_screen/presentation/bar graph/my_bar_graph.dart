@@ -46,11 +46,11 @@ class MyBarGraph extends ConsumerWidget {
           ),
         ),
         borderData: FlBorderData(show: false),
-        gridData: FlGridData(show: false),
+        gridData: const FlGridData(show: false),
         titlesData: FlTitlesData(
-          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
@@ -73,7 +73,7 @@ class MyBarGraph extends ConsumerWidget {
                     ? AppColors.kPrimaryColor
                     : AppColors.kBarGraphNotHighest,
                 width: 26,
-                borderRadius: BorderRadius.all(Radius.circular(0)),
+                borderRadius: const BorderRadius.all(Radius.circular(0)),
               ),
             ],
           );

@@ -24,7 +24,7 @@ class CustomAppBar extends ConsumerWidget {
             radius: 24,
             backgroundImage: hasValidPhoto
                 ? NetworkImage(photoUrl)
-                : NetworkImage(
+                : const NetworkImage(
                     'https://media.istockphoto.com/id/1288129985/vector/missing-image-of-a-person-placeholder.jpg?s=612x612&w=0&k=20&c=9kE777krx5mrFHsxx02v60ideRWvIgI1RWzR1X4MG2Y=',
                   ),
           ),

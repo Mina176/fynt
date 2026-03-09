@@ -21,7 +21,7 @@ class _SetAppearanceScreenState extends ConsumerState<SetAppearanceScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('Appearance'),
+        title: const Text('Appearance'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -32,11 +32,11 @@ class _SetAppearanceScreenState extends ConsumerState<SetAppearanceScreen> {
           spacing: 8,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Choose Theme',
               style: TextStyles.title,
             ),
-            Text(
+            const Text(
               'Customize the look of your money tracker Select a theme to preview how your dashboard and transactions appear.',
             ),
             Row(
@@ -154,7 +154,7 @@ class SelectThemeItem extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Spacer(flex: 1),
+                          const Spacer(flex: 1),
                           Expanded(
                             flex: 2,
                             child: SizedBox(
@@ -189,7 +189,7 @@ class SelectThemeItem extends StatelessWidget {
                       height: 22,
                       width: 22,
                       child: isSelected
-                          ? Icon(
+                          ? const Icon(
                               Icons.check_circle,
                               size: 22,
                               color: AppColors.kPrimaryColor,

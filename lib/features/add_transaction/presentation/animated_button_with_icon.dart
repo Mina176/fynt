@@ -28,7 +28,7 @@ class AnimatedButtonWithIcon extends StatelessWidget {
       child: ElevatedButton.icon(
         onPressed: isLoading ? null : onTap,
         icon: isLoading
-            ? SizedBox(
+            ? const SizedBox(
                 height: 24,
                 width: 24,
                 child: CircularProgressIndicator(),

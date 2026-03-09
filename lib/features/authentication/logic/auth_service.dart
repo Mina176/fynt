@@ -51,7 +51,7 @@ class AuthService {
           'full_name': fullName,
         },
       );
-    } on supabase.AuthException catch (e) {
+    } on supabase.AuthException {
       rethrow;
     } catch (e) {
       throw Exception('An error occurred during sign up.');

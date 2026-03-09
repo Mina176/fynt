@@ -34,15 +34,15 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(Sizes.p12),
+          padding: const EdgeInsets.all(Sizes.p12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               GestureDetector(
                 onTap: completeOnboarding,
-                child: Text('skip'),
+                child: const Text('skip'),
               ),
-              Spacer(),
+              const Spacer(),
               OnboardingPageSlider(
                 currentPage: currentPage,
                 pageController: _pageController,
@@ -50,21 +50,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   currentPage = index;
                 }),
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                 onPressed: () => setState(() {
                   currentPage < 2
                       ? _pageController.nextPage(
-                          duration: Duration(milliseconds: 250),
+                          duration: const Duration(milliseconds: 250),
                           curve: Curves.linear,
                         )
                       : completeOnboarding();
                 }),
                 child: currentPage < 2
-                    ? Text('Next')
+                    ? const Text('Next')
                     : ElevatedButton(
                         onPressed: completeOnboarding,
-                        child: Text('Get Started'),
+                        child: const Text('Get Started'),
                       ),
               ),
             ],

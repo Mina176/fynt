@@ -16,7 +16,7 @@ class SettingsSection extends StatelessWidget {
       spacing: 8,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        header ?? SizedBox.shrink(),
+        header ?? const SizedBox.shrink(),
         Material(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(16),
@@ -34,7 +34,7 @@ class SettingsSection extends StatelessWidget {
                             .expand(
                               (widget) => [
                                 widget,
-                                Divider(height: 0.1),
+                                const Divider(height: 0.1),
                               ],
                             )
                             .toList()

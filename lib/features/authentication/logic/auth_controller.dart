@@ -45,8 +45,8 @@ class AuthController extends _$AuthController {
       state = const AuthLoadingState(LoadingStateEnum.success, null);
     } on supabase.AuthException catch (e) {
       state = AuthLoadingState(LoadingStateEnum.error, e.message);
-    } on Exception catch (e) {
-      state = AuthLoadingState(
+    } on Exception {
+      state = const AuthLoadingState(
         LoadingStateEnum.error,
         'An unexpected error occurred',
       );
