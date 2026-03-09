@@ -123,38 +123,41 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
                   vertical: Sizes.kVerticalPadding,
                 ),
                 child: ElevatedButton(
-                  onPressed: () async {
-                    if (isLoading) return;
-                    if (amountController.text == "0.00") return;
-                    try {
-                      final userId = ref
-                          .read(authServiceProvider)
-                          .currentUser!
-                          .userId;
-                      await ref
-                          .read(budgetControllerProvider.notifier)
-                          .createBudget(
-                            BudgetModel(
-                              userId: userId,
-                              limit: amountController.text.isEmpty
-                                  ? 0.0
-                                  : double.parse(amountController.text),
-                              spent: 0.0,
-                              budgetName: nameController.text.isEmpty
-                                  ? "Unnamed Budget"
-                                  : nameController.text,
-                              category: selectedCategory,
-                              recurrenceDuration: selectedRecurrenceIndex == 0
-                                  ? RecurrenceDuration.weekly
-                                  : selectedRecurrenceIndex == 1
-                                  ? RecurrenceDuration.monthly
-                                  : RecurrenceDuration.yearly,
-                            ),
-                          );
-                    } catch (e) {
-                      throw Exception("Failed to create budget: $e");
-                    }
-                  },
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          if (isLoading) return;
+                          if (amountController.text == "0.00") return;
+                          try {
+                            final userId = ref
+                                .read(authServiceProvider)
+                                .currentUser!
+                                .userId;
+                            await ref
+                                .read(budgetControllerProvider.notifier)
+                                .createBudget(
+                                  BudgetModel(
+                                    userId: userId,
+                                    limit: amountController.text.isEmpty
+                                        ? 0.0
+                                        : double.parse(amountController.text),
+                                    spent: 0.0,
+                                    budgetName: nameController.text.isEmpty
+                                        ? "Unnamed Budget"
+                                        : nameController.text,
+                                    category: selectedCategory,
+                                    recurrenceDuration:
+                                        selectedRecurrenceIndex == 0
+                                        ? RecurrenceDuration.weekly
+                                        : selectedRecurrenceIndex == 1
+                                        ? RecurrenceDuration.monthly
+                                        : RecurrenceDuration.yearly,
+                                  ),
+                                );
+                          } catch (e) {
+                            throw Exception("Failed to create budget: $e");
+                          }
+                        },
                   child: isLoading
                       ? CircularProgressIndicator()
                       : Row(

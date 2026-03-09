@@ -25,37 +25,27 @@ class AnimatedButtonWithIcon extends StatelessWidget {
     return AnimatedContainer(
       height: Sizes.p52,
       duration: addTransactionAnimationDuration,
-      decoration: BoxDecoration(
-        color: expenseOrIncome == 0 ? Colors.red : AppColors.kPrimaryColor,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: isLoading
-              ? Center(
-                  child: SizedBox(
-                    height: 24,
-                    width: 24,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(icon, color: Colors.white),
-                    SizedBox(width: 8),
-                    Text(
-                      label,
-                      style: TextStyles.buttonLabel.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+      child: ElevatedButton.icon(
+        onPressed: isLoading ? null : onTap,
+        icon: isLoading
+            ? SizedBox(
+                height: 24,
+                width: 24,
+                child: CircularProgressIndicator(),
+              )
+            : Icon(
+                icon,
+                color: Colors.white,
+                size: 20,
+              ),
+        label: Text(
+          isLoading ? '' : label,
+          style: TextStyles.buttonLabel.copyWith(color: Colors.white),
+        ),
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(
+            expenseOrIncome == 0 ? Colors.red : AppColors.kPrimaryColor,
+          ),
         ),
       ),
     );
