@@ -151,10 +151,19 @@ class DetailsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentUser = ref.watch(authServiceProvider).currentUser;
+
+    final String guestId = currentUser?.userId != null
+        ? currentUser!.userId.substring(0, 5)
+        : '76186';
+
+    final String displayName =
+        (currentUser?.fullName != null && currentUser!.fullName.isNotEmpty)
+        ? currentUser.fullName
+        : 'Guest#$guestId';
     return Column(
       children: [
         Text(
-          getUsernameWithId(ref),
+          displayName,
           textAlign: TextAlign.center,
           style: TextStyles.title.copyWith(fontSize: 28),
         ),
