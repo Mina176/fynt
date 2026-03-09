@@ -22,7 +22,6 @@ class SelectAccountScreen extends ConsumerWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text('Select Account'),
-        forceMaterialTransparency: true,
       ),
       body: accountsAsync.when(
         data: (accounts) {

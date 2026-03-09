@@ -31,7 +31,6 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text('Accounts'),
-        forceMaterialTransparency: true,
         actions: [
           DecoratedBox(
             decoration: BoxDecoration(

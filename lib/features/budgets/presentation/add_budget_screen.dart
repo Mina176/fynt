@@ -41,7 +41,6 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        forceMaterialTransparency: true,
         title: const Text('New Budget'),
       ),
       body: CustomScrollView(

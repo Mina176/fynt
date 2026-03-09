@@ -30,6 +30,9 @@ class AppTheme {
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        scrolledUnderElevation: 0,
+        elevation: 0,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -68,7 +71,9 @@ class AppTheme {
       cardColor: Color.fromARGB(255, 243, 243, 243),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         foregroundColor: Colors.black,
+        scrolledUnderElevation: 0,
         elevation: 0,
       ),
       dividerTheme: DividerThemeData(color: const Color(0xFFE5E7EB)),

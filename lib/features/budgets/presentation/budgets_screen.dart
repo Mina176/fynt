@@ -35,7 +35,6 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        forceMaterialTransparency: true,
         title: Text('My budgets'),
         actions: [
           DecoratedBox(

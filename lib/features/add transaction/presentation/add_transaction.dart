@@ -65,7 +65,6 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
     });
     return Scaffold(
       appBar: AppBar(
-        forceMaterialTransparency: true,
         title: Text(
           "Add Transaction",
           style: TextStyles.title.copyWith(fontSize: 20),
