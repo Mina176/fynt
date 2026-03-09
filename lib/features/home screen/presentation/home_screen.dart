@@ -140,11 +140,16 @@ class HomeScreen extends ConsumerWidget {
               transactionsAsync.when(
                 data: (transactions) {
                   if (transactions.isEmpty) {
-                    return const SliverToBoxAdapter(
+                    return SliverToBoxAdapter(
                       child: SizedBox(
                         height: 250,
                         child: Center(
-                          child: Text("No transactions yet"),
+                          child: Text(
+                            "No transactions yet",
+                            style: TextStyles.hintText.copyWith(
+                              color: Colors.grey,
+                            ),
+                          ),
                         ),
                       ),
                     );
