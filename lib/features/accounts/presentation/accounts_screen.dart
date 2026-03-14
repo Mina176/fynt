@@ -9,6 +9,7 @@ import 'package:fintrack/features/home_screen/presentation/last_month_container.
 import 'package:fintrack/routing/app_route_enum.dart';
 import 'package:fintrack/theming/app_colors.dart';
 import 'package:fintrack/widgets/settings_section.dart';
+import 'package:fintrack/widgets/slidable_settings_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,6 +22,7 @@ class AccountsScreen extends ConsumerStatefulWidget {
 }
 
 class _AccountsScreenState extends ConsumerState<AccountsScreen> {
+  final Set<int> pendingDeletions = {};
   @override
   Widget build(BuildContext context) {
     final accountsAsync = ref.watch(getAccountsProvider);
@@ -90,7 +92,12 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
             Expanded(
               child: accountsAsync.when(
                 data: (accounts) {
-                  if (accounts.isEmpty) {
+                  final visibleAccounts = accounts
+                      .where(
+                        (a) => a.id != null && !pendingDeletions.contains(a.id),
+                      )
+                      .toList();
+                  if (visibleAccounts.isEmpty) {
                     return Center(
                       child: Text(
                         'No accounts added yet.',
@@ -104,14 +111,28 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
                     child: SettingsSection(
                       backgroundColor: Theme.of(context).cardColor,
                       widgets: List.generate(
-                        accounts.length,
+                        visibleAccounts.length,
                         (index) {
-                          return AccountCard(
-                            accountType: accounts[index].accountType.name,
-                            accountName: accounts[index].accountName,
-                            balance: accounts[index].balance,
-                            currentBalance: accounts[index].currentBalance,
-                            currencySymbol: currencySymbol,
+                          final account = visibleAccounts[index];
+                          return SlidableSettingsTile(
+                            itemKey: ValueKey(accounts[index].id),
+                            onDeleteTapped: () {
+                              if (account.id != null) {
+                                setState(() {
+                                  pendingDeletions.add(account.id!);
+                                });
+                                ref
+                                    .read(accountControllerProvider.notifier)
+                                    .deleteAccount(accounts[index].id!);
+                              }
+                            },
+                            child: AccountCard(
+                              accountType: accounts[index].accountType.name,
+                              accountName: accounts[index].accountName,
+                              balance: accounts[index].balance,
+                              currentBalance: accounts[index].currentBalance,
+                              currencySymbol: currencySymbol,
+                            ),
                           );
                         },
                       ),
