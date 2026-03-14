@@ -59,7 +59,6 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.kVerticalPadding,
             horizontal: Sizes.kHorizontalPadding,
           ),
           child: CustomScrollView(
@@ -94,21 +93,28 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                       ),
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                      onPressed: isLoading ? null : sendResetEmail,
-                      child: isLoading
-                          ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Send Reset Link'),
-                                Icon(Icons.arrow_forward_rounded),
-                              ],
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: Sizes.kVerticalPadding,
+                      ),
+                      child: ElevatedButton(
+                        onPressed: isLoading ? null : sendResetEmail,
+                        child: isLoading
+                            ? const SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Send Reset Link'),
+                                  Icon(Icons.arrow_forward_rounded),
+                                ],
+                              ),
+                      ),
                     ),
                   ],
                 ),

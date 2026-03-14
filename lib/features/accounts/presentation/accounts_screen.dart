@@ -55,7 +55,6 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: Sizes.kHorizontalPadding,
-          vertical: Sizes.kVerticalPadding,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

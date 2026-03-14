@@ -118,54 +118,58 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.kHorizontalPadding,
-                  vertical: Sizes.kVerticalPadding,
                 ),
-                child: ElevatedButton(
-                  onPressed: isLoading
-                      ? null
-                      : () async {
-                          if (isLoading) return;
-                          if (amountController.text == "0.00") return;
-                          try {
-                            final userId = ref
-                                .read(authServiceProvider)
-                                .currentUser!
-                                .userId;
-                            await ref
-                                .read(budgetControllerProvider.notifier)
-                                .createBudget(
-                                  BudgetModel(
-                                    userId: userId,
-                                    limit: amountController.text.isEmpty
-                                        ? 0.0
-                                        : double.parse(amountController.text),
-                                    spent: 0.0,
-                                    budgetName: nameController.text.isEmpty
-                                        ? "Unnamed Budget"
-                                        : nameController.text,
-                                    category: selectedCategory,
-                                    recurrenceDuration:
-                                        selectedRecurrenceIndex == 0
-                                        ? RecurrenceDuration.weekly
-                                        : selectedRecurrenceIndex == 1
-                                        ? RecurrenceDuration.monthly
-                                        : RecurrenceDuration.yearly,
-                                  ),
-                                );
-                          } catch (e) {
-                            throw Exception("Failed to create budget: $e");
-                          }
-                        },
-                  child: isLoading
-                      ? const CircularProgressIndicator()
-                      : const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.check_circle),
-                            gapW4,
-                            Text('Save Budget'),
-                          ],
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: Sizes.kVerticalPadding,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: isLoading
+                        ? null
+                        : () async {
+                            if (isLoading) return;
+                            if (amountController.text == "0.00") return;
+                            try {
+                              final userId = ref
+                                  .read(authServiceProvider)
+                                  .currentUser!
+                                  .userId;
+                              await ref
+                                  .read(budgetControllerProvider.notifier)
+                                  .createBudget(
+                                    BudgetModel(
+                                      userId: userId,
+                                      limit: amountController.text.isEmpty
+                                          ? 0.0
+                                          : double.parse(amountController.text),
+                                      spent: 0.0,
+                                      budgetName: nameController.text.isEmpty
+                                          ? "Unnamed Budget"
+                                          : nameController.text,
+                                      category: selectedCategory,
+                                      recurrenceDuration:
+                                          selectedRecurrenceIndex == 0
+                                          ? RecurrenceDuration.weekly
+                                          : selectedRecurrenceIndex == 1
+                                          ? RecurrenceDuration.monthly
+                                          : RecurrenceDuration.yearly,
+                                    ),
+                                  );
+                            } catch (e) {
+                              throw Exception("Failed to create budget: $e");
+                            }
+                          },
+                    child: isLoading
+                        ? const CircularProgressIndicator()
+                        : const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.check_circle),
+                              gapW4,
+                              Text('Save Budget'),
+                            ],
+                          ),
+                  ),
                 ),
               ),
             ),

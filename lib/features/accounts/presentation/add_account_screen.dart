@@ -77,7 +77,6 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: Sizes.kHorizontalPadding,
-          vertical: Sizes.kVerticalPadding,
         ),
         child: CustomScrollView(
           slivers: [

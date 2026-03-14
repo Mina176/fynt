@@ -26,7 +26,6 @@ class _SetAppearanceScreenState extends ConsumerState<SetAppearanceScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: Sizes.kHorizontalPadding,
-          vertical: Sizes.kVerticalPadding,
         ),
         child: Column(
           spacing: 8,

@@ -59,7 +59,6 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: Sizes.kHorizontalPadding,
-          vertical: Sizes.kVerticalPadding,
         ),
         child: CustomScrollView(
           slivers: [
