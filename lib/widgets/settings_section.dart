@@ -23,21 +23,15 @@ class SettingsSection extends StatelessWidget {
           clipBehavior: Clip.hardEdge,
           child: Column(
             children: [
-              if (widgets.isEmpty)
-                const SizedBox.shrink()
-              else if (widgets.length == 1)
+              if (widgets.isNotEmpty)
                 ...widgets
-              else
-                ...widgets.length == 1
-                      ? widgets
-                      : widgets
-                            .expand(
-                              (widget) => [
-                                widget,
-                                const Divider(height: 0.1),
-                              ],
-                            )
-                            .toList()
+                    .expand(
+                      (widget) => [
+                        widget,
+                        const Divider(height: 0.1),
+                      ],
+                    )
+                    .toList()
                   ..removeLast(),
             ],
           ),
