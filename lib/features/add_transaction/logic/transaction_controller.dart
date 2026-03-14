@@ -14,17 +14,13 @@ class TransactionController extends _$TransactionController {
   Future<void> createTransaction(TransactionModel transaction) async {
     state = const AsyncLoading();
 
-    try {
+    state = await AsyncValue.guard(() async {
       final service = ref.read(transactionSupabaseServiceProvider);
       await service.createTransaction(transaction);
 
-      state = const AsyncData(null);
-
       ref.invalidate(getTransactionsProvider);
       ref.invalidate(getWeeklySpendingsProvider);
-    } catch (error, stackTrace) {
-      state = AsyncError(error, stackTrace);
-    }
+    });
   }
 }
 

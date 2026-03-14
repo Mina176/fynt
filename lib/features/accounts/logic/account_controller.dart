@@ -46,13 +46,11 @@ class AccountController extends _$AccountController {
     required double amount,
     required bool isExpense,
   }) async {
-    state = const AsyncLoading();
-
     try {
       final service = ref.read(accountSupabaseServiceProvider);
       AccountModel accountToUpdate = account;
       if (account.id == null) {
-        final allAccounts = await ref.read(getAccountsProvider.future);
+        final allAccounts = state.value ?? await future;
         try {
           accountToUpdate = allAccounts.firstWhere(
             (a) =>
@@ -71,11 +69,10 @@ class AccountController extends _$AccountController {
         isExpense,
       );
 
-      ref.invalidate(getAccountsProvider);
+      ref.invalidateSelf();
 
       return updatedAccount;
-    } catch (error, stackTrace) {
-      state = AsyncError(error, stackTrace);
+    } catch (error) {
       rethrow;
     }
   }
