@@ -39,7 +39,7 @@ final List<CategoryIconWithLabel> incomeCategoriesWithLabelsList = [
 
 final List<Map<String, dynamic>> accountTypes = [
   {'icon': Icons.credit_card, 'label': 'Debit Card'},
-  {'icon': Icons.credit_card, 'label': 'Credit Card'},
+  {'icon': FontAwesomeIcons.ccVisa, 'label': 'Credit Card'},
   {'icon': Icons.wallet, 'label': 'Cash Wallet'},
   {'icon': FontAwesomeIcons.arrowTrendUp, 'label': 'Investment'},
 ];

@@ -127,6 +127,7 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
                               }
                             },
                             child: AccountCard(
+                              icon: account.accountTypeIcon,
                               accountType: accounts[index].accountType.name,
                               accountName: accounts[index].accountName,
                               balance: accounts[index].balance,
@@ -162,12 +163,14 @@ class AccountCard extends StatelessWidget {
     required this.balance,
     required this.currentBalance,
     required this.currencySymbol,
+    required this.icon,
   });
   final String accountType;
   final String accountName;
   final double balance;
   final double currentBalance;
   final String currencySymbol;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return CustomCard(
@@ -175,11 +178,10 @@ class AccountCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Row(
           children: [
-            const Icon(
-              Icons.account_balance,
-              color: AppColors.kPrimaryColor,
+            Icon(
+              icon,
             ),
-            gapW12,
+            gapW20,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -211,13 +213,13 @@ class AccountCard extends StatelessWidget {
   }
 }
 
-extension AccountModelX on AccountModel {
+extension GetAccountTypeIcon on AccountModel {
   IconData get accountTypeIcon {
     switch (accountType.index) {
       case 0:
         return Icons.credit_card;
       case 1:
-        return Icons.credit_card;
+        return FontAwesomeIcons.ccVisa;
       case 2:
         return Icons.wallet;
       default:
