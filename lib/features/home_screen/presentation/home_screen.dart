@@ -63,7 +63,8 @@ class HomeScreen extends ConsumerWidget {
                                     savingPercentage:
                                         netWorthStats.percentChange,
                                   ),
-                            error: (error, stackTrace) => const SizedBox.shrink(),
+                            error: (error, stackTrace) =>
+                                const SizedBox.shrink(),
                             loading: () => const Text(
                               '',
                               style: TextStyles.buttonLabel,
@@ -147,7 +148,8 @@ class HomeScreen extends ConsumerWidget {
                         height: 250,
                         child: Center(
                           child: Text(
-                            "No transactions yet",
+                            "Press the + button below to add a transaction.",
+                            textAlign: TextAlign.center,
                             style: TextStyles.hintText.copyWith(
                               color: Colors.grey,
                             ),

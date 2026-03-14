@@ -94,7 +94,8 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
                   if (accounts.isEmpty) {
                     return Center(
                       child: Text(
-                        'No accounts added yet.',
+                        'Press the + button above to add an account.',
+                        textAlign: TextAlign.center,
                         style: TextStyles.subtitle.copyWith(
                           color: Colors.grey,
                         ),

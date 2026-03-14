@@ -113,7 +113,8 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                   ? SliverFillRemaining(
                       child: Center(
                         child: Text(
-                          "No budgets found. Add a budget to get started!",
+                          "Press the + button above to add a budget.",
+                          textAlign: TextAlign.center,
                           style: TextStyles.hintText.copyWith(
                             color: Colors.grey,
                           ),
