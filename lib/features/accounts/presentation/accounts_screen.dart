@@ -22,10 +22,9 @@ class AccountsScreen extends ConsumerStatefulWidget {
 }
 
 class _AccountsScreenState extends ConsumerState<AccountsScreen> {
-  final Set<int> pendingDeletions = {};
   @override
   Widget build(BuildContext context) {
-    final accountsAsync = ref.watch(getAccountsProvider);
+    final accountsAsync = ref.watch(accountControllerProvider);
     final netWorthAsync = ref.watch(getNetWorthProvider);
     final currencySymbol = ref.watch(currencySymbolProvider);
     final isFirstMonth = ref.watch(isFirstMonthOfActivityProvider);
@@ -92,12 +91,7 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
             Expanded(
               child: accountsAsync.when(
                 data: (accounts) {
-                  final visibleAccounts = accounts
-                      .where(
-                        (a) => a.id != null && !pendingDeletions.contains(a.id),
-                      )
-                      .toList();
-                  if (visibleAccounts.isEmpty) {
+                  if (accounts.isEmpty) {
                     return Center(
                       child: Text(
                         'No accounts added yet.',
@@ -111,19 +105,16 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
                     child: SettingsSection(
                       backgroundColor: Theme.of(context).cardColor,
                       widgets: List.generate(
-                        visibleAccounts.length,
+                        accounts.length,
                         (index) {
-                          final account = visibleAccounts[index];
+                          final account = accounts[index];
                           return SlidableSettingsTile(
                             itemKey: ValueKey(accounts[index].id),
                             onDeleteTapped: () {
                               if (account.id != null) {
-                                setState(() {
-                                  pendingDeletions.add(account.id!);
-                                });
                                 ref
                                     .read(accountControllerProvider.notifier)
-                                    .deleteAccount(accounts[index].id!);
+                                    .deleteAccount(account.id!);
                               }
                             },
                             child: AccountCard(
