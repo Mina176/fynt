@@ -6,24 +6,54 @@ part of 'transaction_supabase_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$transactionSupabaseServiceHash() =>
-    r'efa6cac28d50d7adb2505c556fc4971aee61049f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [transactionSupabaseService].
 @ProviderFor(transactionSupabaseService)
 final transactionSupabaseServiceProvider =
-    Provider<TransactionSupabaseService>.internal(
-      transactionSupabaseService,
-      name: r'transactionSupabaseServiceProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$transactionSupabaseServiceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+    TransactionSupabaseServiceProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef TransactionSupabaseServiceRef = ProviderRef<TransactionSupabaseService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class TransactionSupabaseServiceProvider
+    extends
+        $FunctionalProvider<
+          TransactionSupabaseService,
+          TransactionSupabaseService,
+          TransactionSupabaseService
+        >
+    with $Provider<TransactionSupabaseService> {
+  TransactionSupabaseServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'transactionSupabaseServiceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$transactionSupabaseServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<TransactionSupabaseService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  TransactionSupabaseService create(Ref ref) {
+    return transactionSupabaseService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TransactionSupabaseService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TransactionSupabaseService>(value),
+    );
+  }
+}
+
+String _$transactionSupabaseServiceHash() =>
+    r'efa6cac28d50d7adb2505c556fc4971aee61049f';

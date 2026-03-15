@@ -6,286 +6,212 @@ part of 'budget_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getBudgetsHash() => r'3bb9880445976e3801e6c2732e5819fa6fe9a574';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
+@ProviderFor(BudgetController)
+final budgetControllerProvider = BudgetControllerProvider._();
 
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [getBudgets].
-@ProviderFor(getBudgets)
-const getBudgetsProvider = GetBudgetsFamily();
-
-/// See also [getBudgets].
-class GetBudgetsFamily extends Family<AsyncValue<List<BudgetModel>>> {
-  /// See also [getBudgets].
-  const GetBudgetsFamily();
-
-  /// See also [getBudgets].
-  GetBudgetsProvider call(RecurrenceDuration period) {
-    return GetBudgetsProvider(period);
-  }
-
-  @override
-  GetBudgetsProvider getProviderOverride(
-    covariant GetBudgetsProvider provider,
-  ) {
-    return call(provider.period);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getBudgetsProvider';
-}
-
-/// See also [getBudgets].
-class GetBudgetsProvider extends AutoDisposeFutureProvider<List<BudgetModel>> {
-  /// See also [getBudgets].
-  GetBudgetsProvider(RecurrenceDuration period)
-    : this._internal(
-        (ref) => getBudgets(ref as GetBudgetsRef, period),
-        from: getBudgetsProvider,
-        name: r'getBudgetsProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$getBudgetsHash,
-        dependencies: GetBudgetsFamily._dependencies,
-        allTransitiveDependencies: GetBudgetsFamily._allTransitiveDependencies,
-        period: period,
+final class BudgetControllerProvider
+    extends $AsyncNotifierProvider<BudgetController, void> {
+  BudgetControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'budgetControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
       );
 
-  GetBudgetsProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.period,
-  }) : super.internal();
+  @override
+  String debugGetCreateSourceHash() => _$budgetControllerHash();
 
-  final RecurrenceDuration period;
+  @$internal
+  @override
+  BudgetController create() => BudgetController();
+}
+
+String _$budgetControllerHash() => r'abab231005efa3754c888c48869667c86f4656d5';
+
+abstract class _$BudgetController extends $AsyncNotifier<void> {
+  FutureOr<void> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<void>, void>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<void>, void>,
+              AsyncValue<void>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}
+
+@ProviderFor(getBudgets)
+final getBudgetsProvider = GetBudgetsFamily._();
+
+final class GetBudgetsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<BudgetModel>>,
+          List<BudgetModel>,
+          FutureOr<List<BudgetModel>>
+        >
+    with
+        $FutureModifier<List<BudgetModel>>,
+        $FutureProvider<List<BudgetModel>> {
+  GetBudgetsProvider._({
+    required GetBudgetsFamily super.from,
+    required RecurrenceDuration super.argument,
+  }) : super(
+         retry: null,
+         name: r'getBudgetsProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
-  Override overrideWith(
-    FutureOr<List<BudgetModel>> Function(GetBudgetsRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetBudgetsProvider._internal(
-        (ref) => create(ref as GetBudgetsRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        period: period,
-      ),
-    );
+  String debugGetCreateSourceHash() => _$getBudgetsHash();
+
+  @override
+  String toString() {
+    return r'getBudgetsProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  AutoDisposeFutureProviderElement<List<BudgetModel>> createElement() {
-    return _GetBudgetsProviderElement(this);
+  $FutureProviderElement<List<BudgetModel>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<BudgetModel>> create(Ref ref) {
+    final argument = this.argument as RecurrenceDuration;
+    return getBudgets(ref, argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetBudgetsProvider && other.period == period;
+    return other is GetBudgetsProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, period.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin GetBudgetsRef on AutoDisposeFutureProviderRef<List<BudgetModel>> {
-  /// The parameter `period` of this provider.
-  RecurrenceDuration get period;
-}
+String _$getBudgetsHash() => r'3bb9880445976e3801e6c2732e5819fa6fe9a574';
 
-class _GetBudgetsProviderElement
-    extends AutoDisposeFutureProviderElement<List<BudgetModel>>
-    with GetBudgetsRef {
-  _GetBudgetsProviderElement(super.provider);
+final class GetBudgetsFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<List<BudgetModel>>,
+          RecurrenceDuration
+        > {
+  GetBudgetsFamily._()
+    : super(
+        retry: null,
+        name: r'getBudgetsProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  GetBudgetsProvider call(RecurrenceDuration period) =>
+      GetBudgetsProvider._(argument: period, from: this);
 
   @override
-  RecurrenceDuration get period => (origin as GetBudgetsProvider).period;
+  String toString() => r'getBudgetsProvider';
+}
+
+@ProviderFor(getAllBudgetsDetails)
+final getAllBudgetsDetailsProvider = GetAllBudgetsDetailsFamily._();
+
+final class GetAllBudgetsDetailsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AllBudgetsDetails>,
+          AllBudgetsDetails,
+          FutureOr<AllBudgetsDetails>
+        >
+    with
+        $FutureModifier<AllBudgetsDetails>,
+        $FutureProvider<AllBudgetsDetails> {
+  GetAllBudgetsDetailsProvider._({
+    required GetAllBudgetsDetailsFamily super.from,
+    required RecurrenceDuration super.argument,
+  }) : super(
+         retry: null,
+         name: r'getAllBudgetsDetailsProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$getAllBudgetsDetailsHash();
+
+  @override
+  String toString() {
+    return r'getAllBudgetsDetailsProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<AllBudgetsDetails> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AllBudgetsDetails> create(Ref ref) {
+    final argument = this.argument as RecurrenceDuration;
+    return getAllBudgetsDetails(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetAllBudgetsDetailsProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
 String _$getAllBudgetsDetailsHash() =>
     r'112c1850308b03ba826d00bcd0d279e285c2aa9d';
 
-/// See also [getAllBudgetsDetails].
-@ProviderFor(getAllBudgetsDetails)
-const getAllBudgetsDetailsProvider = GetAllBudgetsDetailsFamily();
-
-/// See also [getAllBudgetsDetails].
-class GetAllBudgetsDetailsFamily extends Family<AsyncValue<AllBudgetsDetails>> {
-  /// See also [getAllBudgetsDetails].
-  const GetAllBudgetsDetailsFamily();
-
-  /// See also [getAllBudgetsDetails].
-  GetAllBudgetsDetailsProvider call(RecurrenceDuration period) {
-    return GetAllBudgetsDetailsProvider(period);
-  }
-
-  @override
-  GetAllBudgetsDetailsProvider getProviderOverride(
-    covariant GetAllBudgetsDetailsProvider provider,
-  ) {
-    return call(provider.period);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getAllBudgetsDetailsProvider';
-}
-
-/// See also [getAllBudgetsDetails].
-class GetAllBudgetsDetailsProvider
-    extends AutoDisposeFutureProvider<AllBudgetsDetails> {
-  /// See also [getAllBudgetsDetails].
-  GetAllBudgetsDetailsProvider(RecurrenceDuration period)
-    : this._internal(
-        (ref) => getAllBudgetsDetails(ref as GetAllBudgetsDetailsRef, period),
-        from: getAllBudgetsDetailsProvider,
+final class GetAllBudgetsDetailsFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<AllBudgetsDetails>,
+          RecurrenceDuration
+        > {
+  GetAllBudgetsDetailsFamily._()
+    : super(
+        retry: null,
         name: r'getAllBudgetsDetailsProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$getAllBudgetsDetailsHash,
-        dependencies: GetAllBudgetsDetailsFamily._dependencies,
-        allTransitiveDependencies:
-            GetAllBudgetsDetailsFamily._allTransitiveDependencies,
-        period: period,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
       );
 
-  GetAllBudgetsDetailsProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.period,
-  }) : super.internal();
-
-  final RecurrenceDuration period;
+  GetAllBudgetsDetailsProvider call(RecurrenceDuration period) =>
+      GetAllBudgetsDetailsProvider._(argument: period, from: this);
 
   @override
-  Override overrideWith(
-    FutureOr<AllBudgetsDetails> Function(GetAllBudgetsDetailsRef provider)
-    create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetAllBudgetsDetailsProvider._internal(
-        (ref) => create(ref as GetAllBudgetsDetailsRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        period: period,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<AllBudgetsDetails> createElement() {
-    return _GetAllBudgetsDetailsProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetAllBudgetsDetailsProvider && other.period == period;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, period.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
+  String toString() => r'getAllBudgetsDetailsProvider';
 }
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin GetAllBudgetsDetailsRef
-    on AutoDisposeFutureProviderRef<AllBudgetsDetails> {
-  /// The parameter `period` of this provider.
-  RecurrenceDuration get period;
-}
-
-class _GetAllBudgetsDetailsProviderElement
-    extends AutoDisposeFutureProviderElement<AllBudgetsDetails>
-    with GetAllBudgetsDetailsRef {
-  _GetAllBudgetsDetailsProviderElement(super.provider);
-
-  @override
-  RecurrenceDuration get period =>
-      (origin as GetAllBudgetsDetailsProvider).period;
-}
-
-String _$budgetControllerHash() => r'abab231005efa3754c888c48869667c86f4656d5';
-
-/// See also [BudgetController].
-@ProviderFor(BudgetController)
-final budgetControllerProvider =
-    AutoDisposeAsyncNotifierProvider<BudgetController, void>.internal(
-      BudgetController.new,
-      name: r'budgetControllerProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$budgetControllerHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-typedef _$BudgetController = AutoDisposeAsyncNotifier<void>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -6,24 +6,53 @@ part of 'account_supabase_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(accountSupabaseService)
+final accountSupabaseServiceProvider = AccountSupabaseServiceProvider._();
+
+final class AccountSupabaseServiceProvider
+    extends
+        $FunctionalProvider<
+          AccountSupabaseService,
+          AccountSupabaseService,
+          AccountSupabaseService
+        >
+    with $Provider<AccountSupabaseService> {
+  AccountSupabaseServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'accountSupabaseServiceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$accountSupabaseServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<AccountSupabaseService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  AccountSupabaseService create(Ref ref) {
+    return accountSupabaseService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AccountSupabaseService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AccountSupabaseService>(value),
+    );
+  }
+}
+
 String _$accountSupabaseServiceHash() =>
     r'6cf1bc71bd1447ffc280812554b2c9502923b8a3';
-
-/// See also [accountSupabaseService].
-@ProviderFor(accountSupabaseService)
-final accountSupabaseServiceProvider =
-    Provider<AccountSupabaseService>.internal(
-      accountSupabaseService,
-      name: r'accountSupabaseServiceProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$accountSupabaseServiceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AccountSupabaseServiceRef = ProviderRef<AccountSupabaseService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
