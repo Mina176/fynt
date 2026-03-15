@@ -64,48 +64,6 @@ abstract class _$TransactionControllerBase
   }
 }
 
-@ProviderFor(recentTransactions)
-final recentTransactionsProvider = RecentTransactionsProvider._();
-
-final class RecentTransactionsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<TransactionModel>>,
-          List<TransactionModel>,
-          FutureOr<List<TransactionModel>>
-        >
-    with
-        $FutureModifier<List<TransactionModel>>,
-        $FutureProvider<List<TransactionModel>> {
-  RecentTransactionsProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'recentTransactionsProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$recentTransactionsHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<List<TransactionModel>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<TransactionModel>> create(Ref ref) {
-    return recentTransactions(ref);
-  }
-}
-
-String _$recentTransactionsHash() =>
-    r'5abcdf892a004e4a57ef39a79df6591743c77f7e';
-
 @ProviderFor(getWeeklySpendings)
 final getWeeklySpendingsProvider = GetWeeklySpendingsProvider._();
 

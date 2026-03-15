@@ -50,7 +50,7 @@ final class BudgetControllerProvider
   }
 }
 
-String _$budgetControllerHash() => r'72943c89c8067858d5b3a4dbcfccac17a665ad61';
+String _$budgetControllerHash() => r'0e27a197a14cfe5549e642a4ed6b1b4bc61a87c1';
 
 final class BudgetControllerFamily extends $Family
     with
