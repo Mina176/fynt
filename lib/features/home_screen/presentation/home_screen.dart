@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final transactionsAsync = ref.watch(getTransactionsProvider);
+    final transactionsAsync = ref.watch(transactionControllerProvider);
     final weeklyDashboardAsync = ref.watch(getWeeklyDashboardDataProvider);
     final netWorthStatsAsync = ref.watch(netWorthStatsProvider);
     final currencySymbol = ref.watch(currencySymbolProvider);

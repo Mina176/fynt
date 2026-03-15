@@ -16,19 +16,17 @@ class AccountController extends _$AccountController {
 
   Future<void> createAccount(AccountModel account) async {
     state = const AsyncLoading();
-
-    try {
+    state = await AsyncValue.guard(() async {
       final service = ref.read(accountSupabaseServiceProvider);
       await service.createAccount(account);
 
-      ref.invalidateSelf();
-    } catch (error, stackTrace) {
-      state = AsyncError(error, stackTrace);
-    }
+      return service.getAccounts();
+    });
   }
 
   Future<void> deleteAccount(int accountId) async {
-    state = const AsyncLoading();
+    final previousState = state;
+
     if (state.hasValue) {
       final updatedList = state.value!.where((a) => a.id != accountId).toList();
       state = AsyncData(updatedList);
@@ -36,8 +34,8 @@ class AccountController extends _$AccountController {
     try {
       final service = ref.read(accountSupabaseServiceProvider);
       await service.deleteAccount(accountId);
-    } catch (error, stackTrace) {
-      state = AsyncError(error, stackTrace);
+    } catch (error) {
+      state = previousState;
     }
   }
 
@@ -69,19 +67,14 @@ class AccountController extends _$AccountController {
         isExpense,
       );
 
-      ref.invalidateSelf();
+      final newList = await service.getAccounts();
+      state = AsyncData(newList);
 
       return updatedAccount;
     } catch (error) {
       rethrow;
     }
   }
-}
-
-@riverpod
-Future<List<AccountModel>> getAccounts(Ref ref) async {
-  final service = ref.read(accountSupabaseServiceProvider);
-  return service.getAccounts();
 }
 
 @riverpod

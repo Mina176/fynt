@@ -9,25 +9,21 @@ part 'transaction_controller.g.dart';
 @riverpod
 class TransactionController extends _$TransactionController {
   @override
-  FutureOr<void> build() {}
+  FutureOr<List<TransactionModel>> build() async {
+    final service = ref.read(transactionSupabaseServiceProvider);
+    return service.getTransactions();
+  }
 
   Future<void> createTransaction(TransactionModel transaction) async {
     state = const AsyncLoading();
-
     state = await AsyncValue.guard(() async {
       final service = ref.read(transactionSupabaseServiceProvider);
       await service.createTransaction(transaction);
 
-      ref.invalidate(getTransactionsProvider);
       ref.invalidate(getWeeklySpendingsProvider);
+      return service.getTransactions();
     });
   }
-}
-
-@riverpod
-Future<List<TransactionModel>> getTransactions(Ref ref) async {
-  final service = ref.watch(transactionSupabaseServiceProvider);
-  return service.getTransactions();
 }
 
 @riverpod

@@ -16,7 +16,7 @@ class SelectAccountScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final accountsAsync = ref.watch(getAccountsProvider);
+    final accountsAsync = ref.watch(accountControllerProvider);
     final currencySymbol = ref.watch(currencySymbolProvider);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
