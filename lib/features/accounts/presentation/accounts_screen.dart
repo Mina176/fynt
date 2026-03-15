@@ -192,7 +192,7 @@ class AccountCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '$currencySymbol${balance.toStringAsFixed(2)}',
+                  '$currencySymbol${currentBalance.toStringAsFixed(2)}',
                   style: TextStyles.title.copyWith(fontSize: 16),
                 ),
                 const Text(''),
