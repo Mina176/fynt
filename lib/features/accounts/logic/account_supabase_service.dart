@@ -15,11 +15,11 @@ class AccountSupabaseService {
   Future<AccountModel> createAccount(AccountModel account) async {
     final response = await client
         .from('accounts')
-        .insert(account.toMap())
+        .insert(account.toJson())
         .select()
         .single();
 
-    return AccountModel.fromMap(response);
+    return AccountModel.fromJson(response);
   }
 
   Future<void> deleteAccount(int accountId) async {
@@ -37,7 +37,7 @@ class AccountSupabaseService {
         .eq('user_id', userId);
     final data = response as List<dynamic>;
 
-    return data.map((item) => AccountModel.fromMap(item)).toList();
+    return data.map((item) => AccountModel.fromJson(item)).toList();
   }
 
   Future<AccountModel> updateAccountBalance(
@@ -60,7 +60,7 @@ class AccountSupabaseService {
         .select()
         .single();
 
-    return AccountModel.fromMap(response);
+    return AccountModel.fromJson(response);
   }
 
   Future<double> getNetWorth() async {

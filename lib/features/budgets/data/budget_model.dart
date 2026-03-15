@@ -37,7 +37,7 @@ class BudgetModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'user_id': userId,
       'limit': limit,
@@ -48,7 +48,7 @@ class BudgetModel {
     };
   }
 
-  factory BudgetModel.fromMap(Map<String, dynamic> map) {
+  factory BudgetModel.fromJson(Map<String, dynamic> map) {
     return BudgetModel(
       userId: (map['user_id'] ?? "") as String,
       budgetName: (map['budget_name'] ?? "Unnamed Budget") as String,

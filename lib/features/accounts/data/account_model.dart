@@ -19,7 +19,7 @@ class AccountModel {
     required this.currentBalance,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'user_id': userId,
       'account_type': accountType.name,
@@ -30,7 +30,7 @@ class AccountModel {
     };
   }
 
-  factory AccountModel.fromMap(Map<String, dynamic> map) {
+  factory AccountModel.fromJson(Map<String, dynamic> map) {
     return AccountModel(
       id: map['id'] as int?,
       userId: map['user_id'] as String,

@@ -14,7 +14,7 @@ class TransactionSupabaseService {
   Future<void> createTransaction(TransactionModel transaction) async {
     await Supabase.instance.client
         .from('transactions')
-        .insert(transaction.toMap());
+        .insert(transaction.toJson());
   }
 
   Future<void> deleteTransaction(int transactionId) async {
@@ -33,7 +33,7 @@ class TransactionSupabaseService {
 
     final data = response as List<dynamic>;
 
-    return data.map((item) => TransactionModel.fromMap(item)).toList();
+    return data.map((item) => TransactionModel.fromJson(item)).toList();
   }
 
   Future<List<TransactionModel>> recentTransactions() async {
@@ -46,7 +46,7 @@ class TransactionSupabaseService {
 
     final data = response as List<dynamic>;
 
-    return data.map((item) => TransactionModel.fromMap(item)).toList();
+    return data.map((item) => TransactionModel.fromJson(item)).toList();
   }
 
   Future<List<double>> getWeeklySpendings() async {
