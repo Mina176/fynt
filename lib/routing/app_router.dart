@@ -8,6 +8,7 @@ import 'package:fintrack/features/authentication/presentation/login_screen.dart'
 import 'package:fintrack/features/authentication/presentation/profile_screen.dart';
 import 'package:fintrack/features/authentication/presentation/sign_up_screen.dart';
 import 'package:fintrack/features/budgets/presentation/add_budget_screen.dart';
+import 'package:fintrack/features/home_screen/presentation/all_transactions_screen.dart';
 import 'package:fintrack/features/home_screen/presentation/root_home.dart';
 import 'package:fintrack/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:fintrack/features/onboarding/presentation/splash_screen.dart';
@@ -90,6 +91,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.home.path,
         builder: (context, state) => const RootHomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.allTransactions.path,
+        builder: (context, state) => const AllTransactionsScreen(),
       ),
       GoRoute(
         path: AppRoutes.addTransaction.path,

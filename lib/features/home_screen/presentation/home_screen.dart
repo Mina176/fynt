@@ -8,8 +8,10 @@ import 'package:fintrack/features/home_screen/presentation/custom_card.dart';
 import 'package:fintrack/features/home_screen/presentation/last_month_container.dart';
 import 'package:fintrack/features/home_screen/presentation/transaction_card.dart';
 import 'package:fintrack/features/home_screen/presentation/weekly_spending_summary.dart';
+import 'package:fintrack/routing/app_route_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -135,7 +137,23 @@ class HomeScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    const Text('Recent Transactions', style: TextStyles.header),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Recent Transactions',
+                          style: TextStyles.header,
+                        ),
+                        GestureDetector(
+                          onTap: () =>
+                              context.go(AppRoutes.allTransactions.path),
+                          child: const Text(
+                            'View All',
+                            style: TextStyles.headerLink,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
