@@ -30,12 +30,14 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
   int selectedRecurrenceIndex = 1;
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(budgetControllerProvider).isLoading;
-    ref.listen(budgetControllerProvider, (previous, next) {
-      if (previous?.isLoading == true && !next.isLoading && !next.hasError) {
-        context.pop();
-      }
-    });
+    final selectedDuration = selectedRecurrenceIndex == 0
+        ? RecurrenceDuration.weekly
+        : selectedRecurrenceIndex == 1
+        ? RecurrenceDuration.monthly
+        : RecurrenceDuration.yearly;
+    final isLoading = ref
+        .watch(budgetControllerProvider(selectedDuration))
+        .isLoading;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
