@@ -1,5 +1,7 @@
 import 'package:fintrack/features/budgets/data/budget_model.dart';
 import 'package:fintrack/features/budgets/logic/budget_supabase.dart';
+import 'package:fintrack/utils/storage_provider.dart';
+import 'package:flutter_riverpod/experimental/persist.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,7 +10,33 @@ part 'budget_controller.g.dart';
 @riverpod
 class BudgetController extends _$BudgetController {
   @override
-  FutureOr<void> build() {}
+  FutureOr<List<BudgetModel>> build(RecurrenceDuration period) async {
+    await persist(
+      ref.watch(storageProvider.future),
+      key: 'budgets_list_v3_${period.name}',
+      encode: (budgets) => jsonEncode(
+        budgets.map((b) => b.toJson()).toList(),
+      ),
+      decode: (raw) {
+        final jsonString = raw;
+        final list = jsonDecode(jsonString) as List<dynamic>;
+        return list
+            .map((e) => BudgetModel.fromJson(e as Map<String, dynamic>))
+            .toList();
+      },
+    ).future;
+
+    unawaited(_syncWithSupabase());
+    return state.value ?? <BudgetModel>[];
+  }
+
+  Future<void> _syncWithSupabase() async {
+    try {
+      final service = ref.read(budgetSupabaseServiceProvider);
+      final freshList = await service.getBudgets(period);
+      state = AsyncData(freshList);
+    } catch (_) {}
+  }
 
   Future<void> createBudget(BudgetModel budget) async {
     state = const AsyncLoading();

@@ -1,17 +1,33 @@
 import 'package:fintrack/features/accounts/data/account_model.dart';
 import 'package:fintrack/features/accounts/logic/account_supabase_service.dart';
 import 'package:fintrack/features/add_transaction/logic/transaction_controller.dart';
+import 'package:fintrack/utils/storage_provider.dart';
+import 'package:flutter_riverpod/experimental/persist.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/experimental/json_persist.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'account_controller.g.dart';
 
 @riverpod
+@JsonPersist()
 class AccountController extends _$AccountController {
   @override
   FutureOr<List<AccountModel>> build() async {
-    final service = ref.read(accountSupabaseServiceProvider);
-    return service.getAccounts();
+    await persist(ref.watch(storageProvider.future)).future;
+
+    _syncWithSupabase();
+
+    return state.value ?? <AccountModel>[];
+  }
+
+  Future<void> _syncWithSupabase() async {
+    try {
+      final service = ref.read(accountSupabaseServiceProvider);
+      final freshList = await service.getAccounts();
+
+      state = AsyncData(freshList);
+    } catch (_) {}
   }
 
   Future<void> createAccount(AccountModel account) async {

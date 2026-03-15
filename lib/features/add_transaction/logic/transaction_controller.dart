@@ -1,17 +1,33 @@
 import 'package:fintrack/features/add_transaction/data/transaction_model.dart';
 import 'package:fintrack/features/add_transaction/logic/transaction_supabase_service.dart';
+import 'package:fintrack/utils/storage_provider.dart';
+import 'package:flutter_riverpod/experimental/persist.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/experimental/json_persist.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'transaction_controller.g.dart';
 
 @riverpod
+@JsonPersist()
 class TransactionController extends _$TransactionController {
   @override
   FutureOr<List<TransactionModel>> build() async {
-    final service = ref.read(transactionSupabaseServiceProvider);
-    return service.getTransactions();
+    await persist(ref.watch(storageProvider.future)).future;
+
+    _syncWithSupabase();
+
+    return state.value ?? <TransactionModel>[];
+  }
+
+  Future<void> _syncWithSupabase() async {
+    try {
+      final service = ref.read(transactionSupabaseServiceProvider);
+      final freshList = await service.getTransactions();
+
+      state = AsyncData(freshList);
+    } catch (_) {}
   }
 
   Future<void> createTransaction(TransactionModel transaction) async {
