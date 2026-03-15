@@ -10,8 +10,10 @@ part of 'transaction_controller.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(TransactionController)
+@JsonPersist()
 final transactionControllerProvider = TransactionControllerProvider._();
 
+@JsonPersist()
 final class TransactionControllerProvider
     extends
         $AsyncNotifierProvider<TransactionController, List<TransactionModel>> {
@@ -35,9 +37,10 @@ final class TransactionControllerProvider
 }
 
 String _$transactionControllerHash() =>
-    r'e4a8769010173bf475aff2169396139ca57e12e6';
+    r'7991d41722a32edd480a210718138f1ee71fced8';
 
-abstract class _$TransactionController
+@JsonPersist()
+abstract class _$TransactionControllerBase
     extends $AsyncNotifier<List<TransactionModel>> {
   FutureOr<List<TransactionModel>> build();
   @$mustCallSuper
@@ -141,7 +144,7 @@ final class GetWeeklySpendingsProvider
 }
 
 String _$getWeeklySpendingsHash() =>
-    r'44cc938e2bf764149ba7eef6f362409f23fbd71d';
+    r'06901d8cd12e22264b871659be9a853653a8c224';
 
 @ProviderFor(getPreviousWeekTotal)
 final getPreviousWeekTotalProvider = GetPreviousWeekTotalProvider._();
@@ -175,7 +178,7 @@ final class GetPreviousWeekTotalProvider
 }
 
 String _$getPreviousWeekTotalHash() =>
-    r'31893fcbc8b2c8acf705d7e864f2457cb0871021';
+    r'bbd1f226d0740cd2b842e4b16969cf4d5248d6b6';
 
 @ProviderFor(getPreviousMonthTotal)
 final getPreviousMonthTotalProvider = GetPreviousMonthTotalProvider._();
@@ -209,7 +212,7 @@ final class GetPreviousMonthTotalProvider
 }
 
 String _$getPreviousMonthTotalHash() =>
-    r'a85493ebc42ae4e44426e5f64a4e7e965d278441';
+    r'a21a9361aab77e66763cac622632a9ea44bbfb82';
 
 @ProviderFor(isFirstMonthOfActivity)
 final isFirstMonthOfActivityProvider = IsFirstMonthOfActivityProvider._();
@@ -243,7 +246,7 @@ final class IsFirstMonthOfActivityProvider
 }
 
 String _$isFirstMonthOfActivityHash() =>
-    r'bc725dfac7e981b1db26373858c28cfc4753aaa3';
+    r'bd70b761fa3fae5416e6ac180de5ef3f3529a734';
 
 @ProviderFor(isFirstWeekOfActivity)
 final isFirstWeekOfActivityProvider = IsFirstWeekOfActivityProvider._();
@@ -277,7 +280,7 @@ final class IsFirstWeekOfActivityProvider
 }
 
 String _$isFirstWeekOfActivityHash() =>
-    r'6e00fb03ab42b1c2463e5452623001cc6c007718';
+    r'8586bc13553a20ab465c5f8da19f545b7ac1f6b1';
 
 @ProviderFor(getWeeklyDashboardData)
 final getWeeklyDashboardDataProvider = GetWeeklyDashboardDataProvider._();
@@ -318,3 +321,44 @@ final class GetWeeklyDashboardDataProvider
 
 String _$getWeeklyDashboardDataHash() =>
     r'46d65a4a6ff5e609ccfda03562ccf40cdaaeca9d';
+
+// **************************************************************************
+// JsonGenerator
+// **************************************************************************
+
+// GENERATED CODE - DO NOT MODIFY BY HAND
+abstract class _$TransactionController extends _$TransactionControllerBase {
+  /// The default key used by [persist].
+  String get key {
+    const resolvedKey = "TransactionController";
+    return resolvedKey;
+  }
+
+  /// A variant of [persist], for JSON-specific encoding.
+  ///
+  /// You can override [key] to customize the key used for storage.
+  PersistResult persist(
+    FutureOr<Storage<String, String>> storage, {
+    String? key,
+    String Function(List<TransactionModel> state)? encode,
+    List<TransactionModel> Function(String encoded)? decode,
+    StorageOptions options = const StorageOptions(),
+  }) {
+    return NotifierPersistX(this).persist<String, String>(
+      storage,
+      key: key ?? this.key,
+      encode: encode ?? $jsonCodex.encode,
+      decode:
+          decode ??
+          (encoded) {
+            final e = $jsonCodex.decode(encoded);
+            return (e as List)
+                .map(
+                  (e) => TransactionModel.fromJson(e as Map<String, Object?>),
+                )
+                .toList();
+          },
+      options: options,
+    );
+  }
+}

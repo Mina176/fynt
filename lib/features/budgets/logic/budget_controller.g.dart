@@ -10,98 +10,38 @@ part of 'budget_controller.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(BudgetController)
-final budgetControllerProvider = BudgetControllerProvider._();
+final budgetControllerProvider = BudgetControllerFamily._();
 
 final class BudgetControllerProvider
-    extends $AsyncNotifierProvider<BudgetController, void> {
-  BudgetControllerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'budgetControllerProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$budgetControllerHash();
-
-  @$internal
-  @override
-  BudgetController create() => BudgetController();
-}
-
-String _$budgetControllerHash() => r'abab231005efa3754c888c48869667c86f4656d5';
-
-abstract class _$BudgetController extends $AsyncNotifier<void> {
-  FutureOr<void> build();
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<void>, void>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<void>, void>,
-              AsyncValue<void>,
-              Object?,
-              Object?
-            >;
-    element.handleCreate(ref, build);
-  }
-}
-
-@ProviderFor(getBudgets)
-final getBudgetsProvider = GetBudgetsFamily._();
-
-final class GetBudgetsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<BudgetModel>>,
-          List<BudgetModel>,
-          FutureOr<List<BudgetModel>>
-        >
-    with
-        $FutureModifier<List<BudgetModel>>,
-        $FutureProvider<List<BudgetModel>> {
-  GetBudgetsProvider._({
-    required GetBudgetsFamily super.from,
+    extends $AsyncNotifierProvider<BudgetController, List<BudgetModel>> {
+  BudgetControllerProvider._({
+    required BudgetControllerFamily super.from,
     required RecurrenceDuration super.argument,
   }) : super(
          retry: null,
-         name: r'getBudgetsProvider',
+         name: r'budgetControllerProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$getBudgetsHash();
+  String debugGetCreateSourceHash() => _$budgetControllerHash();
 
   @override
   String toString() {
-    return r'getBudgetsProvider'
+    return r'budgetControllerProvider'
         ''
         '($argument)';
   }
 
   @$internal
   @override
-  $FutureProviderElement<List<BudgetModel>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<BudgetModel>> create(Ref ref) {
-    final argument = this.argument as RecurrenceDuration;
-    return getBudgets(ref, argument);
-  }
+  BudgetController create() => BudgetController();
 
   @override
   bool operator ==(Object other) {
-    return other is GetBudgetsProvider && other.argument == argument;
+    return other is BudgetControllerProvider && other.argument == argument;
   }
 
   @override
@@ -110,28 +50,53 @@ final class GetBudgetsProvider
   }
 }
 
-String _$getBudgetsHash() => r'3bb9880445976e3801e6c2732e5819fa6fe9a574';
+String _$budgetControllerHash() => r'72943c89c8067858d5b3a4dbcfccac17a665ad61';
 
-final class GetBudgetsFamily extends $Family
+final class BudgetControllerFamily extends $Family
     with
-        $FunctionalFamilyOverride<
+        $ClassFamilyOverride<
+          BudgetController,
+          AsyncValue<List<BudgetModel>>,
+          List<BudgetModel>,
           FutureOr<List<BudgetModel>>,
           RecurrenceDuration
         > {
-  GetBudgetsFamily._()
+  BudgetControllerFamily._()
     : super(
         retry: null,
-        name: r'getBudgetsProvider',
+        name: r'budgetControllerProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  GetBudgetsProvider call(RecurrenceDuration period) =>
-      GetBudgetsProvider._(argument: period, from: this);
+  BudgetControllerProvider call(RecurrenceDuration period) =>
+      BudgetControllerProvider._(argument: period, from: this);
 
   @override
-  String toString() => r'getBudgetsProvider';
+  String toString() => r'budgetControllerProvider';
+}
+
+abstract class _$BudgetController extends $AsyncNotifier<List<BudgetModel>> {
+  late final _$args = ref.$arg as RecurrenceDuration;
+  RecurrenceDuration get period => _$args;
+
+  FutureOr<List<BudgetModel>> build(RecurrenceDuration period);
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref =
+        this.ref as $Ref<AsyncValue<List<BudgetModel>>, List<BudgetModel>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<List<BudgetModel>>, List<BudgetModel>>,
+              AsyncValue<List<BudgetModel>>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, () => build(_$args));
+  }
 }
 
 @ProviderFor(getAllBudgetsDetails)
@@ -192,7 +157,7 @@ final class GetAllBudgetsDetailsProvider
 }
 
 String _$getAllBudgetsDetailsHash() =>
-    r'112c1850308b03ba826d00bcd0d279e285c2aa9d';
+    r'bb4a436418a1923c71315a3e0316485249727821';
 
 final class GetAllBudgetsDetailsFamily extends $Family
     with

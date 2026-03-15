@@ -10,8 +10,10 @@ part of 'account_controller.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AccountController)
+@JsonPersist()
 final accountControllerProvider = AccountControllerProvider._();
 
+@JsonPersist()
 final class AccountControllerProvider
     extends $AsyncNotifierProvider<AccountController, List<AccountModel>> {
   AccountControllerProvider._()
@@ -33,9 +35,11 @@ final class AccountControllerProvider
   AccountController create() => AccountController();
 }
 
-String _$accountControllerHash() => r'57f054fb4f02fd0024e3ecab0851af3d035ca18c';
+String _$accountControllerHash() => r'a4ae6a24fd9c618e34f6711460768abe5c35a885';
 
-abstract class _$AccountController extends $AsyncNotifier<List<AccountModel>> {
+@JsonPersist()
+abstract class _$AccountControllerBase
+    extends $AsyncNotifier<List<AccountModel>> {
   FutureOr<List<AccountModel>> build();
   @$mustCallSuper
   @override
@@ -125,3 +129,42 @@ final class NetWorthStatsProvider
 }
 
 String _$netWorthStatsHash() => r'a8913cc7930f4d25e1f15ad36464d052ab3fcf82';
+
+// **************************************************************************
+// JsonGenerator
+// **************************************************************************
+
+// GENERATED CODE - DO NOT MODIFY BY HAND
+abstract class _$AccountController extends _$AccountControllerBase {
+  /// The default key used by [persist].
+  String get key {
+    const resolvedKey = "AccountController";
+    return resolvedKey;
+  }
+
+  /// A variant of [persist], for JSON-specific encoding.
+  ///
+  /// You can override [key] to customize the key used for storage.
+  PersistResult persist(
+    FutureOr<Storage<String, String>> storage, {
+    String? key,
+    String Function(List<AccountModel> state)? encode,
+    List<AccountModel> Function(String encoded)? decode,
+    StorageOptions options = const StorageOptions(),
+  }) {
+    return NotifierPersistX(this).persist<String, String>(
+      storage,
+      key: key ?? this.key,
+      encode: encode ?? $jsonCodex.encode,
+      decode:
+          decode ??
+          (encoded) {
+            final e = $jsonCodex.decode(encoded);
+            return (e as List)
+                .map((e) => AccountModel.fromJson(e as Map<String, Object?>))
+                .toList();
+          },
+      options: options,
+    );
+  }
+}
