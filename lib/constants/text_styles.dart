@@ -1,3 +1,4 @@
+import 'package:fintrack/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TextStyles {
@@ -36,6 +37,7 @@ class TextStyles {
   );
 
   static const headerLink = TextStyle(
+    color: AppColors.kPrimaryColor,
     fontWeight: FontWeight.w400,
     fontSize: 12,
   );
