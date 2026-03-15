@@ -5,7 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 part 'auth_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class AuthController extends _$AuthController {
   @override
   AuthLoadingState build() {

@@ -10,7 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'budget_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class BudgetController extends _$BudgetController {
   @override
   FutureOr<List<BudgetModel>> build(RecurrenceDuration period) async {

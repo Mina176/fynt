@@ -7,7 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'transaction_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 @JsonPersist()
 class TransactionController extends _$TransactionController {
   @override
@@ -58,7 +58,7 @@ class TransactionController extends _$TransactionController {
   }
 }
 
-@riverpod
+@Riverpod()
 Future<List<double>> getWeeklySpendings(Ref ref) async {
   final transactions = await ref.watch(transactionControllerProvider.future);
   final now = DateTime.now();
@@ -78,7 +78,7 @@ Future<List<double>> getWeeklySpendings(Ref ref) async {
   return weeklySpendings;
 }
 
-@riverpod
+@Riverpod()
 Future<double> getPreviousWeekTotal(Ref ref) async {
   final transactions = await ref.watch(transactionControllerProvider.future);
   final now = DateTime.now();
@@ -98,7 +98,7 @@ Future<double> getPreviousWeekTotal(Ref ref) async {
   return total;
 }
 
-@riverpod
+@Riverpod()
 Future<double> getPreviousMonthTotal(Ref ref) async {
   final transactions = await ref.watch(transactionControllerProvider.future);
   final now = DateTime.now();
@@ -131,7 +131,7 @@ Future<double> getPreviousMonthTotal(Ref ref) async {
   return total;
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<bool> isFirstMonthOfActivity(Ref ref) async {
   final transactions = await ref.watch(transactionControllerProvider.future);
   if (transactions.isEmpty) return true;
@@ -143,7 +143,7 @@ Future<bool> isFirstMonthOfActivity(Ref ref) async {
   return earliestDate.year == now.year && earliestDate.month == now.month;
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<bool> isFirstWeekOfActivity(Ref ref) async {
   final transactions = await ref.watch(transactionControllerProvider.future);
   if (transactions.isEmpty) return true;
@@ -170,7 +170,7 @@ class DashboardData {
   });
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<DashboardData> getWeeklyDashboardData(Ref ref) async {
   final weeklyData = await ref.watch(getWeeklySpendingsProvider.future);
   final prevWeekTotal = await ref.watch(getPreviousWeekTotalProvider.future);

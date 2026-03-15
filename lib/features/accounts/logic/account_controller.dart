@@ -9,7 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'account_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 @JsonPersist()
 class AccountController extends _$AccountController {
   @override
@@ -93,7 +93,7 @@ class AccountController extends _$AccountController {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<double> getNetWorth(Ref ref) async {
   final accounts = await ref.watch(accountControllerProvider.future);
   double total = 0.0;
@@ -111,7 +111,7 @@ class NetWorthStats {
   NetWorthStats({required this.currentBalance, required this.percentChange});
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<NetWorthStats> netWorthStats(Ref ref) async {
   final currentNetWorth = await ref.watch(getNetWorthProvider.future);
   final previousMonthTotal = await ref.watch(
