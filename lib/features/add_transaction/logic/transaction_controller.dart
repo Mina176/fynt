@@ -58,14 +58,6 @@ class TransactionController extends _$TransactionController {
 }
 
 @riverpod
-Future<List<TransactionModel>> recentTransactions(Ref ref) async {
-  final allTransactions = await ref.watch(
-    transactionControllerProvider.future,
-  );
-  return allTransactions.take(5).toList();
-}
-
-@riverpod
 Future<List<double>> getWeeklySpendings(Ref ref) async {
   final service = ref.read(transactionSupabaseServiceProvider);
   return service.getWeeklySpendings();
