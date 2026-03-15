@@ -30,7 +30,7 @@ class AllTransactionsScreen extends ConsumerWidget {
             if (transactions.isEmpty) {
               return Center(
                 child: Text(
-                  'Press the + button above to add a transaction.',
+                  'No transactions yet. Start by adding your first transaction!',
                   textAlign: TextAlign.center,
                   style: TextStyles.subtitle.copyWith(
                     color: Colors.grey,
