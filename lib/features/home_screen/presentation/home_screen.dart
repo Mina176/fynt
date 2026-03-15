@@ -53,6 +53,7 @@ class HomeScreen extends ConsumerWidget {
                           ),
                           Text(
                             netWorthStatsAsync.when(
+                              skipLoadingOnReload: true,
                               data: (data) =>
                                   '$currencySymbol${data.currentBalance.toStringAsFixed(2)}',
                               error: (error, stackTrace) =>
@@ -62,12 +63,7 @@ class HomeScreen extends ConsumerWidget {
                             style: TextStyles.title,
                           ),
                           netWorthStatsAsync.when(
-                            data: (netWorthStats) => isFirstMonth.value!
-                                ? const SizedBox.shrink()
-                                : LastMonthContainer(
-                                    savingPercentage:
-                                        netWorthStats.percentChange,
-                                  ),
+                            skipLoadingOnReload: true,
                             error: (error, stackTrace) =>
                                 const SizedBox.shrink(),
                             loading: () => const Text(
@@ -80,6 +76,7 @@ class HomeScreen extends ConsumerWidget {
                     ),
                     CustomCard(
                       child: weeklyDashboardAsync.when(
+                        skipLoadingOnReload: true,
                         data: (weeklyDashboardData) {
                           final totalWeeklySpendings = weeklyDashboardData
                               .weeklySpendings
@@ -161,9 +158,7 @@ class HomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              recentTransactionsAsync.when(
-                data: (transactions) {
-                  if (transactions.isEmpty) {
+                skipLoadingOnReload: true,
                     return SliverFillRemaining(
                       hasScrollBody: false,
                       child: Center(

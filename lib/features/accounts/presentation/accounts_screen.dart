@@ -91,6 +91,7 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
             gapH16,
             Expanded(
               child: accountsAsync.when(
+                skipLoadingOnReload: true,
                 data: (accounts) {
                   if (accounts.isEmpty) {
                     return Center(
