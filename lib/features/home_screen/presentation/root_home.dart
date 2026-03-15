@@ -16,14 +16,14 @@ class RootHomeScreen extends StatefulWidget {
 
 class _RootHomeScreenState extends State<RootHomeScreen> {
   int _currentIndex = 0;
+  final List<Widget> pages = [
+    const HomeScreen(),
+    const AccountsScreen(),
+    const BudgetsScreen(),
+    const ProfileScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pages = [
-      const HomeScreen(),
-      const AccountsScreen(),
-      const BudgetsScreen(),
-      const ProfileScreen(),
-    ];
     return Scaffold(
       floatingActionButtonLocation: const CustomFabLocation(20),
       floatingActionButton: FloatingActionButton(
@@ -31,7 +31,12 @@ class _RootHomeScreenState extends State<RootHomeScreen> {
         shape: const CircleBorder(),
         child: const Icon(Icons.add),
       ),
-      body: SafeArea(child: pages[_currentIndex]),
+      body: SafeArea(
+        child: IndexedStack(
+          index: _currentIndex,
+          children: pages,
+        ),
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: FABBottomAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
