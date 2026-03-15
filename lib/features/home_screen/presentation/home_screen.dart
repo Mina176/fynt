@@ -9,6 +9,8 @@ import 'package:fintrack/features/home_screen/presentation/last_month_container.
 import 'package:fintrack/features/home_screen/presentation/transaction_card.dart';
 import 'package:fintrack/features/home_screen/presentation/weekly_spending_summary.dart';
 import 'package:fintrack/routing/app_route_enum.dart';
+import 'package:fintrack/widgets/settings_section.dart';
+import 'package:fintrack/widgets/slidable_settings_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +20,9 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final transactionsAsync = ref.watch(transactionControllerProvider);
+    final recentTransactionsAsync = ref.watch(
+      recentTransactionsProvider,
+    );
     final weeklyDashboardAsync = ref.watch(getWeeklyDashboardDataProvider);
     final netWorthStatsAsync = ref.watch(netWorthStatsProvider);
     final currencySymbol = ref.watch(currencySymbolProvider);
@@ -146,7 +150,7 @@ class HomeScreen extends ConsumerWidget {
                         ),
                         GestureDetector(
                           onTap: () =>
-                              context.go(AppRoutes.allTransactions.path),
+                              context.push(AppRoutes.allTransactions.path),
                           child: const Text(
                             'View All',
                             style: TextStyles.headerLink,
@@ -157,36 +161,55 @@ class HomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              transactionsAsync.when(
+              recentTransactionsAsync.when(
                 data: (transactions) {
                   if (transactions.isEmpty) {
-                    return SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 250,
-                        child: Center(
-                          child: Text(
-                            "Press the + button below to add a transaction.",
-                            textAlign: TextAlign.center,
-                            style: TextStyles.hintText.copyWith(
-                              color: Colors.grey,
-                            ),
+                    return SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Center(
+                        child: Text(
+                          "Press the + button below to add a transaction.",
+                          textAlign: TextAlign.center,
+                          style: TextStyles.hintText.copyWith(
+                            color: Colors.grey,
                           ),
                         ),
                       ),
                     );
                   }
-                  return SliverList.builder(
-                    itemCount: transactions.length,
-                    itemBuilder: (context, index) {
-                      return TransactionCard(transaction: transactions[index]);
-                    },
+                  return SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: SingleChildScrollView(
+                      child: SettingsSection(
+                        backgroundColor: Theme.of(context).cardColor,
+                        widgets: List.generate(
+                          transactions.length,
+                          (index) {
+                            final transaction = transactions[index];
+                            return SlidableSettingsTile(
+                              itemKey: ValueKey(transactions[index].id),
+                              onDeleteTapped: () {
+                                if (transaction.id != null) {
+                                  ref
+                                      .read(
+                                        transactionControllerProvider.notifier,
+                                      )
+                                      .deleteTransaction(transaction.id!);
+                                }
+                              },
+                              child: TransactionCard(
+                                transaction: transaction,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   );
                 },
-                loading: () => const SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 250,
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
+                loading: () => const SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(child: CircularProgressIndicator()),
                 ),
                 error: (error, stack) => SliverToBoxAdapter(
                   child: Center(child: Text('Error: $error')),
