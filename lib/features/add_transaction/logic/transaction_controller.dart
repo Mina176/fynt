@@ -27,10 +27,26 @@ class TransactionController extends _$TransactionController {
     });
   }
 
-  Future<List<TransactionModel>> recentTransactions() async {
-    final service = ref.read(transactionSupabaseServiceProvider);
-    return service.recentTransactions();
+  Future<void> deleteTransaction(int transactionId) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final service = ref.read(transactionSupabaseServiceProvider);
+      await service.deleteTransaction(transactionId);
+
+      ref.invalidate(getWeeklySpendingsProvider);
+      ref.invalidate(getPreviousWeekTotalProvider);
+      ref.invalidate(getPreviousMonthTotalProvider);
+      return service.getTransactions();
+    });
   }
+}
+
+@riverpod
+Future<List<TransactionModel>> recentTransactions(Ref ref) async {
+  final allTransactions = await ref.watch(
+    transactionControllerProvider.future,
+  );
+  return allTransactions.take(5).toList();
 }
 
 @riverpod

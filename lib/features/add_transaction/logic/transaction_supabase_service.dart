@@ -17,6 +17,13 @@ class TransactionSupabaseService {
         .insert(transaction.toMap());
   }
 
+  Future<void> deleteTransaction(int transactionId) async {
+    await Supabase.instance.client
+        .from('transactions')
+        .delete()
+        .eq('id', transactionId);
+  }
+
   Future<List<TransactionModel>> getTransactions() async {
     final response = await Supabase.instance.client
         .from('transactions')
