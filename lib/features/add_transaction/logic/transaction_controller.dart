@@ -36,61 +36,123 @@ class TransactionController extends _$TransactionController {
       final service = ref.read(transactionSupabaseServiceProvider);
       await service.createTransaction(transaction);
 
-      ref.invalidate(getWeeklySpendingsProvider);
-      ref.invalidate(getPreviousWeekTotalProvider);
-      ref.invalidate(getPreviousMonthTotalProvider);
       return service.getTransactions();
     });
   }
 
   Future<void> deleteTransaction(int transactionId) async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
+    final previousState = state;
+    if (state.hasValue) {
+      final updatedList = state.value!
+          .where((t) => t.id != transactionId)
+          .toList();
+      state = AsyncData(
+        updatedList,
+      );
+    }
+
+    try {
       final service = ref.read(transactionSupabaseServiceProvider);
       await service.deleteTransaction(transactionId);
-
-      ref.invalidate(getWeeklySpendingsProvider);
-      ref.invalidate(getPreviousWeekTotalProvider);
-      ref.invalidate(getPreviousMonthTotalProvider);
-      return service.getTransactions();
-    });
+    } catch (e) {
+      state = previousState;
+    }
   }
 }
 
 @riverpod
 Future<List<double>> getWeeklySpendings(Ref ref) async {
-  final service = ref.read(transactionSupabaseServiceProvider);
-  return service.getWeeklySpendings();
+  final transactions = await ref.watch(transactionControllerProvider.future);
+  final now = DateTime.now();
+  final today = DateTime(now.year, now.month, now.day);
+  final startOfWeek = today.subtract(Duration(days: now.weekday - 1));
+  final endOfWeek = startOfWeek.add(const Duration(days: 7));
+
+  List<double> weeklySpendings = List.filled(7, 0.0);
+  for (var item in transactions) {
+    if (item.isExpense &&
+        !item.date.isBefore(startOfWeek) &&
+        item.date.isBefore(endOfWeek)) {
+      int dayIndex = item.date.weekday - 1;
+      weeklySpendings[dayIndex] += item.amount;
+    }
+  }
+  return weeklySpendings;
 }
 
 @riverpod
 Future<double> getPreviousWeekTotal(Ref ref) async {
-  final service = ref.read(transactionSupabaseServiceProvider);
-  return service.getPreviousWeekTotal();
+  final transactions = await ref.watch(transactionControllerProvider.future);
+  final now = DateTime.now();
+  final today = DateTime(now.year, now.month, now.day);
+  final currentWeekStart = today.subtract(Duration(days: now.weekday - 1));
+  final lastWeekStart = currentWeekStart.subtract(const Duration(days: 7));
+  final lastWeekEnd = currentWeekStart.subtract(const Duration(seconds: 1));
+
+  double total = 0.0;
+  for (var item in transactions) {
+    if (item.isExpense &&
+        !item.date.isBefore(lastWeekStart) &&
+        !item.date.isAfter(lastWeekEnd)) {
+      total += item.amount;
+    }
+  }
+  return total;
 }
 
 @riverpod
 Future<double> getPreviousMonthTotal(Ref ref) async {
-  final service = ref.read(transactionSupabaseServiceProvider);
-  return service.getPreviousMonthTotal();
+  final transactions = await ref.watch(transactionControllerProvider.future);
+  final now = DateTime.now();
+  final firstDayCurrentMonth = DateTime(now.year, now.month, 1);
+  final lastDayPrevMonth = firstDayCurrentMonth.subtract(
+    const Duration(days: 1),
+  );
+  final firstDayPrevMonth = DateTime(
+    lastDayPrevMonth.year,
+    lastDayPrevMonth.month,
+    1,
+  );
+  final endOfPrevMonth = DateTime(
+    lastDayPrevMonth.year,
+    lastDayPrevMonth.month,
+    lastDayPrevMonth.day,
+    23,
+    59,
+    59,
+  );
+
+  double total = 0.0;
+  for (var item in transactions) {
+    if (item.isExpense &&
+        !item.date.isBefore(firstDayPrevMonth) &&
+        !item.date.isAfter(endOfPrevMonth)) {
+      total += item.amount;
+    }
+  }
+  return total;
 }
 
 @riverpod
 Future<bool> isFirstMonthOfActivity(Ref ref) async {
-  final service = ref.read(transactionSupabaseServiceProvider);
-  final earliestDate = await service.getFirstTransactionDate();
+  final transactions = await ref.watch(transactionControllerProvider.future);
+  if (transactions.isEmpty) return true;
 
-  if (earliestDate == null) return true;
+  final earliestDate = transactions
+      .map((t) => t.date)
+      .reduce((a, b) => a.isBefore(b) ? a : b);
   final now = DateTime.now();
   return earliestDate.year == now.year && earliestDate.month == now.month;
 }
 
 @riverpod
 Future<bool> isFirstWeekOfActivity(Ref ref) async {
-  final service = ref.read(transactionSupabaseServiceProvider);
-  final earliestDate = await service.getFirstTransactionDate();
+  final transactions = await ref.watch(transactionControllerProvider.future);
+  if (transactions.isEmpty) return true;
 
-  if (earliestDate == null) return true;
+  final earliestDate = transactions
+      .map((t) => t.date)
+      .reduce((a, b) => a.isBefore(b) ? a : b);
   final now = DateTime.now();
   final today = DateTime(now.year, now.month, now.day);
   final startOfWeek = today.subtract(Duration(days: now.weekday - 1));
