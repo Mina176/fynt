@@ -144,6 +144,7 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
                                   )
                                   .createBudget(
                                     BudgetModel(
+                                      id: DateTime.now().millisecondsSinceEpoch,
                                       userId: userId,
                                       limit: amountController.text.isEmpty
                                           ? 0.0
@@ -161,6 +162,9 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
                                           : RecurrenceDuration.yearly,
                                     ),
                                   );
+                              if (mounted) {
+                                context.pop();
+                              }
                             } catch (e) {
                               throw Exception("Failed to create budget: $e");
                             }
