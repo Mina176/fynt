@@ -20,9 +20,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final recentTransactionsAsync = ref.watch(
-      recentTransactionsProvider,
-    );
+    final transactionsAsync = ref.watch(transactionControllerProvider);
     final weeklyDashboardAsync = ref.watch(getWeeklyDashboardDataProvider);
     final netWorthStatsAsync = ref.watch(netWorthStatsProvider);
     final currencySymbol = ref.watch(currencySymbolProvider);
@@ -158,7 +156,11 @@ class HomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
+              transactionsAsync.when(
                 skipLoadingOnReload: true,
+                data: (allTransactions) {
+                  final recentTransactions = allTransactions.take(5).toList();
+                  if (allTransactions.isEmpty) {
                     return SliverFillRemaining(
                       hasScrollBody: false,
                       child: Center(
@@ -172,32 +174,19 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     );
                   }
-                  return SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: SingleChildScrollView(
-                      child: SettingsSection(
-                        backgroundColor: Theme.of(context).cardColor,
-                        widgets: List.generate(
-                          transactions.length,
-                          (index) {
-                            final transaction = transactions[index];
-                            return SlidableSettingsTile(
-                              itemKey: ValueKey(transactions[index].id),
-                              onDeleteTapped: () {
-                                if (transaction.id != null) {
-                                  ref
-                                      .read(
-                                        transactionControllerProvider.notifier,
-                                      )
-                                      .deleteTransaction(transaction.id!);
-                                }
-                              },
-                              child: TransactionCard(
-                                transaction: transaction,
-                              ),
-                            );
-                          },
-                        ),
+                        recentTransactions.length,
+                        (index) {
+                          final transaction = recentTransactions[index];
+                          return SlidableSettingsTile(
+                            itemKey: ValueKey(recentTransactions[index].id),
+                            onDeleteTapped: () => ref
+                                .read(transactionControllerProvider.notifier)
+                                .deleteTransaction(transaction.id),
+                            child: TransactionCard(
+                              transaction: transaction,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   );
