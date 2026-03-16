@@ -76,12 +76,21 @@ class AuthService {
 
   Future<void> sendPasswordResetEmail(String email) async {
     try {
-      await _supabaseAuth.resetPasswordForEmail(email);
+      await _supabaseAuth.resetPasswordForEmail(
+        email,
+        redirectTo: 'fintrack://reset',
+      );
     } on supabase.AuthException catch (e) {
       throw Exception('Failed to send reset email. Message: ${e.message}');
     } catch (e) {
       throw Exception('An unknown error occurred: $e');
     }
+  }
+
+  Future<void> updatePassword(String newPassword) async {
+    await _supabaseAuth.updateUser(
+      supabase.UserAttributes(password: newPassword),
+    );
   }
 
   Future<supabase.User?> signInWithGoogle() async {

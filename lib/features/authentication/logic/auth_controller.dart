@@ -74,6 +74,16 @@ class AuthController extends _$AuthController {
     }
   }
 
+  Future<void> updatePassword(String newPassword) async {
+    state = const AuthLoadingState(LoadingStateEnum.loading, null);
+    try {
+      await ref.read(authServiceProvider).updatePassword(newPassword);
+      state = const AuthLoadingState(LoadingStateEnum.success, null);
+    } on Exception catch (e) {
+      state = AuthLoadingState(LoadingStateEnum.error, e.toString());
+    }
+  }
+
   Future<void> signInWithGoogle() async {
     state = const AuthLoadingState(LoadingStateEnum.loading, null);
     try {
