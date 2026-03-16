@@ -25,7 +25,7 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
   final formKey = GlobalKey<FormState>();
   bool isLoading = false;
 
-  addAccount() async {
+  void addAccount() async {
     if (isLoading) return;
     if (!formKey.currentState!.validate()) return;
     setState(() => isLoading = true);
