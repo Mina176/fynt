@@ -29,7 +29,7 @@ class BudgetController extends _$BudgetController {
       },
     ).future;
 
-    unawaited(_syncWithSupabase());
+    _syncWithSupabase();
     return state.value ?? <BudgetModel>[];
   }
 
