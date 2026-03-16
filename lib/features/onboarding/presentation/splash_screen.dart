@@ -31,10 +31,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
     final user = ref.read(authServiceProvider).currentUser;
 
-    if (user != null && user.avatarUrl != null && user.avatarUrl!.isNotEmpty) {
-      if (mounted) {
-        await precacheImage(NetworkImage(user.avatarUrl!), context);
-      }
+    final isRecovering = ref.read(isRecoveringPasswordProvider);
+    if (isRecovering) {
+      context.go(AppRoutes.updatePassword.path);
+      return;
     }
     final onboardingCompleted = ref
         .read(onboardingRepositoryProvider)

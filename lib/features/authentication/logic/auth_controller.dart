@@ -95,3 +95,15 @@ class AuthController extends _$AuthController {
     }
   }
 }
+
+@Riverpod(keepAlive: true)
+class IsRecoveringPassword extends _$IsRecoveringPassword {
+  @override
+  bool build() {
+    return false;
+  }
+
+  void setRecovering(bool value) {
+    state = value;
+  }
+}

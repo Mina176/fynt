@@ -36,7 +36,7 @@ class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+        ref.read(isRecoveringPasswordProvider.notifier).setRecovering(true);
     final router = ref.watch(routerProvider);
     final themeMode = ref.watch(themeControllerProvider);
     return MaterialApp.router(
