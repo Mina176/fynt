@@ -1,5 +1,6 @@
 import 'package:fintrack/features/accounts/logic/account_controller.dart';
 import 'package:fintrack/features/add_transaction/logic/transaction_controller.dart';
+import 'package:fintrack/features/authentication/logic/auth_controller.dart';
 import 'package:fintrack/features/authentication/logic/auth_service.dart';
 import 'package:fintrack/features/onboarding/data/onboarding_repository.dart';
 import 'package:fintrack/routing/app_route_enum.dart';
@@ -26,19 +27,34 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _preloadDatabase() async {
-    await ref.read(transactionControllerProvider.future);
-    await ref.read(accountControllerProvider.future);
+    try {
+      await ref.read(transactionControllerProvider.future);
+      await ref.read(accountControllerProvider.future);
 
-    final user = ref.read(authServiceProvider).currentUser;
+      final user = ref.read(authServiceProvider).currentUser;
 
+      if (user != null &&
+          user.avatarUrl != null &&
+          user.avatarUrl!.isNotEmpty) {
+        if (mounted) {
+          await precacheImage(NetworkImage(user.avatarUrl!), context);
+        }
+      }
+    } catch (e) {
+      debugPrint("Splash preload error safely caught: $e");
+    }
+    await Future.delayed(const Duration(milliseconds: 1500));
+    if (!mounted) return;
     final isRecovering = ref.read(isRecoveringPasswordProvider);
     if (isRecovering) {
       context.go(AppRoutes.updatePassword.path);
       return;
     }
+    final user = ref.read(authServiceProvider).currentUser;
     final onboardingCompleted = ref
         .read(onboardingRepositoryProvider)
         .isOnboardingCompleted;
+
     if (user != null) {
       context.go(AppRoutes.home.path);
     } else if (onboardingCompleted) {
