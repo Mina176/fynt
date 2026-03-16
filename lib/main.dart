@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:fintrack/features/appearance/data/theme_service.dart';
 import 'package:fintrack/features/appearance/logic/theme_controller.dart';
+import 'package:fintrack/features/authentication/logic/auth_controller.dart';
 import 'package:fintrack/features/onboarding/data/onboarding_repository.dart';
+import 'package:fintrack/routing/app_route_enum.dart';
 import 'package:fintrack/routing/app_router.dart';
 import 'package:fintrack/theming/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +36,38 @@ void main() async {
   );
 }
 
-class MainApp extends ConsumerWidget {
+class MainApp extends ConsumerStatefulWidget {
   const MainApp({super.key});
 
   @override
+  ConsumerState<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends ConsumerState<MainApp> {
+  late final StreamSubscription<AuthState> _authSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _authSubscription = Supabase.instance.client.auth.onAuthStateChange.listen((
+      data,
+    ) {
+      final AuthChangeEvent event = data.event;
+      if (event == AuthChangeEvent.passwordRecovery) {
         ref.read(isRecoveringPasswordProvider.notifier).setRecovering(true);
+        ref.read(routerProvider).go(AppRoutes.updatePassword.path);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _authSubscription.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(routerProvider);
     final themeMode = ref.watch(themeControllerProvider);
     return MaterialApp.router(
