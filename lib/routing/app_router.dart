@@ -32,7 +32,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       final isOnboarding = state.matchedLocation == AppRoutes.onboarding.path;
       final isForgotPassword =
           state.matchedLocation == AppRoutes.forgotPassword.path;
-      final isResetPassword = state.matchedLocation == AppRoutes.profile.path;
+      final isUpdatePassword =
+          state.matchedLocation == AppRoutes.updatePassword.path;
       final isSplash = state.matchedLocation == AppRoutes.splash.path;
 
       // If NOT logged in, but trying to access Home -> Redirect to Login
@@ -82,6 +83,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.forgotPassword.path,
         builder: (context, state) => const ForgotPasswordScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.updatePassword.path,
+        builder: (context, state) => const UpdatePasswordScreen(),
       ),
       GoRoute(
         path: AppRoutes.profile.path,
