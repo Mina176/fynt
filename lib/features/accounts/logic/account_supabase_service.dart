@@ -16,6 +16,7 @@ class AccountSupabaseService {
     final response = await client
         .from('accounts')
         .insert(account.toJson())
+        .eq('user_id', userId)
         .select()
         .single();
 
@@ -34,7 +35,8 @@ class AccountSupabaseService {
     final response = await client
         .from('accounts')
         .select()
-        .eq('user_id', userId);
+        .eq('user_id', userId)
+        .order('id', ascending: false);
     final data = response as List<dynamic>;
 
     return data.map((item) => AccountModel.fromJson(item)).toList();
