@@ -6,6 +6,7 @@ import 'package:fintrack/features/authentication/logic/auth_service.dart';
 import 'package:fintrack/features/authentication/presentation/forgot_password_screen.dart';
 import 'package:fintrack/features/authentication/presentation/login_screen.dart';
 import 'package:fintrack/features/authentication/presentation/profile_screen.dart';
+import 'package:fintrack/features/authentication/presentation/update_password_screen.dart';
 import 'package:fintrack/features/authentication/presentation/sign_up_screen.dart';
 import 'package:fintrack/features/budgets/presentation/add_budget_screen.dart';
 import 'package:fintrack/features/home_screen/presentation/all_transactions_screen.dart';
@@ -35,30 +36,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       final isUpdatePassword =
           state.matchedLocation == AppRoutes.updatePassword.path;
       final isSplash = state.matchedLocation == AppRoutes.splash.path;
-
-      // If NOT logged in, but trying to access Home -> Redirect to Login
+      final isStrictAuthScreen =
+          isLoginRoute || isSignUpRoute || isOnboarding || isForgotPassword;
+      if (isSplash) return null;
 
       if (!isLoggedIn) {
-        if (isLoginRoute ||
-            isSignUpRoute ||
-            isOnboarding ||
-            isForgotPassword ||
-            isResetPassword ||
-            isSplash) {
-          return null;
-        }
+        if (isStrictAuthScreen || isUpdatePassword) return null;
         return AppRoutes.signIn.path;
       }
 
-      // If LOGGED IN, but sitting on Login/SignUp -> Redirect to Home
       if (isLoggedIn) {
-        if (isLoginRoute ||
-            isSignUpRoute ||
-            isOnboarding ||
-            isForgotPassword ||
-            isResetPassword) {
-          return AppRoutes.home.path;
-        }
+        if (isStrictAuthScreen) return AppRoutes.home.path;
       }
 
       return null;
