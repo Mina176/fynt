@@ -18,7 +18,6 @@ class AddNoteSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsSection(
-      backgroundColor: Theme.of(context).cardColor,
       widgets: [
         ListTile(
           onTap: () {},

@@ -39,7 +39,6 @@ class AllTransactionsScreen extends ConsumerWidget {
             }
             return SingleChildScrollView(
               child: SettingsSection(
-                backgroundColor: Theme.of(context).cardColor,
                 widgets: List.generate(
                   transactions.length,
                   (index) {

@@ -41,7 +41,6 @@ class ProfileScreen extends ConsumerWidget {
                 style: TextStyles.subtitle.copyWith(fontSize: 12),
                 textAlign: TextAlign.left,
               ),
-              backgroundColor: Theme.of(context).cardColor,
               widgets: [
                 ListTile(
                   onTap: () => showCurrencyPicker(

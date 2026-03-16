@@ -90,7 +90,6 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                   ),
                   SizedBox(height: screenSize.height * 0.005),
                   SettingsSection(
-                    backgroundColor: Theme.of(context).cardColor,
                     widgets: [
                       ListTile(
                         dense: true,

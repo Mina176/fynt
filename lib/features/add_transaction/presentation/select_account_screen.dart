@@ -60,7 +60,6 @@ class SelectAccountScreen extends ConsumerWidget {
             ),
             child: SingleChildScrollView(
               child: SettingsSection(
-                backgroundColor: Theme.of(context).cardColor,
                 widgets: List.generate(
                   accounts.length,
                   (index) {

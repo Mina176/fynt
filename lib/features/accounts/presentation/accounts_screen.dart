@@ -106,7 +106,6 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
                   }
                   return SingleChildScrollView(
                     child: SettingsSection(
-                      backgroundColor: Theme.of(context).cardColor,
                       widgets: List.generate(
                         accounts.length,
                         (index) {
@@ -183,7 +182,7 @@ class AccountCard extends StatelessWidget {
                 ),
                 Text(
                   '$currencySymbol${balance.round()}',
-                  style: TextStyles.subtitle.copyWith(fontSize: 14),
+                  style: TextStyles.subtitle.copyWith(fontSize: 12),
                 ),
               ],
             ),

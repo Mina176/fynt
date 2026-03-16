@@ -4,11 +4,9 @@ class SettingsSection extends StatelessWidget {
   const SettingsSection({
     super.key,
     required this.widgets,
-    required this.backgroundColor,
     this.header,
   });
   final Widget? header;
-  final Color backgroundColor;
   final List<Widget> widgets;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class SettingsSection extends StatelessWidget {
       children: [
         header ?? const SizedBox.shrink(),
         Material(
-          color: backgroundColor,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(16),
           clipBehavior: Clip.hardEdge,
           child: Column(

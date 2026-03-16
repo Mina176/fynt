@@ -189,7 +189,6 @@ class HomeScreen extends ConsumerWidget {
                   }
                   return SliverToBoxAdapter(
                     child: SettingsSection(
-                      backgroundColor: Theme.of(context).cardColor,
                       widgets: List.generate(
                         recentTransactions.length,
                         (index) {
