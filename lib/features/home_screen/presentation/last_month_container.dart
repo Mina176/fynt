@@ -19,7 +19,7 @@ class LastMonthContainer extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: isSaving
-            ? AppColors.kButtonBorderColor
+            ? AppColors.kSavingBackground
             : AppColors.knotSavingBackground,
         borderRadius: BorderRadius.circular(16),
       ),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -13,7 +12,7 @@ class AppColors {
   static const kButtonBorderColor = Color(0xFF326744);
   static const surfaceDark = Color(0xFF1E1E1E);
 
-  static const kSavingBackground = Color(0xFF1E1E1E);
+  static const kSavingBackground = Color(0xFF326744);
 
   static const knotSavingBackground = Color(0xFF2F3025);
   static const knotSavingForeground = Color(0xFFF47070);
