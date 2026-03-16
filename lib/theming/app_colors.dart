@@ -12,10 +12,17 @@ class AppColors {
   static const kButtonBorderColor = Color(0xFF326744);
   static const surfaceDark = Color(0xFF1E1E1E);
 
-  static const kSavingBackground = Color(0xFF326744);
+  static const kDarkSavingBackground = Color(0xFF326744);
+  static const kDarkSavingForeground = Color(0xFF13EC5B);
 
-  static const knotSavingBackground = Color(0xFF2F3025);
-  static const knotSavingForeground = Color(0xFFF47070);
+  static const kDarkNotSavingBackground = Color(0xFF2F3025);
+  static const kDarkNotSavingForeground = Color(0xFFF87171);
+
+  static const kLightNotSavingBackground = Color(0xFFFEF2F2);
+  static const kLightNotSavingForeground = Color(0xFFEF4444);
+
+  static const kLightSavingBackground = Color(0xFFDBF7E2);
+  static const kLightSavingForeground = Color(0xFF16A34A);
 
   static const kCustomContainerBackground = Color(0xFF1A2E22);
 

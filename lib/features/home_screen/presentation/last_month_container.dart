@@ -18,10 +18,24 @@ class LastMonthContainer extends StatelessWidget {
     bool isSaving = savingPercentage >= 0;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: isSaving
-            ? AppColors.kSavingBackground
-            : AppColors.knotSavingBackground,
+        color: isSaving && Theme.brightnessOf(context) == Brightness.dark
+            ? AppColors.kDarkSavingBackground
+            : isSaving && Theme.brightnessOf(context) == Brightness.light
+            ? AppColors.kLightSavingBackground
+            : !isSaving && Theme.brightnessOf(context) == Brightness.dark
+            ? AppColors.kDarkNotSavingBackground
+            : AppColors.kLightNotSavingBackground,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isSaving && Theme.brightnessOf(context) == Brightness.dark
+              ? AppColors.kDarkSavingForeground
+              : isSaving && Theme.brightnessOf(context) == Brightness.light
+              ? AppColors.kLightSavingForeground
+              : !isSaving && Theme.brightnessOf(context) == Brightness.dark
+              ? AppColors.kDarkNotSavingForeground
+              : AppColors.kLightNotSavingForeground,
+          width: 0.2,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -29,14 +43,18 @@ class LastMonthContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             isSaving
-                ? const Icon(
+                ? Icon(
                     FontAwesomeIcons.arrowTrendUp,
-                    color: AppColors.kPrimaryColor,
+                    color: Theme.brightnessOf(context) == Brightness.dark
+                        ? AppColors.kDarkSavingForeground
+                        : AppColors.kLightSavingForeground,
                     size: 12,
                   )
-                : const Icon(
+                : Icon(
                     FontAwesomeIcons.arrowTrendDown,
-                    color: AppColors.knotSavingForeground,
+                    color: Theme.brightnessOf(context) == Brightness.dark
+                        ? AppColors.kDarkNotSavingForeground
+                        : AppColors.kLightNotSavingForeground,
                     size: 12,
                   ),
             gapW8,
@@ -46,10 +64,17 @@ class LastMonthContainer extends StatelessWidget {
                   : '$savingPercentage% vs last month',
               textAlign: TextAlign.center,
               style: TextStyles.buttonLabel.copyWith(
-                color: isSaving
-                    ? AppColors.kPrimaryColor
-                    : AppColors.knotSavingForeground,
-                fontWeight: FontWeight.w500,
+                color:
+                    isSaving && Theme.brightnessOf(context) == Brightness.dark
+                    ? AppColors.kDarkSavingForeground
+                    : isSaving &&
+                          Theme.brightnessOf(context) == Brightness.light
+                    ? AppColors.kLightSavingForeground
+                    : !isSaving &&
+                          Theme.brightnessOf(context) == Brightness.dark
+                    ? AppColors.kDarkNotSavingForeground
+                    : AppColors.kLightNotSavingForeground,
+                fontWeight: FontWeight.w900,
                 fontSize: 14,
               ),
             ),
