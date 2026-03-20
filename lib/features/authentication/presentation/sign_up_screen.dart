@@ -69,6 +69,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
+            vertical: Sizes.kVerticalPadding,
             horizontal: Sizes.kHorizontalPadding,
           ),
           child: CustomScrollView(

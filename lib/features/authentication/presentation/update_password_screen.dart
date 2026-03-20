@@ -55,6 +55,7 @@ class _ResetPasswordScreenState extends ConsumerState<UpdatePasswordScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
+            vertical: Sizes.kVerticalPadding,
             horizontal: Sizes.kHorizontalPadding,
           ),
           child: ScrollableContentWithStickyButton(

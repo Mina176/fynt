@@ -20,6 +20,7 @@ class SetAppearanceScreen extends StatelessWidget {
       ),
       body: const Padding(
         padding: EdgeInsets.symmetric(
+          vertical: Sizes.kVerticalPadding,
           horizontal: Sizes.kHorizontalPadding,
         ),
         child: Column(

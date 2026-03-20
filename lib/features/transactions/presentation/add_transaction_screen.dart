@@ -144,6 +144,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
+          vertical: Sizes.kVerticalPadding,
           horizontal: Sizes.kHorizontalPadding,
         ),
         child: ScrollableContentWithStickyButton(
