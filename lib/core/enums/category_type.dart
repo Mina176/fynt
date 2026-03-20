@@ -42,11 +42,6 @@ enum CategoryType {
     icon: FontAwesomeIcons.arrowTrendUp,
     isIncome: true,
   ),
-  others(
-    label: 'Others',
-    icon: Icons.more_horiz,
-    isIncome: false,
-  ),
   housing(
     label: 'Housing',
     icon: Icons.home,
@@ -61,7 +56,17 @@ enum CategoryType {
     label: 'Gifts',
     icon: Icons.card_giftcard,
     isIncome: true,
-  )
+  ),
+  others(
+    label: 'Others',
+    icon: Icons.more_horiz,
+    isIncome: false,
+  ),
+  othersIncome(
+    label: 'Others',
+    icon: Icons.more_horiz,
+    isIncome: true,
+  ),
   ;
 
   final String label;

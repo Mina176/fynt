@@ -4,7 +4,7 @@ import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/enums/recurrence_type.dart';
 import 'package:fynt/features/budgets/logic/budget_controller.dart';
-import 'package:fynt/features/budgets/presentation/left_to_spend_card.dart';
+import 'package:fynt/features/budgets/presentation/widgets/left_to_spend_card.dart';
 import 'package:fynt/features/settings/currency/logic/currency_provider.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
 import 'package:fynt/core/theming/app_colors.dart';
@@ -26,14 +26,12 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final budgetsAsync = ref.watch(budgetControllerProvider(selectedPeriod));
     final budgetsDetails = ref.watch(
       getAllBudgetsDetailsProvider(selectedPeriod),
     );
     final currencySymbol = ref.watch(currencySymbolProvider);
     final double spendLimit = budgetsDetails.value?.totalLimit ?? 0.0;
     final double spentAmount = budgetsDetails.value?.totalSpent ?? 0.0;
-
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -77,124 +75,178 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                       });
                     },
                   ),
-                  LeftToSpendCard(
-                    leading: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'LEFT TO SPEND',
-                              style: TextStyles.headerLink,
-                            ),
-                            Text(
-                              '$currencySymbol${spendLimit == 0 ? 0 : (spendLimit - spentAmount).round()}',
-                              style: TextStyles.header.copyWith(fontSize: 32),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          '${spendLimit == 0 ? 0 : (spentAmount * 100 / spendLimit).round()}%',
-                          style: TextStyles.title.copyWith(fontSize: 14),
-                        ),
-                      ],
-                    ),
-                    spentAmount: spentAmount,
+                  LeftToSpendSection(
+                    currencySymbol: currencySymbol,
                     spendLimit: spendLimit,
+                    spentAmount: spentAmount,
                   ),
                   const Text('Categories', style: TextStyles.header),
                   gapH4,
                 ],
               ),
             ),
-            budgetsAsync.when(
-              data: (budgets) => budgets.isEmpty
-                  ? SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Center(
-                        child: Text(
-                          "Press the + button above to add a budget.",
-                          textAlign: TextAlign.center,
-                          style: TextStyles.hintText.copyWith(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    )
-                  : SliverList.separated(
-                      itemCount: budgets.length,
-                      separatorBuilder: (context, index) => gapH12,
-                      itemBuilder: (context, index) {
-                        final budget = budgets[index];
-                        final safeBudgetLimit = budget.limit == 0
-                            ? 1
-                            : budget.limit;
-                        return SlidableSettingsTile(
-                          itemKey: ValueKey(budgets[index].id),
-                          onDeleteTapped: () => ref
-                              .read(
-                                budgetControllerProvider(
-                                  selectedPeriod,
-                                ).notifier,
-                              )
-                              .deleteBudget(budget.id),
-                          child: LeftToSpendCard(
-                            spendLimit: budget.limit,
-                            spentAmount: budget.spent,
-                            leading: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CategoryIcon(
-                                  categoryType: budget.category,
-                                ),
-                                gapW8,
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      budget.category.label,
-                                      style: TextStyles.title.copyWith(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    gapH4,
-                                    Text(
-                                      '$currencySymbol${(budget.limit - budget.spent).round()} remaining',
-                                      style: TextStyles.subtitle.copyWith(
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Spacer(),
-                                Text(
-                                  '${(budget.spent * 100 / safeBudgetLimit).round()}%',
-                                  style: TextStyles.title.copyWith(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-              loading: () => const SliverFillRemaining(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-              error: (error, stackTrace) => const SliverFillRemaining(
-                child: Center(
-                  child: Text('Error loading budgets'),
-                ),
-              ),
+            BudgetSliverList(
+              selectedPeriod: selectedPeriod,
+              currencySymbol: currencySymbol,
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class BudgetSliverList extends ConsumerWidget {
+  const BudgetSliverList({
+    super.key,
+    required this.selectedPeriod,
+    required this.currencySymbol,
+  });
+
+  final RecurrenceDuration selectedPeriod;
+  final String currencySymbol;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final budgetsAsync = ref.watch(budgetControllerProvider(selectedPeriod));
+    return budgetsAsync.when(
+      data: (budgets) => budgets.isEmpty
+          ? const EmptyListSLiverFillRemaining(
+              message: 'Press the + button above to add a budget.',
+            )
+          : SliverList.separated(
+              itemCount: budgets.length,
+              separatorBuilder: (context, index) => gapH12,
+              itemBuilder: (context, index) {
+                final budget = budgets[index];
+                final safeBudgetLimit = budget.limit == 0 ? 1 : budget.limit;
+                return SlidableSettingsTile(
+                  itemKey: ValueKey(budgets[index].id),
+                  onDeleteTapped: () => ref
+                      .read(
+                        budgetControllerProvider(
+                          selectedPeriod,
+                        ).notifier,
+                      )
+                      .deleteBudget(budget.id),
+                  child: LeftToSpendCard(
+                    spendLimit: budget.limit,
+                    spentAmount: budget.spent,
+                    leading: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CategoryIcon(
+                          categoryType: budget.category,
+                        ),
+                        gapW8,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              budget.category.label,
+                              style: TextStyles.title.copyWith(
+                                fontSize: 14,
+                              ),
+                            ),
+                            gapH4,
+                            Text(
+                              '$currencySymbol${(budget.limit - budget.spent).round()} remaining',
+                              style: TextStyles.subtitle.copyWith(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Text(
+                          '${(budget.spent * 100 / safeBudgetLimit).round()}%',
+                          style: TextStyles.title.copyWith(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+      loading: () => const SliverFillRemaining(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
+      error: (error, stackTrace) => const SliverFillRemaining(
+        child: Center(
+          child: Text('Error loading budgets'),
+        ),
+      ),
+    );
+  }
+}
+
+class EmptyListSLiverFillRemaining extends StatelessWidget {
+  const EmptyListSLiverFillRemaining({
+    super.key,
+    required this.message,
+  });
+  final String message;
+  @override
+  Widget build(BuildContext context) {
+    return SliverFillRemaining(
+      hasScrollBody: false,
+      child: Center(
+        child: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: TextStyles.hintText.copyWith(
+            color: Colors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LeftToSpendSection extends StatelessWidget {
+  const LeftToSpendSection({
+    super.key,
+    required this.currencySymbol,
+    required this.spendLimit,
+    required this.spentAmount,
+  });
+
+  final String currencySymbol;
+  final double spendLimit;
+  final double spentAmount;
+
+  @override
+  Widget build(BuildContext context) {
+    return LeftToSpendCard(
+      leading: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'LEFT TO SPEND',
+                style: TextStyles.headerLink,
+              ),
+              Text(
+                '$currencySymbol${spendLimit == 0 ? 0 : (spendLimit - spentAmount).round()}',
+                style: TextStyles.header.copyWith(fontSize: 32),
+              ),
+            ],
+          ),
+          Text(
+            '${spendLimit == 0 ? 0 : (spentAmount * 100 / spendLimit).round()}%',
+            style: TextStyles.title.copyWith(fontSize: 14),
+          ),
+        ],
+      ),
+      spentAmount: spentAmount,
+      spendLimit: spendLimit,
     );
   }
 }
