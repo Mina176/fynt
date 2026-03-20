@@ -5,7 +5,11 @@ import 'package:fynt/core/enums/category_type.dart';
 import 'package:fynt/features/transactions/presentation/widgets/category_icon_with_label.dart';
 
 class ChooseCategoryScreen extends StatelessWidget {
-  const ChooseCategoryScreen({super.key});
+  const ChooseCategoryScreen({
+    super.key,
+    required this.expenseOrIncome,
+  });
+  final int expenseOrIncome;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class ChooseCategoryScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Spending',
+              expenseOrIncome == 0 ? 'Spending' : 'Income',
               style: TextStyles.subtitle.copyWith(fontSize: 14),
             ),
             Expanded(
@@ -46,48 +50,20 @@ class ChooseCategoryScreen extends StatelessWidget {
                   mainAxisSpacing: Sizes.kVerticalPadding,
                   crossAxisSpacing: Sizes.kHorizontalPadding,
                 ),
-                itemCount: spendingCategories.length,
+                itemCount: expenseOrIncome == 0
+                    ? spendingCategories.length
+                    : incomeCategories.length,
                 itemBuilder: (context, index) {
-                  final spendingCategory = spendingCategories[index];
+                  final category = expenseOrIncome == 0
+                      ? spendingCategories[index]
+                      : incomeCategories[index];
                   return GestureDetector(
                     onTap: () => Navigator.pop(
                       context,
-                      spendingCategory,
+                      category,
                     ),
                     child: CategoryIconWithLabel(
-                      categoryType: spendingCategory,
-                    ),
-                  );
-                },
-              ),
-            ),
-            Text(
-              'Income',
-              style: TextStyles.subtitle.copyWith(fontSize: 14),
-            ),
-            Expanded(
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Sizes.kHorizontalPadding,
-                  vertical: Sizes.kVerticalPadding,
-                ),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  mainAxisExtent: 70,
-                  mainAxisSpacing: Sizes.kVerticalPadding,
-                  crossAxisSpacing: Sizes.kHorizontalPadding,
-                ),
-                itemCount: incomeCategories.length,
-                itemBuilder: (context, index) {
-                  final incomeCategory = incomeCategories[index];
-                  return GestureDetector(
-                    onTap: () => Navigator.pop(
-                      context,
-                      incomeCategory,
-                    ),
-                    child: CategoryIconWithLabel(
-                      categoryType: incomeCategory,
+                      categoryType: category,
                     ),
                   );
                 },

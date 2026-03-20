@@ -94,7 +94,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRoutes.chooseCategory.path,
-        builder: (context, state) => const ChooseCategoryScreen(),
+        builder: (context, state) {
+          final expenseOrIncome = (state.extra as int?) ?? 0;
+          return ChooseCategoryScreen(expenseOrIncome: expenseOrIncome);
+        },
       ),
       GoRoute(
         path: AppRoutes.addAccount.path,
