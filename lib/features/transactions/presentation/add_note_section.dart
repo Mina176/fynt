@@ -20,7 +20,6 @@ class AddNoteSection extends StatelessWidget {
     return SettingsSection(
       widgets: [
         ListTile(
-          onTap: () {},
           leading: const OtherIcons(OtherIconTypes.note),
           trailing: const SizedBox(),
           title: const Text(
