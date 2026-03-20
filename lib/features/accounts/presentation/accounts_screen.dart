@@ -1,37 +1,16 @@
 import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
-import 'package:fynt/features/accounts/data/account_model.dart';
-import 'package:fynt/features/accounts/logic/account_controller.dart';
-import 'package:fynt/features/transactions/data/transaction_model.dart';
-import 'package:fynt/features/transactions/logic/transaction_controller.dart';
-import 'package:fynt/features/settings/currency/logic/currency_provider.dart';
-import 'package:fynt/core/widgets/custom_card.dart';
-import 'package:fynt/core/widgets/last_month_container.dart';
+import 'package:fynt/features/accounts/presentation/accounts_list.dart';
+import 'package:fynt/features/accounts/presentation/balance_with_last_month.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
 import 'package:fynt/core/theming/app_colors.dart';
-import 'package:fynt/core/utils/helpers.dart';
-import 'package:fynt/core/widgets/settings_section.dart';
-import 'package:fynt/core/widgets/slidable_settings_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-class AccountsScreen extends ConsumerStatefulWidget {
+class AccountsScreen extends StatelessWidget {
   const AccountsScreen({super.key});
   @override
-  ConsumerState<AccountsScreen> createState() => _AccountsScreenState();
-}
-
-class _AccountsScreenState extends ConsumerState<AccountsScreen> {
-  @override
   Widget build(BuildContext context) {
-    final accountsAsync = ref.watch(accountControllerProvider);
-    final netWorthAsync = ref.watch(getNetWorthProvider);
-    final currencySymbol = ref.watch(currencySymbolProvider);
-    final isFirstMonth =
-        ref.watch(isFirstMonthOfActivityProvider).value ?? true;
-    final weeklyDashboard = ref.watch(getWeeklyDashboardDataProvider).value;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -68,155 +47,12 @@ class _AccountsScreenState extends ConsumerState<AccountsScreen> {
               style: TextStyles.subtitle.copyWith(fontSize: 14),
               textAlign: TextAlign.center,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  netWorthAsync.when(
-                    data: (data) => '$currencySymbol${data.toStringAsFixed(2)}',
-                    error: (error, stackTrace) => 'Error',
-                    loading: () => '${currencySymbol}0.00',
-                  ),
-                  style: TextStyles.title,
-                  textAlign: TextAlign.center,
-                ),
-                gapW4,
-                isFirstMonth || weeklyDashboard == null
-                    ? const SizedBox.shrink()
-                    : LastMonthContainer(
-                        savingPercentage: weeklyDashboard.percentChange,
-                        isShrinked: true,
-                      ),
-              ],
-            ),
+            const BalanceWithLastMonthContainer(),
             gapH16,
-            Expanded(
-              child: accountsAsync.when(
-                skipLoadingOnReload: true,
-                data: (accounts) {
-                  if (accounts.isEmpty) {
-                    return Center(
-                      child: Text(
-                        'Press the + button above to add an account.',
-                        textAlign: TextAlign.center,
-                        style: TextStyles.subtitle.copyWith(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    );
-                  }
-                  return SingleChildScrollView(
-                    child: SettingsSection(
-                      widgets: List.generate(
-                        accounts.length,
-                        (index) {
-                          final account = accounts[index];
-                          return SlidableSettingsTile(
-                            itemKey: ValueKey(accounts[index].id),
-                            onDeleteTapped: () {
-                              if (account.id != null) {
-                                ref
-                                    .read(accountControllerProvider.notifier)
-                                    .deleteAccount(account.id!);
-                              }
-                            },
-                            child: AccountCard(
-                              icon: account.accountTypeIcon,
-                              accountType: accounts[index].accountType,
-                              accountName: accounts[index].accountName,
-                              balance: accounts[index].balance,
-                              currentBalance: accounts[index].currentBalance,
-                              currencySymbol: currencySymbol,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                },
-                loading: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                error: (error, stackTrace) => const Center(
-                  child: Text('Something went wrong. Please try again.'),
-                ),
-              ),
-            ),
+            const AccountsList(),
           ],
         ),
       ),
     );
-  }
-}
-
-class AccountCard extends StatelessWidget {
-  const AccountCard({
-    super.key,
-    required this.accountType,
-    required this.accountName,
-    required this.balance,
-    required this.currentBalance,
-    required this.currencySymbol,
-    required this.icon,
-  });
-  final AccountTypes accountType;
-  final String accountName;
-  final double balance;
-  final double currentBalance;
-  final String currencySymbol;
-  final IconData icon;
-  @override
-  Widget build(BuildContext context) {
-    return CustomCard(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Row(
-          children: [
-            getAccountIcon(accountType),
-            gapW16,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  accountName,
-                  style: TextStyles.title.copyWith(fontSize: 16),
-                ),
-                Text(
-                  '$currencySymbol${balance.round()}',
-                  style: TextStyles.subtitle.copyWith(fontSize: 12),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  '$currencySymbol${currentBalance.toStringAsFixed(2)}',
-                  style: TextStyles.title.copyWith(fontSize: 16),
-                ),
-                const Text(''),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-extension GetAccountTypeIcon on AccountModel {
-  IconData get accountTypeIcon {
-    switch (accountType.index) {
-      case 0:
-        return Icons.credit_card;
-      case 1:
-        return FontAwesomeIcons.ccVisa;
-      case 2:
-        return Icons.wallet;
-      default:
-        return FontAwesomeIcons.arrowTrendUp;
-    }
   }
 }

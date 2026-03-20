@@ -16,7 +16,7 @@ enum CategoryTypes {
   gifts,
 }
 
-enum AccountTypes {
+enum AccountType {
   debitCard(
     label: 'Debit Card',
     icon: Icons.credit_card,
@@ -38,7 +38,7 @@ enum AccountTypes {
   final String label;
   final IconData icon;
 
-  const AccountTypes({
+  const AccountType({
     required this.label,
     required this.icon,
   });
@@ -50,7 +50,7 @@ class TransactionModel {
   final bool isExpense;
   final double amount;
   final CategoryTypes category;
-  final AccountTypes account;
+  final AccountType account;
   final DateTime date;
   final String? note;
 
@@ -88,9 +88,9 @@ class TransactionModel {
         (e) => e.name == map['category'],
         orElse: () => CategoryTypes.others,
       ),
-      account: AccountTypes.values.firstWhere(
+      account: AccountType.values.firstWhere(
         (e) => e.name == map['account_type'],
-        orElse: () => AccountTypes.cashWallet,
+        orElse: () => AccountType.cashWallet,
       ),
       date: DateTime.parse(map['date']),
       note: map['note'] as String?,
