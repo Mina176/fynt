@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class ScrollableContentWithStickyButton extends StatelessWidget {
   const ScrollableContentWithStickyButton({
     super.key,
-    required this.upperChildren,
+    required this.column,
     required this.button,
   });
-  final List<Widget> upperChildren;
+  final Widget column;
   final Widget button;
   @override
   Widget build(BuildContext context) {
@@ -14,10 +14,7 @@ class ScrollableContentWithStickyButton extends StatelessWidget {
       children: [
         Expanded(
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: upperChildren,
-            ),
+            child: column,
           ),
         ),
         button,

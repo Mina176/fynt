@@ -1,4 +1,5 @@
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/widgets/scrollable_content_with_sticky_button.dart';
 import 'package:fynt/features/authentication/logic/auth_service.dart';
 import 'package:fynt/features/authentication/presentation/auth_field.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
@@ -56,56 +57,50 @@ class _ResetPasswordScreenState extends ConsumerState<UpdatePasswordScreen> {
           padding: const EdgeInsets.symmetric(
             horizontal: Sizes.kHorizontalPadding,
           ),
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    spacing: 16,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const OnboardingCard(
-                        icon: Icons.lock_reset_sharp,
-                        borderRadius: 50,
-                        width: 100,
-                        height: 100,
-                        title: 'Update Password',
-                        subTitle: 'Please enter your new password.',
-                      ),
-                      Form(
-                        key: formKey,
-                        child: TextFieldWithLabel(
-                          label: 'New Password',
-                          hintText: 'Enter your new password',
-                          isPassword: true,
-                          controller: _passwordController,
-                          validator: (val) =>
-                              passwordError ??
-                              Validators.validatePasswordWhenSignUp(val),
-                        ),
-                      ),
-                    ],
+          child: ScrollableContentWithStickyButton(
+            column: Column(
+              spacing: 16,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const OnboardingCard(
+                  icon: Icons.lock_reset_sharp,
+                  borderRadius: 50,
+                  width: 100,
+                  height: 100,
+                  title: 'Update Password',
+                  subTitle: 'Please enter your new password.',
+                ),
+                Form(
+                  key: formKey,
+                  child: TextFieldWithLabel(
+                    label: 'New Password',
+                    hintText: 'Enter your new password',
+                    isPassword: true,
+                    controller: _passwordController,
+                    validator: (val) =>
+                        passwordError ??
+                        Validators.validatePasswordWhenSignUp(val),
                   ),
                 ),
+              ],
+            ),
+            button: Padding(
+              padding: const EdgeInsets.only(
+                bottom: Sizes.kVerticalPadding,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: Sizes.kVerticalPadding,
-                ),
-                child: ElevatedButton(
-                  onPressed: isLoading ? null : updatePassword,
-                  child: isLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
-                        )
-                      : const Text('Update Password'),
-                ),
+              child: ElevatedButton(
+                onPressed: isLoading ? null : updatePassword,
+                child: isLoading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : const Text('Update Password'),
               ),
-            ],
+            ),
           ),
         ),
       ),

@@ -147,28 +147,31 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
           horizontal: Sizes.kHorizontalPadding,
         ),
         child: ScrollableContentWithStickyButton(
-          upperChildren: [
-            ExpenseOrIncome(
-              selectedIndex: expenseOrIncome,
-              onChanged: (index) => setState(() => expenseOrIncome = index),
-            ),
-            SizedBox(height: screenSize.height * 0.01),
-            DisplayAmount(
-              controller: amountController,
-            ),
-            SizedBox(height: screenSize.height * 0.005),
-            TransactionDetails(
-              transaction: transaction,
-              selectedAccount: selectedAccount,
-              onSelectCategory: () => selectCategory(context),
-              onSelectAccount: () => selectAccount(context),
-              onSelectDate: () => selectDate(context),
-            ),
-            AddNoteSection(
-              controller: noteController,
-              screenSize: screenSize,
-            ),
-          ],
+          column: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ExpenseOrIncome(
+                selectedIndex: expenseOrIncome,
+                onChanged: (index) => setState(() => expenseOrIncome = index),
+              ),
+              SizedBox(height: screenSize.height * 0.01),
+              DisplayAmount(
+                controller: amountController,
+              ),
+              SizedBox(height: screenSize.height * 0.005),
+              TransactionDetails(
+                transaction: transaction,
+                selectedAccount: selectedAccount,
+                onSelectCategory: () => selectCategory(context),
+                onSelectAccount: () => selectAccount(context),
+                onSelectDate: () => selectDate(context),
+              ),
+              AddNoteSection(
+                controller: noteController,
+                screenSize: screenSize,
+              ),
+            ],
+          ),
           button: Padding(
             padding: const EdgeInsets.only(
               bottom: Sizes.kVerticalPadding,
