@@ -1,7 +1,7 @@
 import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/features/transactions/logic/transaction_controller.dart';
-import 'package:fynt/features/transactions/presentation/transaction_card.dart';
+import 'package:fynt/features/transactions/presentation/widgets/transaction_card.dart';
 import 'package:fynt/core/widgets/settings_section.dart';
 import 'package:fynt/core/widgets/slidable_settings_tile.dart';
 import 'package:flutter/material.dart';

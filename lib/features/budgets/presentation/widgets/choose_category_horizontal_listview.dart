@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fynt/core/enums/category_type.dart';
-import 'package:fynt/features/budgets/presentation/add_budget_screen.dart';
 import 'package:fynt/features/budgets/presentation/widgets/select_category_listview_item.dart';
 
 class ChooseCategoryHorizontalListView extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:fynt/core/widgets/category_icon.dart';
 import 'package:fynt/core/widgets/settings_section.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/text_styles.dart';
+import '../../../../core/constants/text_styles.dart';
 
 class AddNoteSection extends StatelessWidget {
   const AddNoteSection({

@@ -21,6 +21,27 @@ class TransactionModel {
     required this.date,
     this.note,
   });
+  TransactionModel copyWith({
+    int? id,
+    String? userId,
+    bool? isExpense,
+    double? amount,
+    CategoryType? category,
+    AccountType? account,
+    DateTime? date,
+    String? note,
+  }) {
+    return TransactionModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      isExpense: isExpense ?? this.isExpense,
+      amount: amount ?? this.amount,
+      category: category ?? this.category,
+      account: account ?? this.account,
+      date: date ?? this.date,
+      note: note ?? this.note,
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {

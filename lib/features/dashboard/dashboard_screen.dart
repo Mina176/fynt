@@ -6,7 +6,7 @@ import 'package:fynt/features/settings/currency/logic/currency_provider.dart';
 import 'package:fynt/features/dashboard/custom_app_bar.dart';
 import 'package:fynt/core/widgets/custom_card.dart';
 import 'package:fynt/core/widgets/last_month_container.dart';
-import 'package:fynt/features/transactions/presentation/transaction_card.dart';
+import 'package:fynt/features/transactions/presentation/widgets/transaction_card.dart';
 import 'package:fynt/features/analytics/weekly_spending_summary.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
 import 'package:fynt/core/widgets/settings_section.dart';

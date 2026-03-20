@@ -2,7 +2,7 @@ import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fynt/core/enums/category_type.dart';
-import 'package:fynt/features/transactions/presentation/category_icon_with_label.dart';
+import 'package:fynt/features/transactions/presentation/widgets/category_icon_with_label.dart';
 
 class ChooseCategoryScreen extends StatelessWidget {
   const ChooseCategoryScreen({super.key});
@@ -51,7 +51,7 @@ class ChooseCategoryScreen extends StatelessWidget {
                   return GestureDetector(
                     onTap: () => Navigator.pop(
                       context,
-                      spendingCategories[index],
+                      spendingCategory,
                     ),
                     child: CategoryIconWithLabel(
                       categoryType: spendingCategory,
@@ -83,7 +83,7 @@ class ChooseCategoryScreen extends StatelessWidget {
                   return GestureDetector(
                     onTap: () => Navigator.pop(
                       context,
-                      incomeCategories[index],
+                      incomeCategory,
                     ),
                     child: CategoryIconWithLabel(
                       categoryType: incomeCategory,

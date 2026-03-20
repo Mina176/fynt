@@ -1,5 +1,5 @@
 import 'package:fynt/features/accounts/presentation/add_account_screen.dart';
-import 'package:fynt/features/transactions/presentation/add_transaction.dart';
+import 'package:fynt/features/transactions/presentation/add_transaction_screen.dart';
 import 'package:fynt/features/transactions/presentation/choose_category_screen.dart';
 import 'package:fynt/features/transactions/presentation/select_account_screen.dart';
 import 'package:fynt/features/authentication/logic/auth_service.dart';
