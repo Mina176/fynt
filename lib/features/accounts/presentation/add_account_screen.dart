@@ -72,37 +72,43 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
         padding: const EdgeInsets.symmetric(
           horizontal: Sizes.kHorizontalPadding,
         ),
-        child: CustomScrollView(
-          slivers: [
-            AccountsSliverGrid(
-              onAccountTypeSelected: (type) =>
-                  setState(() => selectedAccount = type),
-              selectedAccount: selectedAccount,
-            ),
-            const SliverToBoxAdapter(child: SizedBox(height: 16)),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
-                spacing: 10,
-                children: [
-                  AccountDetailsForm(
-                    formKey: formKey,
-                    accountNameController: accountNameController,
-                    balanceController: balanceController,
+        child: Column(
+          children: [
+            Expanded(
+              child: CustomScrollView(
+                slivers: [
+                  AccountsSliverGrid(
+                    onAccountTypeSelected: (type) =>
+                        setState(() => selectedAccount = type),
+                    selectedAccount: selectedAccount,
                   ),
-                  IncludeInNetWorthRow(
-                    includeInNetWorth: includeInNetWorth,
-                    onIncludeInNetWorthChanged: (value) => setState(() {
-                      includeInNetWorth = value;
-                    }),
-                  ),
-                  const Spacer(),
-                  AddAccountButton(
-                    isLoading: isLoading,
-                    addAccount: addAccount,
+                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Column(
+                      spacing: 10,
+                      children: [
+                        AccountDetailsForm(
+                          formKey: formKey,
+                          accountNameController: accountNameController,
+                          balanceController: balanceController,
+                        ),
+                        IncludeInNetWorthRow(
+                          includeInNetWorth: includeInNetWorth,
+                          onIncludeInNetWorthChanged: (value) => setState(() {
+                            includeInNetWorth = value;
+                          }),
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
                   ),
                 ],
               ),
+            ),
+            AddAccountButton(
+              isLoading: isLoading,
+              addAccount: addAccount,
             ),
           ],
         ),
