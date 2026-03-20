@@ -15,31 +15,34 @@ class CustomAppBar extends ConsumerWidget {
     final bool hasValidPhoto =
         photoUrl != null && photoUrl.startsWith('https://');
 
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 24,
-          backgroundImage: hasValidPhoto
-              ? NetworkImage(photoUrl)
-              : const NetworkImage(
-                  'https://media.istockphoto.com/id/1288129985/vector/missing-image-of-a-person-placeholder.jpg?s=612x612&w=0&k=20&c=9kE777krx5mrFHsxx02v60ideRWvIgI1RWzR1X4MG2Y=',
-                ),
-        ),
-        gapW8,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'WELCOME BACK',
-              style: TextStyles.subtitle.copyWith(fontSize: 14),
-            ),
-            Text(
-              getUsernameWithId(ref),
-              style: TextStyles.title.copyWith(fontSize: 18),
-            ),
-          ],
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 24,
+            backgroundImage: hasValidPhoto
+                ? NetworkImage(photoUrl)
+                : const NetworkImage(
+                    'https://media.istockphoto.com/id/1288129985/vector/missing-image-of-a-person-placeholder.jpg?s=612x612&w=0&k=20&c=9kE777krx5mrFHsxx02v60ideRWvIgI1RWzR1X4MG2Y=',
+                  ),
+          ),
+          gapW8,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'WELCOME BACK',
+                style: TextStyles.subtitle.copyWith(fontSize: 14),
+              ),
+              Text(
+                getUsernameWithId(ref),
+                style: TextStyles.title.copyWith(fontSize: 18),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
