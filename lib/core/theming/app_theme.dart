@@ -47,6 +47,16 @@ class AppTheme {
           ),
         ),
       ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: const BorderSide(color: AppColors.kPrimaryColor),
+          ),
+          foregroundColor: AppColors.kPrimaryColor,
+          textStyle: TextStyles.buttonLabel,
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: buildBorder(AppColors.kButtonBorderColor),
         enabledBorder: buildBorder(AppColors.kButtonBorderColor),
