@@ -21,35 +21,18 @@ class SettingsScreen extends StatelessWidget {
           style: TextStyles.title.copyWith(fontSize: 18),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(
           vertical: Sizes.kVerticalPadding,
           horizontal: Sizes.kHorizontalPadding,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           spacing: 12,
           children: [
-            const UserInfoSection(),
+            UserInfoSection(),
             gapH12,
-            const SettingsContent(),
-            const Spacer(),
-            Consumer(
-              builder: (context, ref, child) {
-                return ElevatedButton.icon(
-                  onPressed: () =>
-                      ref.read(authControllerProvider.notifier).signOut(),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: AppColors.kErrorColor,
-                  ),
-                  label: const Text('Log Out'),
-                  icon: const Icon(
-                    Icons.logout,
-                  ),
-                );
-              },
-            ),
+            SettingsContent(),
+            Spacer(),
           ],
         ),
       ),

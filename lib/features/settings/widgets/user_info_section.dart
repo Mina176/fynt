@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fynt/core/constants/text_styles.dart';
+import 'package:fynt/core/theming/app_colors.dart';
+import 'package:fynt/features/authentication/logic/auth_controller.dart';
 import 'package:fynt/features/authentication/logic/auth_service.dart';
 
 class UserInfoSection extends ConsumerWidget {
@@ -19,6 +21,7 @@ class UserInfoSection extends ConsumerWidget {
         ? currentUser.fullName
         : 'Guest#$guestId';
     return Column(
+      spacing: 12,
       children: [
         Text(
           displayName,
@@ -29,6 +32,21 @@ class UserInfoSection extends ConsumerWidget {
           currentUser?.email ?? '',
           textAlign: TextAlign.center,
           style: TextStyles.subtitle.copyWith(fontSize: 16),
+        ),
+        SizedBox(
+          width: MediaQuery.widthOf(context) * 0.35,
+          child: Consumer(
+            builder: (context, ref, child) {
+              return TextButton.icon(
+                onPressed: () =>
+                    ref.read(authControllerProvider.notifier).signOut(),
+                label: const Text('Log Out'),
+                icon: const Icon(
+                  Icons.logout,
+                ),
+              );
+            },
+          ),
         ),
       ],
     );
