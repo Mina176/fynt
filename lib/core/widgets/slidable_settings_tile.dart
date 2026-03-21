@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart' hide SlidableAction;
 import 'package:ios_multi_slidable/ios_multi_slidable.dart';
 
 class SlidableSettingsTile extends StatelessWidget {

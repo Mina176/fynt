@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fynt/core/widgets/empty_list_sLiver_fill_remaining.dart';
+import 'package:fynt/core/widgets/empty_list_sliver_fill_remaining.dart';
 import 'package:fynt/core/widgets/settings_section.dart';
 import 'package:fynt/core/widgets/slidable_settings_tile.dart';
 import 'package:fynt/features/transactions/logic/transaction_controller.dart';

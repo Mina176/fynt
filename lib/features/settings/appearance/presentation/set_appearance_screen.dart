@@ -3,9 +3,6 @@
 import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fynt/core/widgets/custom_card.dart';
-import 'package:fynt/features/settings/appearance/logic/theme_controller.dart';
 import 'package:fynt/features/settings/appearance/presentation/widgets/selet_theme_row.dart';
 
 class SetAppearanceScreen extends StatelessWidget {

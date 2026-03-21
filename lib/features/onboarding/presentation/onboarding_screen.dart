@@ -1,4 +1,3 @@
-import 'package:fynt/core/widgets/scrollable_content_with_sticky_button.dart';
 import 'package:fynt/features/onboarding/data/onboarding_repository.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
 import 'package:fynt/core/constants/app_sizes.dart';

@@ -10,10 +10,8 @@ import 'package:fynt/features/budgets/presentation/widgets/choose_period_horizon
 import 'package:fynt/features/budgets/presentation/widgets/left_to_spend_section.dart';
 import 'package:fynt/features/settings/currency/currency_provider.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
-import 'package:fynt/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class BudgetsScreen extends ConsumerStatefulWidget {
   const BudgetsScreen({super.key});

@@ -1,9 +1,6 @@
 import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
-import 'package:fynt/features/authentication/logic/auth_controller.dart';
-import 'package:fynt/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fynt/features/settings/widgets/settings_content.dart';
 import 'package:fynt/features/settings/widgets/user_info_section.dart';
 
