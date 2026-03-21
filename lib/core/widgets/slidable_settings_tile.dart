@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_slidable/flutter_slidable.dart' hide SlidableAction;
+import 'package:ios_multi_slidable/ios_multi_slidable.dart';
 
 class SlidableSettingsTile extends StatelessWidget {
   const SlidableSettingsTile({
@@ -15,46 +16,15 @@ class SlidableSettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
+    return IosMultiSlidable(
       key: itemKey,
-      endActionPane: ActionPane(
-        motion: const ScrollMotion(),
-        extentRatio: 0.3,
-        dismissible: DismissiblePane(
-          onDismissed: onDeleteTapped,
+      rightActions: [
+        SlidableAction(
+          onTap: onDeleteTapped,
+          color: Colors.red,
+          child: const Icon(Icons.delete, color: Colors.white),
         ),
-        children: [
-          CustomSlidableAction(
-            autoClose: false,
-            onPressed: (context) {
-              final slidable = Slidable.of(context);
-              if (slidable != null) {
-                slidable.dismiss(
-                  ResizeRequest(
-                    const Duration(milliseconds: 300),
-                    onDeleteTapped,
-                  ),
-                );
-              } else {
-                onDeleteTapped();
-              }
-            },
-            backgroundColor: Colors.transparent,
-            child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.redAccent,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: const Icon(
-                Icons.delete_outline,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
+      ],
       child: child,
     );
   }

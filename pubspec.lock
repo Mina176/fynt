@@ -544,6 +544,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  ios_multi_slidable:
+    dependency: "direct main"
+    description:
+      name: ios_multi_slidable
+      sha256: "9e5fc4282d49c228f4c01555c111e0a0b33e2c534cca4e20c175903dd205d448"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   json_annotation:
     dependency: transitive
     description:
