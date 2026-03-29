@@ -29,6 +29,8 @@ dependencies:
   sqlite3_flutter_libs: ^0.6.0+eol
   sqflite_common_ffi_web: ^1.1.1
   ios_multi_slidable: ^0.0.1
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +41,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - assets/
