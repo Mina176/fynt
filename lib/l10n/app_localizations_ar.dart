@@ -246,6 +246,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get yearly => 'سنوي';
 
   @override
+  String get recurrenceDuration => 'مدة التكرار';
+
+  @override
   String get failedToAddTransaction => 'فشل في إضافة المعاملة';
 
   @override
@@ -253,4 +256,39 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get failedToCreateAccount => 'فشل في إنشاء الحساب';
+
+  @override
+  String get continueWithGoogle => 'متابعة مع جوجل';
+
+  @override
+  String get dontHaveAccount => 'ليس لديك حساب؟';
+
+  @override
+  String get signIn => 'تسجيل الدخول';
+
+  @override
+  String get categories => 'الفئات';
+
+  @override
+  String get getStarted => 'ابدأ الآن';
+
+  @override
+  String get chooseTheme => 'اختر المظهر';
+
+  @override
+  String get customizeAppearance =>
+      'خصص مظهر متتبعك المالي اختر موضوعًا لمعاينة كيفية ظهور لوحة المعلومات والمعاملات.';
+
+  @override
+  String get appPreferences => 'تفضيلات التطبيق';
+
+  @override
+  String get allTransactions => 'جميع المعاملات';
+
+  @override
+  String get noTransactionsYet =>
+      'لا توجد معاملات حتى الآن. ابدأ بإضافة معاملتك الأولى!';
+
+  @override
+  String get spending => 'نفقة';
 }

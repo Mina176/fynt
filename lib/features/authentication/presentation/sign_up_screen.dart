@@ -1,5 +1,6 @@
 import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/features/authentication/logic/auth_controller.dart';
 import 'package:fynt/features/authentication/logic/loading_state.dart';
 import 'package:fynt/features/authentication/presentation/login_screen.dart';
@@ -82,12 +83,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 16),
-                    const Text(
-                      'Start Tracking Today',
+                    Text(
+                      context.l10n.startTrackingToday,
                       style: TextStyles.title,
                     ),
-                    const Text(
-                      'Take control of your finances.',
+                    Text(
+                      context.l10n.takeControlOfFinances,
                       style: TextStyles.subtitle,
                     ),
                     gapH16,
@@ -98,31 +99,32 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         children: [
                           TextFieldWithLabel(
                             controller: _nameController,
-                            label: 'Full Name',
-                            hintText: 'John Doe',
+                            label: context.l10n.fullName,
+                            hintText: context.l10n.fullNameHint,
                             onSaved: (value) => _nameController.text = value!,
-                            validator: (value) =>
-                                value!.isEmpty ? 'Name is required' : null,
+                            validator: (value) => value!.isEmpty
+                                ? context.l10n.errorNameRequired
+                                : null,
                           ),
                           TextFieldWithLabel(
                             controller: _emailController,
-                            label: 'Email',
-                            hintText: 'john@example.com',
+                            label: context.l10n.email,
+                            hintText: context.l10n.emailHint,
                             validator: (val) =>
                                 emailError ?? Validators.validateEmail(val),
                           ),
                           TextFieldWithLabel(
                             controller: _passwordController,
-                            label: 'Password',
-                            hintText: '••••••••',
+                            label: context.l10n.password,
+                            hintText: context.l10n.passwordHint,
                             isPassword: true,
                             validator: (val) =>
                                 passwordError ??
                                 Validators.validatePasswordWhenSignUp(val),
                           ),
                           TextFieldWithLabel(
-                            label: 'Confirm Password',
-                            hintText: '••••••••',
+                            label: context.l10n.confirmPassword,
+                            hintText: context.l10n.passwordHint,
                             isPassword: true,
                             validator: (value) =>
                                 Validators.validateConfirmPassword(
@@ -139,13 +141,13 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                                     width: 24,
                                     child: CircularProgressIndicator(),
                                   )
-                                : const Text('Sign Up'),
+                                : Text(context.l10n.signUp),
                           ),
                         ],
                       ),
                     ),
-                    const CustomDivider(
-                      centeredText: 'Or continue with',
+                    CustomDivider(
+                      centeredText: context.l10n.continueWith,
                     ),
                     ElevatedButton(
                       onPressed: isLoading
@@ -170,7 +172,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                                   ),
                                 ),
                                 gapW4,
-                                const Text('Continue with Google'),
+                                Text(context.l10n.continueWithGoogle),
                               ],
                             ),
                     ),
@@ -178,12 +180,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Don\'t have an account?'),
+                        Text(context.l10n.dontHaveAccount),
                         GestureDetector(
                           onTap: () => context.go(AppRoutes.signIn.path),
-                          child: const Text(
-                            ' Log in',
-                            style: TextStyle(
+                          child: Text(
+                            ' ${context.l10n.signIn}',
+                            style: const TextStyle(
                               color: AppColors.kPrimaryColor,
                               fontWeight: FontWeight.w900,
                             ),

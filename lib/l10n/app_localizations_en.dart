@@ -245,6 +245,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yearly => 'Yearly';
 
   @override
+  String get recurrenceDuration => 'Recurrence Duration';
+
+  @override
   String get failedToAddTransaction => 'Failed to add transaction';
 
   @override
@@ -252,4 +255,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failedToCreateAccount => 'Failed to create account';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
+  String get dontHaveAccount => 'Don\'t have an account?';
+
+  @override
+  String get signIn => 'Sign In';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get getStarted => 'Get Started';
+
+  @override
+  String get chooseTheme => 'Choose Theme';
+
+  @override
+  String get customizeAppearance =>
+      'Customize the look of your money tracker Select a theme to preview how your dashboard and transactions appear.';
+
+  @override
+  String get appPreferences => 'APP PREFERENCES';
+
+  @override
+  String get allTransactions => 'All Transactions';
+
+  @override
+  String get noTransactionsYet =>
+      'No transactions yet. Start by adding your first transaction!';
+
+  @override
+  String get spending => 'Spending';
 }

@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fynt/core/constants/text_styles.dart';
@@ -60,8 +61,8 @@ class AccountsList extends ConsumerWidget {
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
-        error: (error, stackTrace) => const Center(
-          child: Text('Something went wrong. Please try again.'),
+        error: (error, stackTrace) => Center(
+          child: Text(context.l10n.somethingWentWrong),
         ),
       ),
     );

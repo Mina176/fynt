@@ -78,7 +78,19 @@
   "monthly": "شهري",
   "weekly": "أسبوعي",
   "yearly": "سنوي",
+  "recurrenceDuration": "مدة التكرار",
   "failedToAddTransaction": "فشل في إضافة المعاملة",
   "failedToCreateBudget": "فشل في إنشاء الميزانية",
-  "failedToCreateAccount": "فشل في إنشاء الحساب"
+  "failedToCreateAccount": "فشل في إنشاء الحساب",
+  "continueWithGoogle": "متابعة مع جوجل",
+  "dontHaveAccount": "ليس لديك حساب؟",
+  "signIn": "تسجيل الدخول",
+  "categories": "الفئات",
+  "getStarted": "ابدأ الآن",
+  "chooseTheme": "اختر المظهر",
+  "customizeAppearance": "خصص مظهر متتبعك المالي اختر موضوعًا لمعاينة كيفية ظهور لوحة المعلومات والمعاملات.",
+  "appPreferences": "تفضيلات التطبيق",
+  "allTransactions": "جميع المعاملات",
+  "noTransactionsYet": "لا توجد معاملات حتى الآن. ابدأ بإضافة معاملتك الأولى!",
+  "spending": "نفقة"
 }

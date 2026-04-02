@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,7 @@ class SettingsContent extends ConsumerWidget {
     final currentCurrencyCode = ref.watch(currencyCodeProvider);
     return SettingsSection(
       header: Text(
-        "APP PREFERENCES",
+        context.l10n.appPreferences,
         style: TextStyles.subtitle.copyWith(fontSize: 12),
         textAlign: TextAlign.left,
       ),
@@ -28,12 +29,12 @@ class SettingsContent extends ConsumerWidget {
           onTap: () => showCurrencyPicker(
             showFlag: false,
             theme: CurrencyPickerThemeData(
-              inputDecoration: const InputDecoration(
-                prefixIcon: Icon(
+              inputDecoration: InputDecoration(
+                prefixIcon: const Icon(
                   Icons.search,
                   color: AppColors.kSubtitleColor,
                 ),
-                hintText: 'Search currency name or code',
+                hintText: context.l10n.currency,
               ),
               backgroundColor: Theme.of(
                 context,
@@ -57,8 +58,8 @@ class SettingsContent extends ConsumerWidget {
             Icons.attach_money,
             color: AppColors.kPrimaryColor,
           ),
-          title: const Text(
-            'Currency',
+          title: Text(
+            context.l10n.currency,
             style: TextStyles.labelText,
           ),
           trailing: Row(
@@ -79,8 +80,8 @@ class SettingsContent extends ConsumerWidget {
             Icons.color_lens,
             color: AppColors.kPrimaryColor,
           ),
-          title: const Text(
-            'Theme',
+          title: Text(
+            context.l10n.theme,
             style: TextStyles.labelText,
           ),
           trailing: Row(
@@ -88,8 +89,8 @@ class SettingsContent extends ConsumerWidget {
             children: [
               Text(
                 ref.watch(themeControllerProvider) == ThemeMode.light
-                    ? 'Light'
-                    : 'Dark',
+                    ? context.l10n.light
+                    : context.l10n.dark,
                 style: TextStyles.subtitle.copyWith(fontSize: 12),
               ),
               const SizedBox(width: 8),

@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/utils/category_style.dart';
@@ -30,8 +31,8 @@ class TransactionDetails extends StatelessWidget {
           dense: true,
           onTap: onSelectCategory,
           leading: CategoryIcon(categoryType: transaction.category),
-          title: const Text(
-            "Category",
+          title: Text(
+            context.l10n.category,
             style: TextStyles.addTransactionSettingstitle,
           ),
           subtitle: Text(
@@ -58,8 +59,8 @@ class TransactionDetails extends StatelessWidget {
           dense: true,
           onTap: onSelectDate,
           leading: const OtherIcons(OtherIconTypes.date),
-          title: const Text(
-            "Date",
+          title: Text(
+            context.l10n.date,
             style: TextStyles.addTransactionSettingstitle,
           ),
           subtitle: Text(

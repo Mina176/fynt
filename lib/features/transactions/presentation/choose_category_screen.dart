@@ -1,4 +1,5 @@
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fynt/core/enums/category_type.dart';
@@ -23,7 +24,7 @@ class ChooseCategoryScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        title: const Text('Choose Category'),
+        title: Text(context.l10n.category),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -34,7 +35,9 @@ class ChooseCategoryScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              expenseOrIncome == 0 ? 'Spending' : 'Income',
+              expenseOrIncome == 0
+                  ? context.l10n.spending
+                  : context.l10n.income,
               style: TextStyles.subtitle.copyWith(fontSize: 14),
             ),
             Expanded(

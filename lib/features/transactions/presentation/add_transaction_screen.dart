@@ -1,4 +1,5 @@
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/enums/account_type.dart';
 import 'package:fynt/core/enums/category_type.dart';
@@ -137,7 +138,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Transaction",
+          context.l10n.addTransaction,
           style: TextStyles.title.copyWith(fontSize: 20),
         ),
         centerTitle: true,

@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fynt/core/constants/text_styles.dart';
@@ -39,7 +40,7 @@ class UserInfoSection extends ConsumerWidget {
               return TextButton.icon(
                 onPressed: () =>
                     ref.read(authControllerProvider.notifier).signOut(),
-                label: const Text('Log Out'),
+                label: Text(context.l10n.logout),
                 icon: const Icon(
                   Icons.logout,
                 ),

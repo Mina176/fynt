@@ -1,4 +1,5 @@
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/enums/account_type.dart';
 import 'package:fynt/features/accounts/data/account_model.dart';
 import 'package:fynt/features/accounts/logic/account_controller.dart';
@@ -66,7 +67,7 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Add Account'),
+        title: Text(context.l10n.addAccount),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(

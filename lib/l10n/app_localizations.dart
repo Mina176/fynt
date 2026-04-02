@@ -566,6 +566,12 @@ abstract class AppLocalizations {
   /// **'Yearly'**
   String get yearly;
 
+  /// No description provided for @recurrenceDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Recurrence Duration'**
+  String get recurrenceDuration;
+
   /// No description provided for @failedToAddTransaction.
   ///
   /// In en, this message translates to:
@@ -583,6 +589,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to create account'**
   String get failedToCreateAccount;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// No description provided for @dontHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get dontHaveAccount;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @chooseTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Theme'**
+  String get chooseTheme;
+
+  /// No description provided for @customizeAppearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize the look of your money tracker Select a theme to preview how your dashboard and transactions appear.'**
+  String get customizeAppearance;
+
+  /// No description provided for @appPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'APP PREFERENCES'**
+  String get appPreferences;
+
+  /// No description provided for @allTransactions.
+  ///
+  /// In en, this message translates to:
+  /// **'All Transactions'**
+  String get allTransactions;
+
+  /// No description provided for @noTransactionsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No transactions yet. Start by adding your first transaction!'**
+  String get noTransactionsYet;
+
+  /// No description provided for @spending.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending'**
+  String get spending;
 }
 
 class _AppLocalizationsDelegate

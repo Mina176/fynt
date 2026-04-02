@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/widgets/app_bar_action.dart';
@@ -13,7 +14,7 @@ class AccountsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Accounts'),
+        title: Text(context.l10n.addAccount),
         actions: const [
           AppBarAction(appRoute: AppRoutes.addAccount),
           gapW20,
@@ -28,7 +29,7 @@ class AccountsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Total Balance',
+              context.l10n.totalBalance,
               style: TextStyles.subtitle.copyWith(fontSize: 14),
               textAlign: TextAlign.center,
             ),

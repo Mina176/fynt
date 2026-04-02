@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
@@ -13,14 +14,14 @@ class RecentTransactionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          'Recent Transactions',
+        Text(
+          context.l10n.recentTransactions,
           style: TextStyles.header,
         ),
         GestureDetector(
           onTap: () => context.push(AppRoutes.allTransactions.path),
-          child: const Text(
-            'View All',
+          child: Text(
+            context.l10n.viewAll,
             style: TextStyles.headerLink,
           ),
         ),

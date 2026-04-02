@@ -2,6 +2,7 @@ import 'package:fynt/core/constants/duration_constants.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fynt/core/enums/recurrence_type.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 
 class RecurrenceDurationSelector extends StatelessWidget {
   const RecurrenceDurationSelector({
@@ -14,7 +15,11 @@ class RecurrenceDurationSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> recurrenceDurations = ['Weekly', 'Monthly', 'Yearly'];
+    final List<String> recurrenceDurations = [
+      context.l10n.weekly,
+      context.l10n.monthly,
+      context.l10n.yearly,
+    ];
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = constraints.maxWidth;

@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fynt/core/constants/app_sizes.dart';
@@ -88,9 +89,9 @@ class BudgetSliverList extends ConsumerWidget {
           child: CircularProgressIndicator(),
         ),
       ),
-      error: (error, stackTrace) => const SliverFillRemaining(
+      error: (error, stackTrace) => SliverFillRemaining(
         child: Center(
-          child: Text('Error loading budgets'),
+          child: Text(context.l10n.somethingWentWrong),
         ),
       ),
     );

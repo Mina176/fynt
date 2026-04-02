@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fynt/features/settings/appearance/presentation/widgets/selet_theme_row.dart';
@@ -13,10 +13,10 @@ class SetAppearanceScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Appearance'),
+        title: Text(context.l10n.theme),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
           vertical: Sizes.kVerticalPadding,
           horizontal: Sizes.kHorizontalPadding,
         ),
@@ -25,13 +25,13 @@ class SetAppearanceScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Choose Theme',
+              context.l10n.chooseTheme,
               style: TextStyles.title,
             ),
             Text(
-              'Customize the look of your money tracker Select a theme to preview how your dashboard and transactions appear.',
+              context.l10n.customizeAppearance,
             ),
-            SelectThemeRow(),
+            const SelectThemeRow(),
           ],
         ),
       ),

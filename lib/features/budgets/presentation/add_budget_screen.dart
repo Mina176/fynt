@@ -1,4 +1,5 @@
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/enums/category_type.dart';
 import 'package:fynt/core/enums/recurrence_type.dart';
@@ -70,7 +71,7 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Add Budget'),
+        title: Text(context.l10n.addBudget),
       ),
       body: ScrollableContentWithStickyButton(
         column: Column(
@@ -85,16 +86,16 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
                 horizontal: Sizes.kHorizontalPadding,
               ),
               child: TextFieldWithLabel(
-                label: 'Budget Name',
-                hintText: 'e.g. Monthly Groceries',
+                label: context.l10n.budgetName,
+                hintText: context.l10n.budgetNameHint,
                 controller: nameController,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(
+            Padding(
+              padding: const EdgeInsets.symmetric(
                 horizontal: Sizes.kHorizontalPadding,
               ),
-              child: Text('Category', style: TextStyles.labelText),
+              child: Text(context.l10n.category, style: TextStyles.labelText),
             ),
             ChooseCategoryHorizontalListView(
               selectedCategory: selectedCategory,
@@ -104,12 +105,12 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
                 });
               },
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(
+            Padding(
+              padding: const EdgeInsets.symmetric(
                 horizontal: Sizes.kHorizontalPadding,
               ),
               child: Text(
-                'Recurrence Duration',
+                context.l10n.recurrenceDuration,
                 style: TextStyles.labelText,
               ),
             ),
@@ -147,12 +148,12 @@ class _AddBudgetScreenState extends ConsumerState<AddBudgetScreen> {
             onPressed: isLoading ? null : addBudget,
             child: isLoading
                 ? const CircularProgressIndicator()
-                : const Row(
+                : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.check_circle),
+                      const Icon(Icons.check_circle),
                       gapW4,
-                      Text('Add Budget'),
+                      Text(context.l10n.addBudget),
                     ],
                   ),
           ),

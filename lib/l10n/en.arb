@@ -78,7 +78,19 @@
   "monthly": "Monthly",
   "weekly": "Weekly",
   "yearly": "Yearly",
+  "recurrenceDuration": "Recurrence Duration",
   "failedToAddTransaction": "Failed to add transaction",
   "failedToCreateBudget": "Failed to create budget",
-  "failedToCreateAccount": "Failed to create account"
+  "failedToCreateAccount": "Failed to create account",
+  "continueWithGoogle": "Continue with Google",
+  "dontHaveAccount": "Don't have an account?",
+  "signIn": "Sign In",
+  "categories": "Categories",
+  "getStarted": "Get Started",
+  "chooseTheme": "Choose Theme",
+  "customizeAppearance": "Customize the look of your money tracker Select a theme to preview how your dashboard and transactions appear.",
+  "appPreferences": "APP PREFERENCES",
+  "allTransactions": "All Transactions",
+  "noTransactionsYet": "No transactions yet. Start by adding your first transaction!",
+  "spending": "Spending"
 }

@@ -1,4 +1,5 @@
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/widgets/scrollable_content_with_sticky_button.dart';
 import 'package:fynt/features/authentication/logic/auth_service.dart';
 import 'package:fynt/features/authentication/presentation/auth_field.dart';
@@ -34,8 +35,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       setState(() => isLoading = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Reset link sent! Please check your email.'),
+          SnackBar(
+            content: Text(context.l10n.resetLinkSent),
           ),
         );
         context.pop();
@@ -77,8 +78,8 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                 Form(
                   key: formKey,
                   child: TextFieldWithLabel(
-                    label: 'Email Address',
-                    hintText: 'you@example.com',
+                    label: context.l10n.email,
+                    hintText: context.l10n.emailHint,
                     controller: _emailContoller,
                     validator: (val) =>
                         emailError ?? Validators.validateEmail(val),

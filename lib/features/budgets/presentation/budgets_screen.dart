@@ -1,6 +1,7 @@
+import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 // ignore_for_file: deprecated_member_use
 
-import 'package:fynt/core/constants/app_sizes.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/enums/recurrence_type.dart';
 import 'package:fynt/core/widgets/app_bar_action.dart';
@@ -34,7 +35,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('My budgets'),
+        title: Text(context.l10n.addBudget),
         actions: const [
           AppBarAction(appRoute: AppRoutes.addBudget),
           gapW20,
@@ -65,7 +66,7 @@ class _BudgetsScreenState extends ConsumerState<BudgetsScreen> {
                     spendLimit: spendLimit,
                     spentAmount: spentAmount,
                   ),
-                  const Text('Categories', style: TextStyles.header),
+                  Text(context.l10n.categories, style: TextStyles.header),
                   gapH4,
                 ],
               ),

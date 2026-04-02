@@ -1,4 +1,5 @@
 import 'package:fynt/core/constants/app_sizes.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/widgets/scrollable_content_with_sticky_button.dart';
 import 'package:fynt/features/authentication/logic/auth_service.dart';
 import 'package:fynt/features/authentication/presentation/auth_field.dart';
@@ -74,7 +75,7 @@ class _ResetPasswordScreenState extends ConsumerState<UpdatePasswordScreen> {
                 Form(
                   key: formKey,
                   child: TextFieldWithLabel(
-                    label: 'New Password',
+                    label: context.l10n.password,
                     hintText: 'Enter your new password',
                     isPassword: true,
                     controller: _passwordController,

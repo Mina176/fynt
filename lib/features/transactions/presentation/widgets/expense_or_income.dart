@@ -2,7 +2,9 @@ import 'package:fynt/core/constants/duration_constants.dart';
 import 'package:fynt/core/constants/text_styles.dart';
 import 'package:fynt/core/widgets/custom_card.dart';
 import 'package:fynt/core/theming/app_colors.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class ExpenseOrIncome extends StatelessWidget {
   const ExpenseOrIncome({
@@ -15,7 +17,10 @@ class ExpenseOrIncome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> expenseOrIncome = ['Expense', 'Income'];
+    final List<String> expenseOrIncome = [
+      context.l10n.expense,
+      context.l10n.income,
+    ];
     bool isSelected(int index) => selectedIndex == index;
     return LayoutBuilder(
       builder: (context, constraints) {

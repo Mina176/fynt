@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/features/authentication/logic/auth_controller.dart';
 import 'package:fynt/features/authentication/logic/loading_state.dart';
 import 'package:fynt/features/authentication/presentation/auth_field.dart';
@@ -75,8 +76,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text(
-                      'Welcome Back',
+                    Text(
+                      context.l10n.welcomeBack,
                       style: TextStyles.title,
                       textAlign: TextAlign.center,
                     ),
@@ -92,8 +93,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         spacing: 12,
                         children: [
                           TextFieldWithLabel(
-                            label: 'Email Address',
-                            hintText: 'name@example.com',
+                            label: context.l10n.email,
+                            hintText: context.l10n.emailHint,
                             controller: _emailController,
                             validator: (val) =>
                                 emailError ?? Validators.validateEmail(val),
@@ -104,8 +105,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             },
                           ),
                           TextFieldWithLabel(
-                            label: 'Password',
-                            hintText: '••••••••',
+                            label: context.l10n.password,
+                            hintText: context.l10n.passwordHint,
                             controller: _passwordController,
                             isPassword: true,
                             validator: (val) =>
@@ -122,10 +123,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () => context.push(AppRoutes.forgotPassword.path),
-                      child: const Text(
-                        'Forgot Password?',
+                      child: Text(
+                        context.l10n.forgotPassword,
                         textAlign: TextAlign.end,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: AppColors.kPrimaryColor,
                           fontWeight: FontWeight.w600,
                         ),
@@ -134,10 +135,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     gapH8,
                     ElevatedButton(
                       onPressed: isLoading ? null : _signIn,
-                      child: const Text('Login'),
+                      child: Text(context.l10n.signUp),
                     ),
-                    const CustomDivider(
-                      centeredText: 'OR',
+                    CustomDivider(
+                      centeredText: context.l10n.continueWith,
                     ),
                     ElevatedButton(
                       onPressed: isLoading

@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/features/onboarding/data/onboarding_repository.dart';
 import 'package:fynt/core/routing/app_route_enum.dart';
 import 'package:fynt/core/constants/app_sizes.dart';
@@ -45,7 +46,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: completeOnboarding,
-                  child: const Text('skip'),
+                  child: Text(context.l10n.skip),
                 ),
               ),
               Expanded(
@@ -67,7 +68,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         )
                       : completeOnboarding(),
                 ),
-                child: Text(currentPage < 2 ? 'Next' : 'Get Started'),
+                child: Text(
+                  currentPage < 2 ? context.l10n.next : context.l10n.getStarted,
+                ),
               ),
             ],
           ),

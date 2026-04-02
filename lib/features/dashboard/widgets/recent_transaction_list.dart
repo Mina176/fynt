@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fynt/core/widgets/empty_list_sliver_fill_remaining.dart';
@@ -45,7 +46,7 @@ class RecentTransactionList extends ConsumerWidget {
         child: Center(child: CircularProgressIndicator()),
       ),
       error: (error, stack) => SliverToBoxAdapter(
-        child: Center(child: Text('Error: $error')),
+        child: Center(child: Text(context.l10n.somethingWentWrong)),
       ),
     );
   }

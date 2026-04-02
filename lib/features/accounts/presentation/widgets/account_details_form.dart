@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:fynt/features/authentication/presentation/auth_field.dart';
 
@@ -21,7 +22,7 @@ class AccountDetailsForm extends StatelessWidget {
         spacing: 10,
         children: [
           TextFieldWithLabel(
-            label: 'ACCOUNT NAME',
+            label: context.l10n.accountName,
             hintText: 'e.g. My Savings',
             controller: accountNameController,
             validator: (value) {
@@ -32,7 +33,7 @@ class AccountDetailsForm extends StatelessWidget {
             },
           ),
           TextFieldWithLabel(
-            label: 'ACCOUNT BALANCE',
+            label: context.l10n.accountBalance,
             hintText: '0.0',
             controller: balanceController,
             keyboardType: const TextInputType.numberWithOptions(

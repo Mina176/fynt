@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/utils/category_style.dart';
 import 'package:fynt/core/widgets/category_icon.dart';
 import 'package:fynt/core/widgets/settings_section.dart';
@@ -22,8 +23,8 @@ class AddNoteSection extends StatelessWidget {
         ListTile(
           leading: const OtherIcons(OtherIconTypes.note),
           trailing: const SizedBox(),
-          title: const Text(
-            "Note",
+          title: Text(
+            context.l10n.note,
             style: TextStyles.addTransactionSettingstitle,
           ),
           subtitle: SizedBox(
@@ -31,14 +32,14 @@ class AddNoteSection extends StatelessWidget {
             child: TextField(
               controller: controller,
               style: TextStyles.addTransactionSettingsSubtitle,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 filled: false,
                 border: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.zero,
-                hintText: 'Add a note...',
+                hintText: context.l10n.note,
                 hintStyle: TextStyles.addTransactionSettingsSubtitle,
               ),
             ),

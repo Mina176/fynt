@@ -1,3 +1,4 @@
+import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fynt/core/constants/text_styles.dart';
@@ -22,7 +23,7 @@ class TotalBalanceCard extends ConsumerWidget {
         spacing: 4,
         children: [
           Text(
-            'Total Balance',
+            context.l10n.totalBalance,
             style: TextStyles.subtitle.copyWith(fontSize: 14),
           ),
           Text(
@@ -30,8 +31,7 @@ class TotalBalanceCard extends ConsumerWidget {
               skipLoadingOnReload: true,
               data: (data) =>
                   '$currencySymbol${data.currentBalance.toStringAsFixed(2)}',
-              error: (error, stackTrace) =>
-                  'Something went wrong. Please try again.',
+              error: (error, stackTrace) => context.l10n.somethingWentWrong,
               loading: () => '${currencySymbol}0.00',
             ),
             style: TextStyles.title,
