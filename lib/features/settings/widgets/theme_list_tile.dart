@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fynt/core/constants/text_styles.dart';
+import 'package:fynt/core/extensions/localization_extension.dart';
+import 'package:fynt/core/routing/app_route_enum.dart';
+import 'package:fynt/core/theming/app_colors.dart';
+import 'package:fynt/features/settings/appearance/logic/theme_controller.dart';
+import 'package:go_router/go_router.dart';
+
+class ThemeListTile extends ConsumerWidget {
+  const ThemeListTile({
+    super.key,
+  });
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeControllerProvider);
+    return ListTile(
+      onTap: () => context.push(AppRoutes.setAppearance.path),
+      leading: const Icon(
+        Icons.color_lens,
+        color: AppColors.kPrimaryColor,
+      ),
+      title: Text(
+        context.l10n.theme,
+        style: TextStyles.labelText,
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            themeMode == ThemeMode.light
+                ? context.l10n.light
+                : context.l10n.dark,
+            style: TextStyles.subtitle.copyWith(fontSize: 12),
+          ),
+          const SizedBox(width: 8),
+          const Icon(Icons.arrow_forward_ios, size: 14),
+        ],
+      ),
+    );
+  }
+}
