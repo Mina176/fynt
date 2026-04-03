@@ -60,8 +60,8 @@ class _RootHomeScreenState extends State<RootHomeScreen> {
             iconData: Icons.pie_chart,
           ),
           FABBottomAppBarItem(
-            text: context.l10n.profile,
-            iconData: Icons.person,
+            text: context.l10n.settings,
+            iconData: Icons.settings,
           ),
         ],
       ),
