@@ -13,6 +13,7 @@ import 'package:fynt/core/theming/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:fynt/features/settings/language/logic/language_controller.dart';
 import 'package:fynt/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -33,16 +34,11 @@ void main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6enR4dHR0ZXBheXFldndkaHZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAwNDI0NDgsImV4cCI6MjA4NTYxODQ0OH0.qNUoVCxiiAkvnWzna-tUIQZGJPDfHRlldNqSTOv_2BQ',
   );
-  final sharedPreferences = await SharedPreferences.getInstance();
+  final prefs = await SharedPreferences.getInstance();
   runApp(
     ProviderScope(
       overrides: [
-        onboardingRepositoryProvider.overrideWithValue(
-          OnboardingRepository(sharedPreferences),
-        ),
-        themeServiceProvider.overrideWithValue(
-          ThemeRepository(sharedPreferences),
-        ),
+        sharedPreferencesProvider.overrideWithValue(prefs),
       ],
       child: const MainApp(),
     ),
@@ -83,6 +79,7 @@ class _MainAppState extends ConsumerState<MainApp> {
   Widget build(BuildContext context) {
     final router = ref.watch(routerProvider);
     final themeMode = ref.watch(themeControllerProvider);
+    final currentLocale = ref.watch(languageControllerProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
@@ -96,8 +93,9 @@ class _MainAppState extends ConsumerState<MainApp> {
         Locale('ar'),
       ],
       routerConfig: router,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      locale: currentLocale,
+      theme: AppTheme.lightTheme(currentLocale.languageCode),
+      darkTheme: AppTheme.darkTheme(currentLocale.languageCode),
       themeMode: themeMode,
       builder: (context, child) {
         return DecoratedBox(
