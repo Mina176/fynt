@@ -34,16 +34,12 @@ class UserInfoSection extends ConsumerWidget {
           style: TextStyles.subtitle.copyWith(fontSize: 16),
         ),
         SizedBox(
-          width: MediaQuery.widthOf(context) * 0.35,
           child: Consumer(
             builder: (context, ref, child) {
-              return TextButton.icon(
+              return TextButton(
                 onPressed: () =>
                     ref.read(authControllerProvider.notifier).signOut(),
-                label: FittedBox(child: Text(context.l10n.logout)),
-                icon: const Icon(
-                  Icons.logout,
-                ),
+                child: Text(context.l10n.logout),
               );
             },
           ),
