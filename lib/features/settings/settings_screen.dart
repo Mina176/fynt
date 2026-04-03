@@ -15,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          context.l10n.profile,
+          context.l10n.settings,
           style: TextStyles.title.copyWith(fontSize: 18),
         ),
       ),
@@ -25,13 +25,10 @@ class SettingsScreen extends StatelessWidget {
           horizontal: Sizes.kHorizontalPadding,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          spacing: 12,
+          spacing: 16,
           children: [
             UserInfoSection(),
-            gapH12,
             SettingsContent(),
-            Spacer(),
           ],
         ),
       ),

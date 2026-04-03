@@ -21,7 +21,7 @@ class UserInfoSection extends ConsumerWidget {
         ? currentUser.fullName
         : 'Guest#$guestId';
     return Column(
-      spacing: 12,
+      spacing: 8,
       children: [
         Text(
           displayName,

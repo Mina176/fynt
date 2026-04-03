@@ -5,7 +5,6 @@ import 'package:fynt/core/extensions/localization_extension.dart';
 import 'package:fynt/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fynt/features/settings/language/logic/language_controller.dart';
 
 class LastMonthContainer extends ConsumerWidget {
   const LastMonthContainer({
@@ -19,10 +18,6 @@ class LastMonthContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isSaving = savingPercentage >= 0;
-    bool isArabic = false;
-    if (ref.watch(languageControllerProvider) == const Locale('ar')) {
-      isArabic = true;
-    }
     return DecoratedBox(
       decoration: BoxDecoration(
         color: isSaving && Theme.brightnessOf(context) == Brightness.dark
@@ -45,92 +40,48 @@ class LastMonthContainer extends ConsumerWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: isArabic
-            ? Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    isShrinked
-                        ? '${savingPercentage.toString()}%'
-                        : context.l10n.vsLastMonth(savingPercentage),
-                    textAlign: TextAlign.center,
-                    style: TextStyles.buttonLabel.copyWith(
-                      color:
-                          isSaving &&
-                              Theme.brightnessOf(context) == Brightness.dark
-                          ? AppColors.kDarkSavingForeground
-                          : isSaving &&
-                                Theme.brightnessOf(context) == Brightness.light
-                          ? AppColors.kLightSavingForeground
-                          : !isSaving &&
-                                Theme.brightnessOf(context) == Brightness.dark
-                          ? AppColors.kDarkNotSavingForeground
-                          : AppColors.kLightNotSavingForeground,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
-                  ),
-                  gapW8,
-                  isSaving
-                      ? Icon(
-                          FontAwesomeIcons.arrowTrendUp,
-                          color: Theme.brightnessOf(context) == Brightness.dark
-                              ? AppColors.kDarkSavingForeground
-                              : AppColors.kLightSavingForeground,
-                          size: 12,
-                        )
-                      : Icon(
-                          FontAwesomeIcons.arrowTrendDown,
-                          color: Theme.brightnessOf(context) == Brightness.dark
-                              ? AppColors.kDarkNotSavingForeground
-                              : AppColors.kLightNotSavingForeground,
-                          size: 12,
-                        ),
-                ],
-              )
-            : Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  isSaving
-                      ? Icon(
-                          FontAwesomeIcons.arrowTrendUp,
-                          color: Theme.brightnessOf(context) == Brightness.dark
-                              ? AppColors.kDarkSavingForeground
-                              : AppColors.kLightSavingForeground,
-                          size: 12,
-                        )
-                      : Icon(
-                          FontAwesomeIcons.arrowTrendDown,
-                          color: Theme.brightnessOf(context) == Brightness.dark
-                              ? AppColors.kDarkNotSavingForeground
-                              : AppColors.kLightNotSavingForeground,
-                          size: 12,
-                        ),
-                  gapW8,
-                  Text(
-                    isShrinked
-                        ? '${savingPercentage.toString()}%'
-                        : context.l10n.vsLastMonth(savingPercentage),
-                    textAlign: TextAlign.center,
-                    style: TextStyles.buttonLabel.copyWith(
-                      color:
-                          isSaving &&
-                              Theme.brightnessOf(context) == Brightness.dark
-                          ? AppColors.kDarkSavingForeground
-                          : isSaving &&
-                                Theme.brightnessOf(context) == Brightness.light
-                          ? AppColors.kLightSavingForeground
-                          : !isSaving &&
-                                Theme.brightnessOf(context) == Brightness.dark
-                          ? AppColors.kDarkNotSavingForeground
-                          : AppColors.kLightNotSavingForeground,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              isShrinked
+                  ? '${savingPercentage.toString()}%'
+                  : context.l10n.vsLastMonth(savingPercentage),
+              textAlign: TextAlign.center,
+              style: TextStyles.buttonLabel.copyWith(
+                color:
+                    isSaving && Theme.brightnessOf(context) == Brightness.dark
+                    ? AppColors.kDarkSavingForeground
+                    : isSaving &&
+                          Theme.brightnessOf(context) == Brightness.light
+                    ? AppColors.kLightSavingForeground
+                    : !isSaving &&
+                          Theme.brightnessOf(context) == Brightness.dark
+                    ? AppColors.kDarkNotSavingForeground
+                    : AppColors.kLightNotSavingForeground,
+                fontWeight: FontWeight.w900,
+                fontSize: 14,
               ),
+            ),
+            gapW8,
+            isSaving
+                ? Icon(
+                    FontAwesomeIcons.arrowTrendUp,
+                    color: Theme.brightnessOf(context) == Brightness.dark
+                        ? AppColors.kDarkSavingForeground
+                        : AppColors.kLightSavingForeground,
+                    size: 12,
+                  )
+                : Icon(
+                    FontAwesomeIcons.arrowTrendDown,
+                    color: Theme.brightnessOf(context) == Brightness.dark
+                        ? AppColors.kDarkNotSavingForeground
+                        : AppColors.kLightNotSavingForeground,
+                    size: 12,
+                  ),
+          ],
+        ),
       ),
     );
   }
