@@ -64,7 +64,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.kVerticalPadding,
             horizontal: Sizes.kHorizontalPadding,
           ),
           child: CustomScrollView(

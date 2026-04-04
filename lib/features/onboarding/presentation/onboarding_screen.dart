@@ -36,7 +36,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.kVerticalPadding,
             horizontal: Sizes.kHorizontalPadding,
           ),
           child: Column(

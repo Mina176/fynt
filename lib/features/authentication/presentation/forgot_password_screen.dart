@@ -58,7 +58,6 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.kVerticalPadding,
             horizontal: Sizes.kHorizontalPadding,
           ),
           child: ScrollableContentWithStickyButton(

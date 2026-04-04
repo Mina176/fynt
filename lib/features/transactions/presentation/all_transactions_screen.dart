@@ -23,7 +23,6 @@ class AllTransactionsScreen extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: Sizes.kVerticalPadding,
           horizontal: Sizes.kHorizontalPadding,
         ),
         child: transactionsAsync.when(

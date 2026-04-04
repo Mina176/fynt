@@ -71,7 +71,6 @@ class _AddAccountScreenState extends ConsumerState<AddAccountScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: Sizes.kVerticalPadding,
           horizontal: Sizes.kHorizontalPadding,
         ),
         child: Column(

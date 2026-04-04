@@ -57,7 +57,6 @@ class SelectAccountScreen extends ConsumerWidget {
           }
           return Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: Sizes.kVerticalPadding,
               horizontal: Sizes.kHorizontalPadding,
             ),
             child: SingleChildScrollView(
